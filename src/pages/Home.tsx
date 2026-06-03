@@ -37,8 +37,8 @@ function Welcome({ totalCount }: { totalCount: number }) {
             </div>
             <ul className="mt-2 text-sm text-zinc-700 space-y-1.5">
               <li>上タブで軸を切替 (Components / Design / Color / ...)</li>
-              <li>右上の検索でタイトル・説明から絞り込み</li>
-              <li>左サイドバーから直接ジャンプ (セクションは折り畳み可)</li>
+              <li>右上の検索でタイトル横断ジャンプ</li>
+              <li>各ページ末尾の Previous / Next で連続巡回</li>
             </ul>
           </div>
           <div className="rounded-lg bg-white/80 backdrop-blur border border-white p-4">
@@ -137,7 +137,7 @@ export default function Home() {
         <div className="mb-8">
           <h1 className="text-2xl font-semibold">Design Book</h1>
           <p className="text-sm text-zinc-600 mt-2">
-            {totalCount} 件の項目。サイドバーから選ぶか、下のカードから。
+            {totalCount} 件の項目。下のカードから選択。
           </p>
         </div>
       )}

@@ -387,6 +387,12 @@ export const sections: Section[] = [
     label: 'Scenarios',
     entries: [
       {
+        slug: 'login',
+        title: 'Login',
+        description: 'ログイン画面のフロー。2カラム + 第三者ログイン + 新規登録導線。',
+        Component: lz(() => import('./pages/scenarios/LoginScreen')),
+      },
+      {
         slug: 'multi-tab-errors',
         title: 'Multi-tab Form Errors',
         description: '複数タブのフォームでエラーを伝える6パターンを切替比較。',
@@ -499,18 +505,6 @@ export const sections: Section[] = [
         title: 'Detail Panel Open Patterns',
         description: '右ドロワー覆う / 領域分割 / 左 / ボトムシート / モーダル / インライン展開 / ページ遷移。',
         Component: lz(() => import('./pages/layout/DetailPanels')),
-      },
-    ],
-  },
-  {
-    id: 'screens',
-    label: 'Screens',
-    entries: [
-      {
-        slug: 'login',
-        title: 'Login',
-        description: 'ログイン画面のデザイン案。',
-        Component: lz(() => import('./pages/screens/LoginScreen')),
       },
     ],
   },

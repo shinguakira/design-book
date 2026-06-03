@@ -14,6 +14,26 @@ import { Bell, Heart, Search } from 'lucide-react'
 ```
 サイズは Tailwind の `w-* h-*` で指定。色は `text-*` で継承。
 
+## タブ (軸) の分類
+
+新しいページを追加する時はこの基準でセクション/タブを割り当てる。
+迷ったら「そのページは何を例示しているか」で判断する。
+
+- **Components** — 再利用可能な UI 部品の例示。Button・Card・Dialog のような単一の使い方も、
+  Layout (Headers / Footers / 詳細パネル) や Files (Path / Folder / Upload) のような複合パターンも、
+  「組み合わせれば任意のプロダクトが作れる」レベルの基本素材はここ。Ideas もここに含める。
+- **Design** — 「○○Design」という **スタイル名 (デザイン哲学・流派) の解説と実例だけ** を置く。
+  Flat / Material / Neumorphism / Glassmorphism / Skeuomorphism / Brutalism / Claymorphism など、
+  「何をもってその名前のデザインと呼ぶか」を Pros/Cons + 同一UI の比較で示す。
+  特定のページ全体やレイアウト構成 (ヘッダー・フッターなど) はここに置かない。
+- **Color** — 配色とアクセシビリティ。パレット・コントラスト・色覚特性・文化的意味・
+  60-30-10・Tints & Shades など、色そのもののリファレンス。
+- **Animation** — 動きのパターン。pulse・spin・shake・fade-in・stagger・easing 曲線などの
+  CSS / JS による動きと、micro-interaction の例。
+- **Scenarios** — 実プロダクトでよく出る UX パターンの集積。Login・複数タブのフォームエラー・
+  Messaging (チャット / AI入力 / 音声 / 添付) など、複数コンポーネントを組み合わせた
+  **シーン単位** の例。Login のように単一画面でも、シーンとして成立するならここ。
+
 ## ページの作り方 / インタラクティビティ
 
 - **静的モックを作らない。** 動作する UI を作る。

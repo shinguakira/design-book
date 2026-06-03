@@ -23,13 +23,17 @@ const VIEWS: { id: ViewId; label: string; sectionIds: string[] | null }[] = [
   {
     id: 'components',
     label: 'Components',
-    sectionIds: ['form', 'display', 'overlay', 'navigation', 'files'],
+    sectionIds: [
+      'form',
+      'display',
+      'overlay',
+      'navigation',
+      'files',
+      'layout',
+      'ideas',
+    ],
   },
-  {
-    id: 'design',
-    label: 'Design',
-    sectionIds: ['styles', 'layout', 'screens', 'ideas'],
-  },
+  { id: 'design', label: 'Design', sectionIds: ['styles'] },
   { id: 'color', label: 'Color', sectionIds: ['color'] },
   { id: 'animation', label: 'Animation', sectionIds: ['animation'] },
   {
