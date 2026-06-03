@@ -4,10 +4,10 @@ import {
   Plus,
   Heart,
   CircleUser,
-  Github,
-  Twitter,
-  Youtube,
-  Linkedin,
+  Code,
+  Send,
+  Video,
+  Briefcase,
   X,
 } from 'lucide-react'
 
@@ -47,7 +47,7 @@ export default function Footers() {
                   デザインチームのための、はじめてのプラットフォーム。
                 </p>
                 <div className="flex gap-2 mt-4">
-                  {[Twitter, Github, Linkedin, Youtube].map((Icon, i) => (
+                  {[Send, Code, Briefcase, Video].map((Icon, i) => (
                     <a
                       key={i}
                       className="w-8 h-8 rounded-md bg-zinc-800 flex items-center justify-center hover:bg-zinc-700"
