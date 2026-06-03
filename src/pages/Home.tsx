@@ -1,119 +1,9 @@
 import { Link, useOutletContext } from 'react-router-dom'
-import {
-  Pencil,
-  LayoutGrid,
-  MessageSquare,
-  Compass,
-  Palette,
-  Droplet,
-  Sparkles,
-  Clapperboard,
-  Monitor,
-  Lightbulb,
-  Package,
-  MessageCircle,
-  PanelsTopLeft,
-  FolderTree,
-  type LucideIcon,
-} from 'lucide-react'
+import { Package, Palette, Droplet, Clapperboard } from 'lucide-react'
 import type { Section } from '../registry'
+import { metaOf } from '../sectionMeta'
 
 type Ctx = { visibleSections: Section[]; view: string }
-
-type Meta = {
-  Icon: LucideIcon
-  gradient: string
-  tint: string
-  tagline: string
-}
-
-const SECTION_META: Record<string, Meta> = {
-  form: {
-    Icon: Pencil,
-    gradient: 'from-blue-500 to-cyan-500',
-    tint: 'bg-blue-50 text-blue-700 border-blue-200',
-    tagline: 'テキスト・選択・ファイル — ユーザー入力',
-  },
-  display: {
-    Icon: LayoutGrid,
-    gradient: 'from-emerald-500 to-teal-500',
-    tint: 'bg-emerald-50 text-emerald-700 border-emerald-200',
-    tagline: '情報を見せる — ラベル・カード・テーブル',
-  },
-  overlay: {
-    Icon: MessageSquare,
-    gradient: 'from-violet-500 to-purple-500',
-    tint: 'bg-violet-50 text-violet-700 border-violet-200',
-    tagline: '画面の上に重ねる — ダイアログ・通知・吹き出し',
-  },
-  navigation: {
-    Icon: Compass,
-    gradient: 'from-amber-500 to-orange-500',
-    tint: 'bg-amber-50 text-amber-700 border-amber-200',
-    tagline: '移動と切り替え — タブ・パンくず・ページネーション',
-  },
-  files: {
-    Icon: FolderTree,
-    gradient: 'from-yellow-500 to-amber-600',
-    tint: 'bg-yellow-50 text-yellow-800 border-yellow-200',
-    tagline: 'パス・フォルダ・アップロード — ファイル種別非依存',
-  },
-  styles: {
-    Icon: Palette,
-    gradient: 'from-pink-500 to-rose-500',
-    tint: 'bg-pink-50 text-pink-700 border-pink-200',
-    tagline: 'デザインスタイルの比較 — Flat・Material・Glassmorphism他',
-  },
-  layout: {
-    Icon: PanelsTopLeft,
-    gradient: 'from-slate-500 to-zinc-700',
-    tint: 'bg-slate-50 text-slate-700 border-slate-200',
-    tagline: 'ヘッダー・フッター・詳細パネルの開き方',
-  },
-  color: {
-    Icon: Droplet,
-    gradient: 'from-fuchsia-500 via-purple-500 to-blue-500',
-    tint: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200',
-    tagline: '配色とアクセシビリティ — パレット・コントラスト・色覚特性',
-  },
-  animation: {
-    Icon: Sparkles,
-    gradient: 'from-cyan-500 to-sky-500',
-    tint: 'bg-cyan-50 text-cyan-700 border-cyan-200',
-    tagline: '動きの引き出し — pulse・shake・stagger',
-  },
-  scenarios: {
-    Icon: Clapperboard,
-    gradient: 'from-orange-500 to-red-500',
-    tint: 'bg-orange-50 text-orange-700 border-orange-200',
-    tagline: '実プロダクトのUXパターン',
-  },
-  messaging: {
-    Icon: MessageCircle,
-    gradient: 'from-sky-500 to-blue-600',
-    tint: 'bg-sky-50 text-sky-700 border-sky-200',
-    tagline: 'チャット・AI入力・音声・添付ファイル',
-  },
-  screens: {
-    Icon: Monitor,
-    gradient: 'from-indigo-500 to-blue-600',
-    tint: 'bg-indigo-50 text-indigo-700 border-indigo-200',
-    tagline: 'ページ単位のデザイン案',
-  },
-  ideas: {
-    Icon: Lightbulb,
-    gradient: 'from-yellow-400 to-amber-500',
-    tint: 'bg-yellow-50 text-yellow-800 border-yellow-200',
-    tagline: '溜まったアイデアのメモ',
-  },
-}
-
-const defaultMeta: Meta = {
-  Icon: Package,
-  gradient: 'from-zinc-500 to-zinc-700',
-  tint: 'bg-zinc-50 text-zinc-700 border-zinc-200',
-  tagline: '',
-}
 
 function Welcome({ totalCount }: { totalCount: number }) {
   return (
@@ -148,7 +38,7 @@ function Welcome({ totalCount }: { totalCount: number }) {
             <ul className="mt-2 text-sm text-zinc-700 space-y-1.5">
               <li>上タブで軸を切替 (Components / Design / Color / ...)</li>
               <li>右上の検索でタイトル・説明から絞り込み</li>
-              <li>左サイドバーから直接ジャンプ</li>
+              <li>左サイドバーから直接ジャンプ (セクションは折り畳み可)</li>
             </ul>
           </div>
           <div className="rounded-lg bg-white/80 backdrop-blur border border-white p-4">
@@ -181,7 +71,7 @@ function Welcome({ totalCount }: { totalCount: number }) {
 }
 
 function SectionBlock({ section }: { section: Section }) {
-  const meta = SECTION_META[section.id] ?? defaultMeta
+  const meta = metaOf(section.id)
   const { Icon } = meta
   return (
     <section>
@@ -200,7 +90,7 @@ function SectionBlock({ section }: { section: Section }) {
           )}
         </div>
         <span
-          className={`text-xs font-medium px-2 py-0.5 rounded-full border ${meta.tint} shrink-0`}
+          className={`text-xs font-medium px-2 py-0.5 rounded-full border ${meta.pill} shrink-0`}
         >
           {section.entries.length}
         </span>
