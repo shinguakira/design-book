@@ -30,9 +30,9 @@ import { Bell, Heart, Search } from 'lucide-react'
   60-30-10・Tints & Shades など、色そのもののリファレンス。
 - **Animation** — 動きのパターン。pulse・spin・shake・fade-in・stagger・easing 曲線などの
   CSS / JS による動きと、micro-interaction の例。
-- **Scenarios** — 実プロダクトでよく出る UX パターンの集積。Login・複数タブのフォームエラー・
-  Messaging (チャット / AI入力 / 音声 / 添付) など、複数コンポーネントを組み合わせた
-  **シーン単位** の例。Login のように単一画面でも、シーンとして成立するならここ。
+- **Scenarios** — 実際の特定利用パターンやシナリオ上での UI。Login・複数タブのフォームエラー・
+  Messaging (チャット / AI入力 / 音声 / 添付) など、「○○な状況で何をどう見せるか」を主題にした
+  例。単一画面でも具体的な利用シナリオが伴うならここ。
 
 ## ページの作り方 / インタラクティビティ
 
