@@ -3,6 +3,7 @@ import { Badge } from '../../components/ui/Badge'
 import { List } from '../../components/ui/List'
 import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
 import { useState } from 'react'
+import { Bell, Mail, Lock, ChevronRight } from 'lucide-react'
 
 export default function ListShowcase() {
   const [push, setPush] = useState(true)
@@ -14,22 +15,22 @@ export default function ListShowcase() {
           <List
             items={[
               {
-                icon: '🔔',
+                icon: <Bell className="w-5 h-5" />,
                 title: 'プッシュ通知',
                 description: '新着メッセージで通知',
                 trailing: <Switch checked={push} onChange={setPush} />,
               },
               {
-                icon: '✉️',
+                icon: <Mail className="w-5 h-5" />,
                 title: 'メール通知',
                 description: '毎週ダイジェスト',
                 trailing: <Switch checked={email} onChange={setEmail} />,
               },
               {
-                icon: '🔒',
+                icon: <Lock className="w-5 h-5" />,
                 title: 'プライバシー',
                 description: '公開範囲の設定',
-                trailing: <span className="text-zinc-400">›</span>,
+                trailing: <ChevronRight className="w-4 h-4 text-zinc-400" />,
               },
             ]}
           />

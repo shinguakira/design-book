@@ -227,6 +227,174 @@ export const sections: Section[] = [
     ],
   },
   {
+    id: 'styles',
+    label: 'Design Styles',
+    entries: [
+      {
+        slug: 'flat',
+        title: 'Flat Design',
+        description: '影なし・純色・タイポ重視のミニマル。現代Webの基本。',
+        Component: lz(() => import('./pages/styles/FlatDesign')),
+      },
+      {
+        slug: 'material',
+        title: 'Material Design',
+        description: 'Google発。紙(material)の概念とelevation影。',
+        Component: lz(() => import('./pages/styles/MaterialDesign')),
+      },
+      {
+        slug: 'neumorphism',
+        title: 'Neumorphism',
+        description: '同色の凸凹を影で表現。柔らかい質感。',
+        Component: lz(() => import('./pages/styles/Neumorphism')),
+      },
+      {
+        slug: 'glassmorphism',
+        title: 'Glassmorphism',
+        description: '半透明 + 背景ブラーですりガラス風に。',
+        Component: lz(() => import('./pages/styles/Glassmorphism')),
+      },
+      {
+        slug: 'skeuomorphism',
+        title: 'Skeuomorphism',
+        description: '現実の質感(革・木目・3Dボタン)を模倣。',
+        Component: lz(() => import('./pages/styles/Skeuomorphism')),
+      },
+      {
+        slug: 'brutalism',
+        title: 'Brutalism',
+        description: '太枠・等幅・ハードシャドウ。反デザイン的。',
+        Component: lz(() => import('./pages/styles/Brutalism')),
+      },
+      {
+        slug: 'claymorphism',
+        title: 'Claymorphism',
+        description: '粘土風のふっくらした3D。パステルと相性○。',
+        Component: lz(() => import('./pages/styles/Claymorphism')),
+      },
+    ],
+  },
+  {
+    id: 'color',
+    label: 'Color',
+    entries: [
+      {
+        slug: 'palette',
+        title: 'Color Palette',
+        description: 'Tailwind標準パレットの全色相 × 11段階。',
+        Component: lz(() => import('./pages/color/ColorPalette')),
+      },
+      {
+        slug: 'sixty-thirty-ten',
+        title: '60-30-10 Rule',
+        description: 'メイン/サブ/アクセントの黄金比。',
+        Component: lz(() => import('./pages/color/SixtyThirtyTen')),
+      },
+      {
+        slug: 'harmony',
+        title: 'Color Harmony',
+        description: '補色・類似色・三角配色などの定石。',
+        Component: lz(() => import('./pages/color/ColorHarmony')),
+      },
+      {
+        slug: 'tints-shades',
+        title: 'Tints & Shades',
+        description: '1色から派生色を作る方法。',
+        Component: lz(() => import('./pages/color/TintsAndShades')),
+      },
+      {
+        slug: 'contrast',
+        title: 'Contrast & A11y',
+        description: 'WCAGコントラスト比とAA/AAA判定。',
+        Component: lz(() => import('./pages/color/Contrast')),
+      },
+      {
+        slug: 'color-blindness',
+        title: 'Color Blindness',
+        description: '色覚特性。男性の8%が該当。実際の見え方をSVGで再現。',
+        Component: lz(() => import('./pages/color/ColorBlindness')),
+      },
+      {
+        slug: 'cultural-meaning',
+        title: 'Cultural Meaning',
+        description: '色の文化的意味。白=喪 (アジア)、白=純潔 (欧米) など。',
+        Component: lz(() => import('./pages/color/CulturalMeaning')),
+      },
+      {
+        slug: 'inclusive-design',
+        title: 'Inclusive Design',
+        description: '低視力・光過敏・加齢など、特定の人への配慮。',
+        Component: lz(() => import('./pages/color/InclusiveDesign')),
+      },
+    ],
+  },
+  {
+    id: 'animation',
+    label: 'Animation',
+    entries: [
+      {
+        slug: 'loops',
+        title: 'Loops',
+        description: 'pulse / spin / bounce / ping など無限ループ系。',
+        Component: lz(() => import('./pages/animation/Loops')),
+      },
+      {
+        slug: 'loading',
+        title: 'Loading',
+        description: 'スピナー・ドット・shimmer・indeterminate進捗。',
+        Component: lz(() => import('./pages/animation/Loading')),
+      },
+      {
+        slug: 'entrance',
+        title: 'Entrance',
+        description: 'フェード/スライド/スケール in。stagger も。',
+        Component: lz(() => import('./pages/animation/Entrance')),
+      },
+      {
+        slug: 'attention',
+        title: 'Attention',
+        description: 'shake・wiggle・heartbeat・glow など注意喚起。',
+        Component: lz(() => import('./pages/animation/Attention')),
+      },
+      {
+        slug: 'hover',
+        title: 'Hover Effects',
+        description: 'lift・scale・tilt・underline grow など。',
+        Component: lz(() => import('./pages/animation/Hover')),
+      },
+      {
+        slug: 'micro-interactions',
+        title: 'Micro-interactions',
+        description: 'いいね・コピー・トグル・カウンタなど小さな反応。',
+        Component: lz(() => import('./pages/animation/MicroInteractions')),
+      },
+      {
+        slug: 'marquee',
+        title: 'Marquee',
+        description: '横スクロールするテキスト/ロゴ。両端フェード付きも。',
+        Component: lz(() => import('./pages/animation/Marquee')),
+      },
+      {
+        slug: 'easing',
+        title: 'Easing Curves',
+        description: 'linear/ease-in/out/in-out/spring の比較。',
+        Component: lz(() => import('./pages/animation/Easing')),
+      },
+    ],
+  },
+  {
+    id: 'scenarios',
+    label: 'Scenarios',
+    entries: [
+      {
+        slug: 'multi-tab-errors',
+        title: 'Multi-tab Form Errors',
+        description: '複数タブのフォームでエラーを伝える6パターンを切替比較。',
+        Component: lz(() => import('./pages/scenarios/MultiTabErrors')),
+      },
+    ],
+  },
+  {
     id: 'screens',
     label: 'Screens',
     entries: [
