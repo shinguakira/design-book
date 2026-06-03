@@ -11,6 +11,9 @@ import {
   Monitor,
   Lightbulb,
   Package,
+  MessageCircle,
+  PanelsTopLeft,
+  FolderTree,
   type LucideIcon,
 } from 'lucide-react'
 import type { Section } from '../registry'
@@ -49,11 +52,23 @@ const SECTION_META: Record<string, Meta> = {
     tint: 'bg-amber-50 text-amber-700 border-amber-200',
     tagline: '移動と切り替え — タブ・パンくず・ページネーション',
   },
+  files: {
+    Icon: FolderTree,
+    gradient: 'from-yellow-500 to-amber-600',
+    tint: 'bg-yellow-50 text-yellow-800 border-yellow-200',
+    tagline: 'パス・フォルダ・アップロード — ファイル種別非依存',
+  },
   styles: {
     Icon: Palette,
     gradient: 'from-pink-500 to-rose-500',
     tint: 'bg-pink-50 text-pink-700 border-pink-200',
     tagline: 'デザインスタイルの比較 — Flat・Material・Glassmorphism他',
+  },
+  layout: {
+    Icon: PanelsTopLeft,
+    gradient: 'from-slate-500 to-zinc-700',
+    tint: 'bg-slate-50 text-slate-700 border-slate-200',
+    tagline: 'ヘッダー・フッター・詳細パネルの開き方',
   },
   color: {
     Icon: Droplet,
@@ -72,6 +87,12 @@ const SECTION_META: Record<string, Meta> = {
     gradient: 'from-orange-500 to-red-500',
     tint: 'bg-orange-50 text-orange-700 border-orange-200',
     tagline: '実プロダクトのUXパターン',
+  },
+  messaging: {
+    Icon: MessageCircle,
+    gradient: 'from-sky-500 to-blue-600',
+    tint: 'bg-sky-50 text-sky-700 border-sky-200',
+    tagline: 'チャット・AI入力・音声・添付ファイル',
   },
   screens: {
     Icon: Monitor,

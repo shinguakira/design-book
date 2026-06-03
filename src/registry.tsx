@@ -395,6 +395,114 @@ export const sections: Section[] = [
     ],
   },
   {
+    id: 'messaging',
+    label: 'Messaging',
+    entries: [
+      {
+        slug: 'bubbles',
+        title: 'Chat Bubbles',
+        description: 'iMessage / WhatsApp / Slack / ChatGPT / LINE 各種吹き出し。',
+        Component: lz(() => import('./pages/messaging/ChatBubbles')),
+      },
+      {
+        slug: 'mobile-chat',
+        title: 'Mobile Chat Screen',
+        description: 'スマホ全体レイアウト (ヘッダー / 履歴 / 入力)。ライト&ダーク。',
+        Component: lz(() => import('./pages/messaging/MobileChat')),
+      },
+      {
+        slug: 'ai-chat',
+        title: 'AI Chat',
+        description: 'ChatGPT / Claude 風アシスタント。コードブロック・操作ボタン付き。',
+        Component: lz(() => import('./pages/messaging/AIChat')),
+      },
+      {
+        slug: 'input-basic',
+        title: 'Input — Basic',
+        description: '最小構成・Slack風・ツールバー付き・文字数カウンタ。',
+        Component: lz(() => import('./pages/messaging/InputBasic')),
+      },
+      {
+        slug: 'input-rich',
+        title: 'Input — Rich (AI)',
+        description: 'ChatGPT / Claude / Gemini 風の高機能入力。',
+        Component: lz(() => import('./pages/messaging/InputRich')),
+      },
+      {
+        slug: 'input-mobile',
+        title: 'Input — Mobile',
+        description: 'モバイル下端入力。+ シート・テキスト/音声切替・録音モード。',
+        Component: lz(() => import('./pages/messaging/InputMobile')),
+      },
+      {
+        slug: 'voice-input',
+        title: 'Voice Input',
+        description: '音声入力・録音中UI・波形・プレビュー・文字起こし。',
+        Component: lz(() => import('./pages/messaging/VoiceInput')),
+      },
+      {
+        slug: 'typing-status',
+        title: 'Typing & Status',
+        description: '入力中ドット・送信中/既読/失敗・オンラインバッジ。',
+        Component: lz(() => import('./pages/messaging/TypingStatus')),
+      },
+      {
+        slug: 'attachments',
+        title: 'Attachments',
+        description: '画像 / ファイル / 音声 / 動画 / 位置 / OGP / ドロップ。',
+        Component: lz(() => import('./pages/messaging/Attachments')),
+      },
+    ],
+  },
+  {
+    id: 'files',
+    label: 'Files',
+    entries: [
+      {
+        slug: 'paths',
+        title: 'File Paths',
+        description: '省略 (前/中央/後) / hover でフルパス / breadcrumb / コピー / 状態付き。',
+        Component: lz(() => import('./pages/files/FilePaths')),
+      },
+      {
+        slug: 'folder-nav',
+        title: 'Folder Navigation',
+        description: 'フォルダアイコン (状態/色分け/バッジ) / ツリー / グリッド / ピン留め。',
+        Component: lz(() => import('./pages/files/FolderNav')),
+      },
+      {
+        slug: 'upload-flow',
+        title: 'Upload Flow',
+        description: 'idle / drag / queue / 進行中 / 完了 / 失敗 / 検証エラー / クォータ。',
+        Component: lz(() => import('./pages/files/UploadFlow')),
+      },
+    ],
+  },
+  {
+    id: 'layout',
+    label: 'Layout',
+    entries: [
+      {
+        slug: 'headers',
+        title: 'Headers',
+        description: 'Marketing / App / Centered / Transparent / Mobile / Sticky / Banner付 など9パターン。',
+        Component: lz(() => import('./pages/layout/Headers')),
+      },
+      {
+        slug: 'footers',
+        title: 'Footers',
+        description: 'Multi-column / Minimal / Tab bar / Sticky CTA / Cookie / Newsletter。',
+        Component: lz(() => import('./pages/layout/Footers')),
+      },
+      {
+        slug: 'detail-panels',
+        title: 'Detail Panel Open Patterns',
+        description: '右ドロワー覆う / 領域分割 / 左 / ボトムシート / モーダル / インライン展開 / ページ遷移。',
+        Component: lz(() => import('./pages/layout/DetailPanels')),
+      },
+    ],
+  },
+  {
     id: 'screens',
     label: 'Screens',
     entries: [

@@ -15,12 +15,20 @@ const VIEWS: { id: ViewId; label: string; sectionIds: string[] | null }[] = [
   {
     id: 'components',
     label: 'Components',
-    sectionIds: ['form', 'display', 'overlay', 'navigation'],
+    sectionIds: ['form', 'display', 'overlay', 'navigation', 'files'],
   },
-  { id: 'design', label: 'Design', sectionIds: ['styles', 'screens', 'ideas'] },
+  {
+    id: 'design',
+    label: 'Design',
+    sectionIds: ['styles', 'layout', 'screens', 'ideas'],
+  },
   { id: 'color', label: 'Color', sectionIds: ['color'] },
   { id: 'animation', label: 'Animation', sectionIds: ['animation'] },
-  { id: 'scenarios', label: 'Scenarios', sectionIds: ['scenarios'] },
+  {
+    id: 'scenarios',
+    label: 'Scenarios',
+    sectionIds: ['scenarios', 'messaging'],
+  },
 ]
 
 const deriveView = (pathname: string): ViewId => {
