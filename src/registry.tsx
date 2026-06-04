@@ -380,12 +380,24 @@ export const sections: Section[] = [
         description: 'linear/ease-in/out/in-out/spring の比較。',
         Component: lz(() => import('./pages/animation/Easing')),
       },
+      {
+        slug: 'modal-effects',
+        title: 'Modal Open Effects',
+        description: '封筒(伝書鳩+ナイフ+フタ)/新聞展開/巻物落下 の3種演出。',
+        Component: lz(() => import('./pages/animation/ModalEffects')),
+      },
     ],
   },
   {
     id: 'scenarios',
     label: 'Scenarios',
     entries: [
+      {
+        slug: 'pubmed-search',
+        title: 'PubMed Search',
+        description: 'sepia/serif の論文検索シーン。タイトルクリックで紙の封筒モーダル。',
+        Component: lz(() => import('./pages/scenarios/PubmedSearch')),
+      },
       {
         slug: 'login',
         title: 'Login',
