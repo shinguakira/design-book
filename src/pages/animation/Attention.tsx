@@ -1,18 +1,11 @@
-import { useState } from 'react'
 import { ArrowDown, Bell, Heart } from 'lucide-react'
 
 export default function Attention() {
-  const [shaking, setShaking] = useState(false)
-
-  const triggerShake = () => {
-    setShaking(false)
-    requestAnimationFrame(() => setShaking(true))
-  }
-
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700">
-        ユーザーに「ここ見て」と知らせる動き。多用すると消耗するので、本当に必要な所だけに。
+        ユーザーに「ここ見て」と知らせる動き。デモは自動でループしますが、
+        本番では「エラー発生時」「初回ロード時」など必要なトリガー時のみ発火させる。
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -23,17 +16,11 @@ export default function Attention() {
               type="email"
               placeholder="you@example.com"
               defaultValue="wrong"
-              className={`block w-full rounded-md border border-red-500 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 ${
-                shaking ? 'animate-shake' : ''
-              }`}
-              onAnimationEnd={() => setShaking(false)}
+              className="block w-full rounded-md border border-red-500 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-red-500 animate-demo-shake"
             />
-            <button
-              onClick={triggerShake}
-              className="px-3 h-9 rounded-md bg-zinc-900 text-white text-sm font-medium"
-            >
-              送信 (エラーをトリガー)
-            </button>
+            <div className="text-xs text-red-600">
+              ※ デモのため定期的に揺れます (本番は Submit 時のみ)
+            </div>
           </div>
           <div className="text-xs text-zinc-500 mt-3 font-mono">animate-shake</div>
         </div>
