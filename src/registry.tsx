@@ -117,6 +117,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/ListLayoutsShowcase')),
       },
       {
+        slug: 'table-layouts',
+        title: 'Table Layouts',
+        description: 'テーブル20パターン。罫線/Sort/Filter/Select/Inline edit/Heatmap/Sticky/Pagination まで。',
+        Component: lz(() => import('./pages/components/TableLayoutsShowcase')),
+      },
+      {
         slug: 'table',
         title: 'Table',
         description: 'データテーブル。',
