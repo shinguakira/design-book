@@ -105,6 +105,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/ListShowcase')),
       },
       {
+        slug: 'numbered-list',
+        title: 'Numbered List',
+        description: '番号+名前の1行リスト9パターン。ランキング・目次・To-do向け。',
+        Component: lz(() => import('./pages/components/NumberedListShowcase')),
+      },
+      {
         slug: 'table',
         title: 'Table',
         description: 'データテーブル。',
