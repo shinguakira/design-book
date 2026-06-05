@@ -107,7 +107,7 @@ export const sections: Section[] = [
       {
         slug: 'numbered-list',
         title: 'Numbered List',
-        description: '番号+名前の1行リスト9パターン。ランキング・目次・To-do向け。',
+        description: '番号+名前の1行リスト20パターン。ランキング・目次・To-do・神話風・コレクション。',
         Component: lz(() => import('./pages/components/NumberedListShowcase')),
       },
       {
