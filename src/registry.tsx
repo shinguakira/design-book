@@ -45,6 +45,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/SelectShowcase')),
       },
       {
+        slug: 'select-patterns',
+        title: 'Select Patterns',
+        description: '「選択UI」16パターン。combobox / multi chips / tag / 色 / アバター / segmented / radio cards / listbox まで。',
+        Component: lz(() => import('./pages/components/SelectPatternsShowcase')),
+      },
+      {
         slug: 'checkbox',
         title: 'Checkbox',
         description: '複数選択のチェック。',
