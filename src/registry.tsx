@@ -111,6 +111,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/NumberedListShowcase')),
       },
       {
+        slug: 'list-layouts',
+        title: 'List Layouts',
+        description: 'リストの並べ方・密度・操作の付け方 16パターン。Bento・Tree・Switchable・Bulk・Skeletonまで。',
+        Component: lz(() => import('./pages/components/ListLayoutsShowcase')),
+      },
+      {
         slug: 'table',
         title: 'Table',
         description: 'データテーブル。',
