@@ -119,7 +119,7 @@ export const sections: Section[] = [
       {
         slug: 'table-layouts',
         title: 'Table Layouts',
-        description: 'テーブル20パターン。罫線/Sort/Filter/Select/Inline edit/Heatmap/Sticky/Pagination まで。',
+        description: 'テーブル32パターン。罫線・密度・Hover・Vertical zebra・点線・Dark header から、Sort/Filter/Select/Edit/Heatmap/Sticky まで。',
         Component: lz(() => import('./pages/components/TableLayoutsShowcase')),
       },
       {

@@ -726,8 +726,8 @@ export default function TableLayoutsShowcase() {
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        テーブルの表現と操作のバリエーション16種。
-        罫線・密度から、Sort/Filter/Select/Edit/Pagination のような対話まで。
+        テーブルの表現と操作のバリエーション32種。
+        罫線・密度のシンプルな調整から、Sort/Filter/Select/Edit/Pagination のような対話まで。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -859,6 +859,278 @@ export default function TableLayoutsShowcase() {
               ))}
             </tbody>
           </table>
+        </Frame>
+
+        {/* 5a — Heavy outer frame */}
+        <Frame label="Heavy outer" note="太い外枠、内側は薄線。表が画面で「ブロック」として独立">
+          <table className="w-full text-sm border-2 border-zinc-800">
+            <thead className="border-b-2 border-zinc-800 bg-zinc-50">
+              <tr>
+                <th className="text-left text-xs font-semibold px-3 py-2">Company</th>
+                <th className="text-left text-xs font-semibold px-3 py-2">Country</th>
+                <th className="text-right text-xs font-semibold px-3 py-2">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 5).map((c) => (
+                <tr key={c.name} className="border-b border-zinc-200 last:border-0">
+                  <td className="px-3 py-1.5">{c.name}</td>
+                  <td className="px-3 py-1.5">{c.country}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5b — Vertical borders only */}
+        <Frame label="Vertical borders only" note="列だけ区切る。スプレッドシート / 帳票">
+          <table className="w-full text-sm">
+            <thead>
+              <tr>
+                <th className="text-left text-xs font-medium text-zinc-500 px-3 py-2 border-r border-zinc-200 last:border-r-0">Company</th>
+                <th className="text-left text-xs font-medium text-zinc-500 px-3 py-2 border-r border-zinc-200 last:border-r-0">Country</th>
+                <th className="text-right text-xs font-medium text-zinc-500 px-3 py-2">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 5).map((c) => (
+                <tr key={c.name}>
+                  <td className="px-3 py-1.5 border-r border-zinc-100 last:border-r-0">{c.name}</td>
+                  <td className="px-3 py-1.5 border-r border-zinc-100 last:border-r-0 text-zinc-600">{c.country}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5c — Dark header */}
+        <Frame label="Dark header" note="黒ヘッダーで階層がはっきりする。ダッシュボード">
+          <table className="w-full text-sm">
+            <thead className="bg-zinc-900 text-white">
+              <tr>
+                <th className="text-left text-xs font-semibold uppercase tracking-wider px-3 py-2.5">Company</th>
+                <th className="text-left text-xs font-semibold uppercase tracking-wider px-3 py-2.5">Country</th>
+                <th className="text-right text-xs font-semibold uppercase tracking-wider px-3 py-2.5">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 5).map((c) => (
+                <tr key={c.name} className="border-b border-zinc-100 last:border-0">
+                  <td className="px-3 py-1.5">{c.name}</td>
+                  <td className="px-3 py-1.5 text-zinc-600">{c.country}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5d — Header thick underline */}
+        <Frame label="Header thick underline" note="ヘッダー下だけ2pxの線で強調。記事/Markdownっぽい">
+          <table className="w-full text-sm">
+            <thead className="border-b-[3px] border-zinc-800">
+              <tr>
+                <th className="text-left font-semibold px-3 py-2">Company</th>
+                <th className="text-left font-semibold px-3 py-2">Country</th>
+                <th className="text-right font-semibold px-3 py-2">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 5).map((c) => (
+                <tr key={c.name} className="border-b border-zinc-100 last:border-0">
+                  <td className="px-3 py-1.5">{c.name}</td>
+                  <td className="px-3 py-1.5 text-zinc-600">{c.country}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5e — Hover row highlight (subtle) */}
+        <Frame label="Hover row" note="罫線最小限、hoverで行が浮き上がる">
+          <table className="w-full text-sm">
+            <thead>
+              <tr>
+                <th className="text-left text-[11px] font-medium text-zinc-400 uppercase tracking-wider px-3 py-2">Company</th>
+                <th className="text-left text-[11px] font-medium text-zinc-400 uppercase tracking-wider px-3 py-2">Country</th>
+                <th className="text-right text-[11px] font-medium text-zinc-400 uppercase tracking-wider px-3 py-2">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 5).map((c) => (
+                <tr key={c.name} className="hover:bg-blue-50 transition-colors">
+                  <td className="px-3 py-2">{c.name}</td>
+                  <td className="px-3 py-2 text-zinc-600">{c.country}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5f — Mini / dense */}
+        <Frame label="Mini / dense" note="サイドバーや埋め込みに。10pt級の文字">
+          <table className="w-full text-xs">
+            <thead className="border-b border-zinc-200">
+              <tr>
+                <th className="text-left text-[10px] font-medium text-zinc-500 px-2 py-1">Company</th>
+                <th className="text-left text-[10px] font-medium text-zinc-500 px-2 py-1">Ctry</th>
+                <th className="text-right text-[10px] font-medium text-zinc-500 px-2 py-1">Rev</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.map((c) => (
+                <tr key={c.name} className="border-b border-zinc-50 last:border-0">
+                  <td className="px-2 py-0.5">{c.name}</td>
+                  <td className="px-2 py-0.5 text-zinc-600">{c.country}</td>
+                  <td className="px-2 py-0.5 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5g — Spacious */}
+        <Frame label="Spacious / Comfortable" note="行間を広く。読み物・1ページに少数の表">
+          <table className="w-full text-sm">
+            <thead className="border-b border-zinc-200">
+              <tr>
+                <th className="text-left text-xs font-medium text-zinc-500 px-4 py-3">Company</th>
+                <th className="text-left text-xs font-medium text-zinc-500 px-4 py-3">Country</th>
+                <th className="text-right text-xs font-medium text-zinc-500 px-4 py-3">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 4).map((c) => (
+                <tr key={c.name} className="border-b border-zinc-100 last:border-0">
+                  <td className="px-4 py-4 font-medium">{c.name}</td>
+                  <td className="px-4 py-4 text-zinc-600">{c.country}</td>
+                  <td className="px-4 py-4 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5h — First column emphasis */}
+        <Frame label="First column emphasis" note="左1列を強調 (太字 + 背景)。ラベルが見出し的">
+          <table className="w-full text-sm">
+            <thead className="border-b border-zinc-200">
+              <tr>
+                <th className="text-left text-xs font-medium text-zinc-500 px-3 py-2 bg-zinc-50">Company</th>
+                <th className="text-left text-xs font-medium text-zinc-500 px-3 py-2">Country</th>
+                <th className="text-right text-xs font-medium text-zinc-500 px-3 py-2">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 5).map((c) => (
+                <tr key={c.name} className="border-b border-zinc-100 last:border-0">
+                  <td className="px-3 py-1.5 font-semibold bg-zinc-50/60">{c.name}</td>
+                  <td className="px-3 py-1.5 text-zinc-600">{c.country}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5i — Vertical zebra (alternating columns) */}
+        <Frame label="Vertical zebra" note="列方向にゼブラ。横向き比較に">
+          <table className="w-full text-sm">
+            <thead className="border-b border-zinc-200">
+              <tr>
+                <th className="text-left text-xs font-medium text-zinc-500 px-3 py-2">Company</th>
+                <th className="text-left text-xs font-medium text-zinc-500 px-3 py-2 bg-zinc-50">Country</th>
+                <th className="text-right text-xs font-medium text-zinc-500 px-3 py-2">Employees</th>
+                <th className="text-right text-xs font-medium text-zinc-500 px-3 py-2 bg-zinc-50">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 5).map((c) => (
+                <tr key={c.name} className="border-b border-zinc-100 last:border-0">
+                  <td className="px-3 py-1.5">{c.name}</td>
+                  <td className="px-3 py-1.5 text-zinc-600 bg-zinc-50">{c.country}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums">{c.employees.toLocaleString()}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums bg-zinc-50">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5j — Group separator every N rows */}
+        <Frame label="Group separator" note="3行ごとに太線。スキャンしやすい">
+          <table className="w-full text-sm">
+            <thead className="border-b border-zinc-200">
+              <tr>
+                <th className="text-left text-xs font-medium text-zinc-500 px-3 py-2">Company</th>
+                <th className="text-left text-xs font-medium text-zinc-500 px-3 py-2">Country</th>
+                <th className="text-right text-xs font-medium text-zinc-500 px-3 py-2">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.map((c, i) => (
+                <tr
+                  key={c.name}
+                  className={`${
+                    (i + 1) % 3 === 0 && i !== COMPANIES.length - 1
+                      ? 'border-b-2 border-zinc-300'
+                      : 'border-b border-zinc-100'
+                  } last:border-0`}
+                >
+                  <td className="px-3 py-1.5">{c.name}</td>
+                  <td className="px-3 py-1.5 text-zinc-600">{c.country}</td>
+                  <td className="px-3 py-1.5 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5k — Dotted row separators */}
+        <Frame label="Dotted row separators" note="点線で柔らかく区切る。手書きノート風">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="border-b-2 border-dotted border-zinc-400">
+                <th className="text-left text-xs font-semibold text-zinc-700 px-3 py-2">Company</th>
+                <th className="text-left text-xs font-semibold text-zinc-700 px-3 py-2">Country</th>
+                <th className="text-right text-xs font-semibold text-zinc-700 px-3 py-2">Revenue</th>
+              </tr>
+            </thead>
+            <tbody>
+              {COMPANIES.slice(0, 5).map((c) => (
+                <tr key={c.name} className="border-b border-dotted border-zinc-300 last:border-0">
+                  <td className="px-3 py-2">{c.name}</td>
+                  <td className="px-3 py-2 text-zinc-600">{c.country}</td>
+                  <td className="px-3 py-2 text-right tabular-nums">{c.revenue}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </Frame>
+
+        {/* 5l — Card per row */}
+        <Frame label="Card per row" note="行を分離した別カードに。隙間でリズム">
+          <div className="space-y-1.5">
+            <div className="grid grid-cols-[1fr_80px_80px] gap-3 px-3 text-[10px] uppercase tracking-wider text-zinc-400 font-semibold">
+              <span>Company</span>
+              <span className="text-right">Employees</span>
+              <span className="text-right">Revenue</span>
+            </div>
+            {COMPANIES.slice(0, 5).map((c) => (
+              <div
+                key={c.name}
+                className="grid grid-cols-[1fr_80px_80px] gap-3 px-3 py-2 rounded-md bg-white border border-zinc-200 shadow-sm hover:border-zinc-400 text-sm items-center"
+              >
+                <span className="font-medium">{c.name}</span>
+                <span className="text-right tabular-nums">{c.employees.toLocaleString()}</span>
+                <span className="text-right tabular-nums">{c.revenue}</span>
+              </div>
+            ))}
+          </div>
         </Frame>
 
         {/* 5 — Rich cells (avatar+status+sparkline-ish) */}
