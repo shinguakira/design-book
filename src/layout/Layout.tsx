@@ -234,43 +234,29 @@ export default function Layout() {
             <Outlet context={{ visibleSections: viewSections, view }} />
           </div>
         </div>
-        {current && (prevEntry || nextEntry) && (
-          <nav className="border-t border-zinc-200 bg-white px-8 py-6 mt-12">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {prevEntry ? (
-                <Link
-                  to={`/${prevEntry.sectionId}/${prevEntry.slug}`}
-                  className="group rounded-lg border border-zinc-200 p-4 hover:border-zinc-400 hover:shadow-sm transition"
-                >
-                  <div className="flex items-center gap-1.5 text-xs text-zinc-500">
-                    <ArrowLeft className="w-3 h-3" />
-                    Previous · {prevEntry.sectionLabel}
-                  </div>
-                  <div className="font-medium text-sm mt-1 group-hover:text-zinc-900">
-                    {prevEntry.title}
-                  </div>
-                </Link>
-              ) : (
-                <div />
-              )}
-              {nextEntry ? (
-                <Link
-                  to={`/${nextEntry.sectionId}/${nextEntry.slug}`}
-                  className="group rounded-lg border border-zinc-200 p-4 hover:border-zinc-400 hover:shadow-sm transition text-right"
-                >
-                  <div className="flex items-center justify-end gap-1.5 text-xs text-zinc-500">
-                    Next · {nextEntry.sectionLabel}
-                    <ArrowRight className="w-3 h-3" />
-                  </div>
-                  <div className="font-medium text-sm mt-1 group-hover:text-zinc-900">
-                    {nextEntry.title}
-                  </div>
-                </Link>
-              ) : (
-                <div />
-              )}
-            </div>
-          </nav>
+        {current && prevEntry && (
+          <Link
+            to={`/${prevEntry.sectionId}/${prevEntry.slug}`}
+            title={`Previous: ${prevEntry.title}`}
+            className="group fixed left-3 top-1/2 -translate-y-1/2 z-30 flex items-center h-12 pl-3 pr-3 rounded-full bg-white/95 backdrop-blur shadow-lg border border-zinc-200 hover:border-zinc-400 hover:shadow-xl transition-all"
+          >
+            <ArrowLeft className="w-4 h-4 text-zinc-700 shrink-0" />
+            <span className="max-w-0 group-hover:max-w-44 group-hover:ml-2 overflow-hidden whitespace-nowrap text-sm font-medium text-zinc-800 transition-all duration-300">
+              {prevEntry.title}
+            </span>
+          </Link>
+        )}
+        {current && nextEntry && (
+          <Link
+            to={`/${nextEntry.sectionId}/${nextEntry.slug}`}
+            title={`Next: ${nextEntry.title}`}
+            className="group fixed right-3 top-1/2 -translate-y-1/2 z-30 flex items-center h-12 pl-3 pr-3 rounded-full bg-white/95 backdrop-blur shadow-lg border border-zinc-200 hover:border-zinc-400 hover:shadow-xl transition-all"
+          >
+            <span className="max-w-0 group-hover:max-w-44 group-hover:mr-2 overflow-hidden whitespace-nowrap text-sm font-medium text-zinc-800 transition-all duration-300">
+              {nextEntry.title}
+            </span>
+            <ArrowRight className="w-4 h-4 text-zinc-700 shrink-0" />
+          </Link>
         )}
       </main>
     </div>
