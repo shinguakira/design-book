@@ -18,7 +18,7 @@ function Frame({
 }
 
 const FULL_PATH =
-  '/Users/user2/Documents/Projects/brighty/src/components/ui/Button.tsx'
+  '/Users/dev/Documents/Projects/myapp/src/components/ui/Button.tsx'
 
 function CopyableInline({ path }: { path: string }) {
   const [copied, setCopied] = useState(false)
@@ -86,7 +86,7 @@ export default function FilePaths() {
           <div className="grid grid-cols-[8rem_1fr] gap-3 items-center">
             <div className="text-xs text-zinc-500 font-mono">フォルダのみ + ファイル太字</div>
             <div className="font-mono text-zinc-500 truncate max-w-md">
-              /Users/user2/Documents/Projects/brighty/src/components/ui/
+              /Users/dev/Documents/Projects/myapp/src/components/ui/
               <span className="text-zinc-900 font-semibold">Button.tsx</span>
             </div>
           </div>
@@ -149,7 +149,7 @@ export default function FilePaths() {
 
       <Frame label="Breadcrumb 表示" note="セグメントごとに辿れる・クリック可能">
         <nav className="flex items-center gap-1 text-sm flex-wrap">
-          {['~', 'Documents', 'Projects', 'brighty', 'src', 'components', 'ui'].map(
+          {['~', 'Documents', 'Projects', 'myapp', 'src', 'components', 'ui'].map(
             (seg, i, arr) => (
               <span key={i} className="flex items-center gap-1">
                 {i > 0 && <ChevronRight className="w-3.5 h-3.5 text-zinc-300" />}
@@ -195,7 +195,7 @@ export default function FilePaths() {
 
           <div className="opacity-0 group-hover:opacity-100 transition absolute top-7 left-12 bg-white border border-zinc-200 rounded-md shadow-lg py-1 min-w-32 z-10">
             <div className="px-3 py-1.5 text-xs text-zinc-500">省略箇所</div>
-            {['Documents', 'Projects', 'brighty'].map((s) => (
+            {['Documents', 'Projects', 'myapp'].map((s) => (
               <button
                 key={s}
                 className="block w-full text-left px-3 py-1.5 text-xs hover:bg-zinc-100 flex items-center gap-1.5"
@@ -214,13 +214,13 @@ export default function FilePaths() {
       >
         <div className="space-y-2">
           <div className="inline-flex items-center gap-1 font-mono text-sm">
-            <span className="text-zinc-400">/Users/user2</span>
+            <span className="text-zinc-400">/Users/dev</span>
             <span className="text-zinc-300">/</span>
             <span className="text-zinc-400">Documents</span>
             <span className="text-zinc-300">/</span>
             <span className="text-zinc-400">Projects</span>
             <span className="text-zinc-300">/</span>
-            <span className="text-zinc-700">brighty</span>
+            <span className="text-zinc-700">myapp</span>
             <span className="text-zinc-300">/</span>
             <span className="text-zinc-700">src</span>
             <span className="text-zinc-300">/</span>
@@ -264,7 +264,7 @@ export default function FilePaths() {
           <div className="flex items-center gap-2">
             <File className="w-3.5 h-3.5 text-zinc-400" />
             <span className="line-through text-zinc-400">
-              /Users/user2/Documents/old-file.txt
+              /Users/dev/Documents/old-file.txt
             </span>
             <span className="text-[10px] px-1.5 py-0.5 rounded bg-zinc-100 text-zinc-500 font-sans">
               削除済
@@ -273,7 +273,7 @@ export default function FilePaths() {
           <div className="flex items-center gap-2">
             <File className="w-3.5 h-3.5 text-rose-500" />
             <span className="text-rose-600">
-              /Users/user2/missing/file.txt
+              /Users/dev/missing/file.txt
             </span>
             <span className="text-[10px] px-1.5 py-0.5 rounded bg-rose-100 text-rose-700 font-sans">
               ファイルが見つかりません

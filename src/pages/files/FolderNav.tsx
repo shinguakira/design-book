@@ -495,7 +495,7 @@ export default function FolderNav() {
           <button className="flex items-center gap-1 px-2 py-1 rounded hover:bg-zinc-100 text-zinc-500">
             <Home className="w-3.5 h-3.5" />
           </button>
-          {['Documents', 'Projects', 'brighty', 'src', 'components'].map(
+          {['Documents', 'Projects', 'myapp', 'src', 'components'].map(
             (seg, i, arr) => (
               <span key={seg} className="flex items-center gap-1">
                 <ChevronRight className="w-3.5 h-3.5 text-zinc-300" />

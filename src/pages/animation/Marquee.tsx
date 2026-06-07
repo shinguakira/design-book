@@ -69,7 +69,7 @@ export default function Marquee() {
             <div className="overflow-hidden flex-1">
               <div className="flex animate-marquee whitespace-nowrap py-2.5">
                 <span className="mx-8 text-sm">
-                  • Brighty Pro が来週リリース予定
+                  • Acme Pro が来週リリース予定
                 </span>
                 <span className="mx-8 text-sm">
                   • 新機能「ダークモード」を追加しました
@@ -78,7 +78,7 @@ export default function Marquee() {
                   • 12月末まで年額プラン20%OFFキャンペーン
                 </span>
                 <span className="mx-8 text-sm">
-                  • Brighty Pro が来週リリース予定
+                  • Acme Pro が来週リリース予定
                 </span>
                 <span className="mx-8 text-sm">
                   • 新機能「ダークモード」を追加しました
