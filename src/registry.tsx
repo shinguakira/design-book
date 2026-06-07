@@ -129,6 +129,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/TableLayoutsShowcase')),
       },
       {
+        slug: 'analytics',
+        title: 'Analytics & Charts',
+        description: 'KPI・Sparkline・Line/Area/Bar/Donut/Gauge/Heatmap/Funnel/Histogram 等14種。',
+        Component: lz(() => import('./pages/components/AnalyticsShowcase')),
+      },
+      {
         slug: 'table',
         title: 'Table',
         description: 'データテーブル。',
