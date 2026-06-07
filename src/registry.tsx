@@ -45,6 +45,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/SelectShowcase')),
       },
       {
+        slug: 'select-patterns',
+        title: 'Select Patterns',
+        description: '「選択UI」16パターン。combobox / multi chips / tag / 色 / アバター / segmented / radio cards / listbox まで。',
+        Component: lz(() => import('./pages/components/SelectPatternsShowcase')),
+      },
+      {
         slug: 'checkbox',
         title: 'Checkbox',
         description: '複数選択のチェック。',
@@ -103,6 +109,30 @@ export const sections: Section[] = [
         title: 'List',
         description: '行ごとのリスト。設定画面など。',
         Component: lz(() => import('./pages/components/ListShowcase')),
+      },
+      {
+        slug: 'numbered-list',
+        title: 'Numbered List',
+        description: '番号+名前の1行リスト20パターン。ランキング・目次・To-do・神話風・コレクション。',
+        Component: lz(() => import('./pages/components/NumberedListShowcase')),
+      },
+      {
+        slug: 'list-layouts',
+        title: 'List Layouts',
+        description: 'リストの並べ方・密度・操作の付け方 16パターン。Bento・Tree・Switchable・Bulk・Skeletonまで。',
+        Component: lz(() => import('./pages/components/ListLayoutsShowcase')),
+      },
+      {
+        slug: 'table-layouts',
+        title: 'Table Layouts',
+        description: 'テーブル32パターン。罫線・密度・Hover・Vertical zebra・点線・Dark header から、Sort/Filter/Select/Edit/Heatmap/Sticky まで。',
+        Component: lz(() => import('./pages/components/TableLayoutsShowcase')),
+      },
+      {
+        slug: 'analytics',
+        title: 'Analytics & Charts',
+        description: 'KPI・Sparkline・Line/Area/Bar/Donut/Gauge/Heatmap/Funnel/Histogram 等14種。',
+        Component: lz(() => import('./pages/components/AnalyticsShowcase')),
       },
       {
         slug: 'table',
