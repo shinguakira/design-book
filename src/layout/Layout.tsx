@@ -241,8 +241,13 @@ export default function Layout() {
             className="group fixed left-3 top-1/2 -translate-y-1/2 z-30 flex items-center h-12 pl-3 pr-3 rounded-full bg-white/95 backdrop-blur shadow-lg border border-zinc-200 hover:border-zinc-400 hover:shadow-xl transition-all"
           >
             <ArrowLeft className="w-4 h-4 text-zinc-700 shrink-0" />
-            <span className="max-w-0 group-hover:max-w-44 group-hover:ml-2 overflow-hidden whitespace-nowrap text-sm font-medium text-zinc-800 transition-all duration-300">
-              {prevEntry.title}
+            <span className="flex flex-col leading-tight max-w-0 xl:max-w-44 xl:ml-2 group-hover:max-w-44 group-hover:ml-2 overflow-hidden whitespace-nowrap transition-all duration-300">
+              <span className="text-[10px] uppercase tracking-wider text-zinc-400">
+                Prev · {prevEntry.sectionLabel}
+              </span>
+              <span className="text-sm font-medium text-zinc-800 truncate">
+                {prevEntry.title}
+              </span>
             </span>
           </Link>
         )}
@@ -252,8 +257,13 @@ export default function Layout() {
             title={`Next: ${nextEntry.title}`}
             className="group fixed right-3 top-1/2 -translate-y-1/2 z-30 flex items-center h-12 pl-3 pr-3 rounded-full bg-white/95 backdrop-blur shadow-lg border border-zinc-200 hover:border-zinc-400 hover:shadow-xl transition-all"
           >
-            <span className="max-w-0 group-hover:max-w-44 group-hover:mr-2 overflow-hidden whitespace-nowrap text-sm font-medium text-zinc-800 transition-all duration-300">
-              {nextEntry.title}
+            <span className="flex flex-col leading-tight items-end text-right max-w-0 xl:max-w-44 xl:mr-2 group-hover:max-w-44 group-hover:mr-2 overflow-hidden whitespace-nowrap transition-all duration-300">
+              <span className="text-[10px] uppercase tracking-wider text-zinc-400">
+                Next · {nextEntry.sectionLabel}
+              </span>
+              <span className="text-sm font-medium text-zinc-800 truncate">
+                {nextEntry.title}
+              </span>
             </span>
             <ArrowRight className="w-4 h-4 text-zinc-700 shrink-0" />
           </Link>
