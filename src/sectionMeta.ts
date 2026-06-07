@@ -14,6 +14,7 @@ import {
   MessageCircle,
   PanelsTopLeft,
   FolderTree,
+  Layers,
 } from 'lucide-react'
 
 export type SectionMeta = {
@@ -143,3 +144,56 @@ export const DEFAULT_META: SectionMeta = {
 
 export const metaOf = (id: string): SectionMeta =>
   SECTION_META[id] ?? DEFAULT_META
+
+/* ─── 軸 (タブ) → セクション群 のグルーピング ─── */
+export type ViewGroup = {
+  id: string
+  label: string
+  Icon: LucideIcon
+  gradient: string
+  pill: string
+  sectionIds: string[]
+}
+
+export const VIEW_GROUPS: ViewGroup[] = [
+  {
+    id: 'components',
+    label: 'Components',
+    Icon: Layers,
+    gradient: 'from-blue-500 to-emerald-500',
+    pill: 'bg-blue-50 text-blue-700 border-blue-200',
+    sectionIds: ['form', 'display', 'overlay', 'navigation', 'files', 'layout', 'ideas'],
+  },
+  {
+    id: 'design',
+    label: 'Design',
+    Icon: Palette,
+    gradient: 'from-pink-500 to-rose-500',
+    pill: 'bg-pink-50 text-pink-700 border-pink-200',
+    sectionIds: ['styles'],
+  },
+  {
+    id: 'color',
+    label: 'Color',
+    Icon: Droplet,
+    gradient: 'from-fuchsia-500 via-purple-500 to-blue-500',
+    pill: 'bg-fuchsia-50 text-fuchsia-700 border-fuchsia-200',
+    sectionIds: ['color'],
+  },
+  {
+    id: 'animation',
+    label: 'Animation',
+    Icon: Sparkles,
+    gradient: 'from-cyan-500 to-sky-500',
+    pill: 'bg-cyan-50 text-cyan-700 border-cyan-200',
+    sectionIds: ['animation'],
+  },
+  {
+    id: 'scenarios',
+    label: 'Scenarios',
+    Icon: Clapperboard,
+    gradient: 'from-orange-500 to-red-500',
+    pill: 'bg-orange-50 text-orange-700 border-orange-200',
+    sectionIds: ['scenarios', 'messaging'],
+  },
+]
