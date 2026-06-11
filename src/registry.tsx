@@ -458,6 +458,12 @@ export const sections: Section[] = [
         description: '意図的なズレ・崩れ・悪カーニング。Balenciaga 系。',
         Component: lz(() => import('./pages/styles/AntiDesign')),
       },
+      {
+        slug: 'famous-sites',
+        title: 'Famous Websites',
+        description: '有名サイトの「指紋」12社カタログ。Stripe/Linear/Vercel/Apple/Notion/Airbnb/Spotify/Discord/GitHub/Anthropic/YouTube/Tailwind。',
+        Component: lz(() => import('./pages/styles/FamousSites')),
+      },
     ],
   },
   {
