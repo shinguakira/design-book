@@ -135,6 +135,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/AnalyticsShowcase')),
       },
       {
+        slug: 'sort',
+        title: 'Sort UI',
+        description: '並べ替え UI 12種。Native/Inline/Split/Segmented/Table header/Badge/Menu/Multi-key/Smart 等。',
+        Component: lz(() => import('./pages/components/SortShowcase')),
+      },
+      {
         slug: 'table',
         title: 'Table',
         description: 'データテーブル。',
