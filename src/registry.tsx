@@ -230,6 +230,12 @@ export const sections: Section[] = [
         description: '画面上部の帯バナー。',
         Component: lz(() => import('./pages/components/BannerShowcase')),
       },
+      {
+        slug: 'blade',
+        title: 'Blade',
+        description: '右からスライドインするパネルを横にスタック。Azure Portal風のドリルダウン。',
+        Component: lz(() => import('./pages/components/BladeShowcase')),
+      },
     ],
   },
   {
