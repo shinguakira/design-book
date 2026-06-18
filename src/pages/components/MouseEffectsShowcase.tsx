@@ -431,13 +431,369 @@ function StringDot() {
   )
 }
 
+/* ─── 10. SVG インクトレイル ─── */
+function InkTrail() {
+  const [pts, setPts] = useState<{ x: number; y: number; id: number }[]>([])
+  const counter = useRef(0)
+  const last = useRef(0)
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const now = Date.now()
+    if (now - last.current < 16) return
+    last.current = now
+    const r = e.currentTarget.getBoundingClientRect()
+    const id = counter.current++
+    const p = { x: e.clientX - r.left, y: e.clientY - r.top, id }
+    setPts((arr) => [...arr.slice(-30), p])
+    setTimeout(() => setPts((arr) => arr.filter((q) => q.id !== id)), 900)
+  }
+  const path = pts.length < 2
+    ? ''
+    : pts.reduce((acc, p, i) => {
+        if (i === 0) return `M ${p.x} ${p.y}`
+        const prev = pts[i - 1]
+        const cx = (prev.x + p.x) / 2
+        const cy = (prev.y + p.y) / 2
+        return `${acc} Q ${prev.x} ${prev.y} ${cx} ${cy}`
+      }, '')
+  return (
+    <div
+      onMouseMove={onMove}
+      className="relative h-64 rounded-lg bg-white border border-zinc-100 cursor-none overflow-hidden"
+    >
+      <svg className="absolute inset-0 w-full h-full">
+        <defs>
+          <linearGradient id="ink-grad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor="#06b6d4" />
+            <stop offset="50%" stopColor="#8b5cf6" />
+            <stop offset="100%" stopColor="#ec4899" />
+          </linearGradient>
+        </defs>
+        <path
+          d={path}
+          fill="none"
+          stroke="url(#ink-grad)"
+          strokeWidth={4}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+      <div className="absolute inset-0 grid place-items-center text-sm text-zinc-400 pointer-events-none">
+        マウスを動かして滑らかな線を描く
+      </div>
+    </div>
+  )
+}
+
+/* ─── 11. パララックス3層 ─── */
+function Parallax() {
+  const [pos, setPos] = useState({ x: 0.5, y: 0.5 })
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    setPos({ x: (e.clientX - r.left) / r.width, y: (e.clientY - r.top) / r.height })
+  }
+  const shift = (depth: number) => ({
+    transform: `translate(${(pos.x - 0.5) * depth}px, ${(pos.y - 0.5) * depth}px)`,
+  })
+  return (
+    <div
+      onMouseMove={onMove}
+      className="relative h-64 rounded-lg overflow-hidden bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"
+    >
+      <div className="absolute inset-0 transition-transform duration-100" style={shift(-40)}>
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div
+            key={`bg-${i}`}
+            className="absolute w-1 h-1 rounded-full bg-white/30"
+            style={{ left: `${(i * 37) % 100}%`, top: `${(i * 53) % 100}%` }}
+          />
+        ))}
+      </div>
+      <div className="absolute inset-0 transition-transform duration-100" style={shift(-20)}>
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={`mid-${i}`}
+            className="absolute w-1.5 h-1.5 rounded-full bg-cyan-200/60"
+            style={{ left: `${(i * 47) % 100}%`, top: `${(i * 31) % 100}%` }}
+          />
+        ))}
+      </div>
+      <div
+        className="absolute inset-0 grid place-items-center transition-transform duration-100"
+        style={shift(20)}
+      >
+        <div className="text-white">
+          <div className="text-3xl font-bold">Parallax Stars</div>
+          <div className="text-sm text-white/70 text-center mt-1">cursor で3層がずれる</div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+/* ─── 12. テキスト逃避 (repel) ─── */
+function RepelText() {
+  const [m, setM] = useState({ x: -999, y: -999 })
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    setM({ x: e.clientX - r.left, y: e.clientY - r.top })
+  }
+  const onLeave = () => setM({ x: -999, y: -999 })
+  const chars = 'マウスから逃げる文字たち'.split('')
+  return (
+    <div
+      onMouseMove={onMove}
+      onMouseLeave={onLeave}
+      className="relative h-64 rounded-lg bg-zinc-900 grid place-items-center overflow-hidden"
+    >
+      <div className="flex flex-wrap justify-center gap-1 px-12 text-white text-2xl font-bold">
+        {chars.map((ch, i) => (
+          <RepelChar key={i} ch={ch} m={m} />
+        ))}
+      </div>
+    </div>
+  )
+}
+function RepelChar({ ch, m }: { ch: string; m: { x: number; y: number } }) {
+  const ref = useRef<HTMLSpanElement>(null)
+  const [off, setOff] = useState({ x: 0, y: 0 })
+  useEffect(() => {
+    if (!ref.current) return
+    const r = ref.current.getBoundingClientRect()
+    const parent = ref.current.parentElement!.parentElement!.getBoundingClientRect()
+    const cx = r.left - parent.left + r.width / 2
+    const cy = r.top - parent.top + r.height / 2
+    const dx = cx - m.x
+    const dy = cy - m.y
+    const d = Math.hypot(dx, dy)
+    const max = 100
+    if (d < max) {
+      const f = (1 - d / max) * 40
+      setOff({ x: (dx / d) * f, y: (dy / d) * f })
+    } else {
+      setOff({ x: 0, y: 0 })
+    }
+  }, [m])
+  return (
+    <span
+      ref={ref}
+      className="inline-block transition-transform duration-200"
+      style={{ transform: `translate(${off.x}px, ${off.y}px)` }}
+    >
+      {ch}
+    </span>
+  )
+}
+
+/* ─── 13. 画像リビール (mask) ─── */
+function ImageReveal() {
+  const [pos, setPos] = useState({ x: 50, y: 50 })
+  const [active, setActive] = useState(false)
+  const onMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    setPos({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 })
+  }
+  return (
+    <div
+      onMouseMove={onMove}
+      onMouseEnter={() => setActive(true)}
+      onMouseLeave={() => setActive(false)}
+      className="relative h-64 rounded-lg overflow-hidden cursor-none"
+    >
+      <div className="absolute inset-0 bg-zinc-200 grid place-items-center">
+        <div className="text-zinc-500 text-sm">グレー版</div>
+      </div>
+      <div
+        className="absolute inset-0 transition-[mask-position,clip-path] duration-100"
+        style={{
+          background:
+            'linear-gradient(135deg, #f43f5e 0%, #f59e0b 40%, #10b981 70%, #06b6d4 100%)',
+          clipPath: active
+            ? `circle(80px at ${pos.x}% ${pos.y}%)`
+            : 'circle(0px at 50% 50%)',
+        }}
+      />
+      <div className="absolute inset-0 grid place-items-center text-zinc-700 text-sm pointer-events-none">
+        マウスで色を露出させる
+      </div>
+    </div>
+  )
+}
+
+/* ─── 14. Click Confetti ─── */
+function Confetti() {
+  const [bursts, setBursts] = useState<
+    { id: number; x: number; y: number; pieces: { dx: number; dy: number; c: string; r: number }[] }[]
+  >([])
+  const counter = useRef(0)
+  const onClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    const r = e.currentTarget.getBoundingClientRect()
+    const id = counter.current++
+    const colors = ['#f43f5e', '#f59e0b', '#10b981', '#06b6d4', '#8b5cf6', '#ec4899']
+    const pieces = Array.from({ length: 26 }).map((_, i) => {
+      const a = (i / 26) * Math.PI * 2 + (id % 5) * 0.1
+      const v = 60 + ((i * 13) % 80)
+      return {
+        dx: Math.cos(a) * v,
+        dy: Math.sin(a) * v,
+        c: colors[i % colors.length],
+        r: (i * 47) % 360,
+      }
+    })
+    setBursts((b) => [...b, { id, x: e.clientX - r.left, y: e.clientY - r.top, pieces }])
+    setTimeout(() => setBursts((b) => b.filter((q) => q.id !== id)), 1200)
+  }
+  return (
+    <div
+      onClick={onClick}
+      className="relative h-64 rounded-lg bg-gradient-to-br from-amber-100 to-rose-100 overflow-hidden cursor-pointer grid place-items-center select-none"
+    >
+      <div className="text-zinc-700 text-sm">クリックで紙吹雪</div>
+      {bursts.map((b) =>
+        b.pieces.map((p, i) => (
+          <div
+            key={`${b.id}-${i}`}
+            className="absolute w-2 h-3"
+            style={{
+              left: b.x,
+              top: b.y,
+              background: p.c,
+              transform: `rotate(${p.r}deg)`,
+              animation: `mfx-confetti-${b.id % 2} 1.1s cubic-bezier(.2,.8,.2,1) forwards`,
+              ['--dx' as never]: `${p.dx}px`,
+              ['--dy' as never]: `${p.dy}px`,
+            }}
+          />
+        )),
+      )}
+      <style>{`
+        @keyframes mfx-confetti-0 {
+          0%{transform:translate(0,0) rotate(0deg);opacity:1}
+          100%{transform:translate(var(--dx),calc(var(--dy) + 120px)) rotate(540deg);opacity:0}
+        }
+        @keyframes mfx-confetti-1 {
+          0%{transform:translate(0,0) rotate(0deg);opacity:1}
+          100%{transform:translate(var(--dx),calc(var(--dy) + 120px)) rotate(-540deg);opacity:0}
+        }
+      `}</style>
+    </div>
+  )
+}
+
+/* ─── 15. Velocity ストレッチカーソル ─── */
+function VelocityCursor() {
+  const ref = useRef<HTMLDivElement>(null)
+  const cursor = useRef<HTMLDivElement>(null)
+  const last = useRef({ x: 0, y: 0, t: Date.now() })
+  const [hover, setHover] = useState(false)
+  useEffect(() => {
+    let raf = 0
+    let cx = 0, cy = 0, tx = 0, ty = 0, vx = 0, vy = 0
+    const tick = () => {
+      cx += (tx - cx) * 0.25
+      cy += (ty - cy) * 0.25
+      const speed = Math.hypot(vx, vy)
+      const angle = (Math.atan2(vy, vx) * 180) / Math.PI
+      const stretch = Math.min(speed / 6, 2.5)
+      if (cursor.current) {
+        cursor.current.style.transform = `translate(${cx - 16}px, ${cy - 16}px) rotate(${angle}deg) scaleX(${1 + stretch}) scaleY(${1 / (1 + stretch * 0.4)})`
+      }
+      vx *= 0.9
+      vy *= 0.9
+      raf = requestAnimationFrame(tick)
+    }
+    raf = requestAnimationFrame(tick)
+    const onMove = (e: MouseEvent) => {
+      const r = ref.current?.getBoundingClientRect()
+      if (!r) return
+      const x = e.clientX - r.left
+      const y = e.clientY - r.top
+      const now = Date.now()
+      const dt = Math.max(now - last.current.t, 1)
+      vx = (x - last.current.x) / dt * 16
+      vy = (y - last.current.y) / dt * 16
+      last.current = { x, y, t: now }
+      tx = x
+      ty = y
+    }
+    ref.current?.addEventListener('mousemove', onMove)
+    return () => {
+      cancelAnimationFrame(raf)
+      ref.current?.removeEventListener('mousemove', onMove)
+    }
+  }, [])
+  return (
+    <div
+      ref={ref}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className="relative h-64 rounded-lg bg-zinc-950 cursor-none overflow-hidden grid place-items-center"
+    >
+      <div
+        ref={cursor}
+        className="absolute top-0 left-0 w-8 h-8 rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle at 30% 30%, #fff, #38bdf8 60%, transparent)',
+          opacity: hover ? 1 : 0,
+        }}
+      />
+      <div className="text-white/70 text-sm">速く動かすと伸びる</div>
+    </div>
+  )
+}
+
+/* ─── 16. ホバーで文字バラバラ ─── */
+function ScrambleText() {
+  const labels = ['DESIGN', 'BOOK', 'HOVER', 'ME']
+  return (
+    <div className="relative h-64 rounded-lg bg-white border border-zinc-100 grid place-items-center">
+      <div className="flex flex-wrap justify-center gap-6 text-3xl font-black tracking-tight">
+        {labels.map((w) => (
+          <ScrambleWord key={w} word={w} />
+        ))}
+      </div>
+    </div>
+  )
+}
+function ScrambleWord({ word }: { word: string }) {
+  const [hover, setHover] = useState(false)
+  const [out, setOut] = useState(word)
+  useEffect(() => {
+    if (!hover) {
+      setOut(word)
+      return
+    }
+    let frame = 0
+    const pool = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ#@&%$!?*'
+    const id = setInterval(() => {
+      frame++
+      setOut(
+        word
+          .split('')
+          .map((c, i) => (frame > i * 2 ? c : pool[Math.floor((frame * (i + 1)) % pool.length)]))
+          .join(''),
+      )
+      if (frame > word.length * 2 + 4) clearInterval(id)
+    }, 40)
+    return () => clearInterval(id)
+  }, [hover, word])
+  return (
+    <span
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+      className="cursor-pointer text-zinc-900 hover:text-fuchsia-600 transition-colors tabular-nums"
+    >
+      {out}
+    </span>
+  )
+}
+
 export default function MouseEffectsShowcase() {
   return (
     <div className="max-w-5xl space-y-3">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        マウスエフェクト9種。光の粒トレイル / カスタムカーソル / スポットライト /
-        波紋 / キラキラ / 3D傾き / 磁石ボタン / ホバー光 / 遅延紐。各エリア内でだけ
-        発火するので他に干渉しない。
+        マウスエフェクト16種。光の粒トレイル / カスタムカーソル / スポットライト /
+        波紋 / キラキラ / 3D傾き / 磁石ボタン / ホバー光 / 遅延紐 / インクトレイル /
+        パララックス / テキスト逃避 / 画像リビール / 紙吹雪 / Velocity / 文字バラバラ。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -467,6 +823,27 @@ export default function MouseEffectsShowcase() {
         </Frame>
         <Frame label="9. 遅延つき紐 (string of dots)" note="徐々に遅れて追ってくる連なり" span>
           <StringDot />
+        </Frame>
+        <Frame label="10. SVG インクトレイル" note="カーソルを滑らかな曲線で結ぶ">
+          <InkTrail />
+        </Frame>
+        <Frame label="11. パララックス3層" note="近景/中景/遠景がそれぞれ違う速さで動く">
+          <Parallax />
+        </Frame>
+        <Frame label="12. テキスト逃避" note="文字がマウスから反発して逃げる">
+          <RepelText />
+        </Frame>
+        <Frame label="13. 画像リビール (mask)" note="カーソル位置の円だけ色が露出">
+          <ImageReveal />
+        </Frame>
+        <Frame label="14. クリック紙吹雪" note="クリック地点から放射状に飛ぶ">
+          <Confetti />
+        </Frame>
+        <Frame label="15. Velocity ストレッチカーソル" note="速度に応じて伸縮 + 回転">
+          <VelocityCursor />
+        </Frame>
+        <Frame label="16. ホバーで文字バラバラ" note="ホバー時にランダム文字 → 元に戻る" span>
+          <ScrambleText />
         </Frame>
       </div>
 
