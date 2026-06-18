@@ -141,6 +141,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/SortShowcase')),
       },
       {
+        slug: 'mouse-effects',
+        title: 'Mouse Effects',
+        description: '光の粒トレイル / カスタムカーソル / スポットライト / 波紋 / キラキラ / 3D傾き / 磁石ボタン 等9種。',
+        Component: lz(() => import('./pages/components/MouseEffectsShowcase')),
+      },
+      {
         slug: 'table',
         title: 'Table',
         description: 'データテーブル。',
