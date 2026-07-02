@@ -614,6 +614,12 @@ export const sections: Section[] = [
         description: '複数タブのフォームでエラーを伝える6パターンを切替比較。',
         Component: lz(() => import('./pages/scenarios/MultiTabErrors')),
       },
+      {
+        slug: 'tri-choice',
+        title: 'Tri-choice Selector',
+        description: '3択 [All | On | Off] のUIパターン18種。segmented / radio / chip / tab / cycle / slider / tri-state など。',
+        Component: lz(() => import('./pages/scenarios/TriChoice')),
+      },
     ],
   },
   {
