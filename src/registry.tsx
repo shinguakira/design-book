@@ -617,7 +617,7 @@ export const sections: Section[] = [
       {
         slug: 'tri-choice',
         title: 'Tri-choice Selector',
-        description: '3択 [All | On | Off] の表現20種。並列/縦/畳む/位置/強調/面積の6分類。装飾要素は排除。',
+        description: '3択の「置き方」12種。segmented/card/dropdown/cycle/slider/dial/wheel/radial/venn/split/z-stack。構造が違うものだけ。',
         Component: lz(() => import('./pages/scenarios/TriChoice')),
       },
     ],
