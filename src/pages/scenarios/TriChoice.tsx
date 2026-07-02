@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 
 type Val = 'all' | 'opt1' | 'opt2'
@@ -176,29 +176,258 @@ function Dial({ v, s }: { v: Val; s: (v: Val) => void }) {
   )
 }
 
-/* 8 Wheel picker — "vertical drum scroll (iOS style)" */
+/* 8 Wheel picker — scrollable drum (drag / wheel / click) */
 function WheelPicker({ v, s }: { v: Val; s: (v: Val) => void }) {
-  const i = OPTS.indexOf(v)
+  const ref = useRef<HTMLDivElement>(null)
+  const ITEM_H = 24
+  const settling = useRef<number | null>(null)
+  useEffect(() => {
+    if (!ref.current) return
+    const idx = OPTS.indexOf(v)
+    const target = idx * ITEM_H
+    if (Math.abs(ref.current.scrollTop - target) > 2) {
+      ref.current.scrollTo({ top: target, behavior: 'smooth' })
+    }
+  }, [v])
+  const onScroll = () => {
+    if (!ref.current) return
+    const st = ref.current.scrollTop
+    const idx = Math.max(0, Math.min(2, Math.round(st / ITEM_H)))
+    if (OPTS[idx] !== v) s(OPTS[idx])
+    if (settling.current) clearTimeout(settling.current)
+    settling.current = window.setTimeout(() => {
+      if (!ref.current) return
+      ref.current.scrollTo({ top: idx * ITEM_H, behavior: 'smooth' })
+    }, 120)
+  }
   return (
     <div className="relative w-24 h-20 rounded-md bg-gradient-to-b from-zinc-100 via-white to-zinc-100 overflow-hidden border border-zinc-200">
       <div
-        className="absolute left-0 right-0 transition-transform"
-        style={{ transform: `translateY(${(1 - i) * 24}px)`, top: '50%', marginTop: -12 }}
+        ref={ref}
+        onScroll={onScroll}
+        className="h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth"
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' } as React.CSSProperties}
       >
-        {OPTS.map((o) => (
-          <button
-            key={o}
-            onClick={() => s(o)}
-            className={`h-6 flex items-center justify-center w-full text-xs ${
-              v === o ? 'text-zinc-900 font-semibold' : 'text-zinc-400'
-            }`}
-          >
-            {S[o]}
-          </button>
-        ))}
+        <style>{`.wp-hide::-webkit-scrollbar{display:none}`}</style>
+        <div className="wp-hide">
+          <div style={{ height: (80 - ITEM_H) / 2 }} />
+          {OPTS.map((o) => (
+            <button
+              key={o}
+              onClick={() => s(o)}
+              className={`h-6 w-full snap-center flex items-center justify-center text-xs ${
+                v === o ? 'text-zinc-900 font-semibold' : 'text-zinc-400'
+              }`}
+            >
+              {S[o]}
+            </button>
+          ))}
+          <div style={{ height: (80 - ITEM_H) / 2 }} />
+        </div>
       </div>
       <div className="absolute inset-x-2 top-1/2 h-6 -translate-y-1/2 rounded pointer-events-none border-y border-zinc-300" />
     </div>
+  )
+}
+
+/* 13 Fan-out cards — "3 cards fanned like poker hand, selected pops up" */
+function FanCards({ v, s }: { v: Val; s: (v: Val) => void }) {
+  const items: { val: Val; angle: number; color: string }[] = [
+    { val: 'opt1', angle: -20, color: 'bg-rose-100 border-rose-300 text-rose-900' },
+    { val: 'all', angle: 0, color: 'bg-emerald-100 border-emerald-300 text-emerald-900' },
+    { val: 'opt2', angle: 20, color: 'bg-blue-100 border-blue-300 text-blue-900' },
+  ]
+  return (
+    <div className="relative w-32 h-20">
+      {items.map((it) => {
+        const active = v === it.val
+        return (
+          <button
+            key={it.val}
+            onClick={() => s(it.val)}
+            className={`absolute left-1/2 top-1/2 w-14 h-20 rounded-md border ${it.color}`}
+            style={{
+              transform: `translate(-50%, -50%) rotate(${it.angle}deg) translateY(${
+                active ? -10 : 0
+              }px)`,
+              transformOrigin: 'bottom center',
+              transition: 'transform 180ms',
+              zIndex: active ? 10 : 1,
+              boxShadow: active ? '0 6px 10px rgba(0,0,0,0.15)' : undefined,
+            }}
+          >
+            <div className="grid place-items-center h-full text-[11px] font-medium">
+              {S[it.val]}
+            </div>
+          </button>
+        )
+      })}
+    </div>
+  )
+}
+
+/* 14 Traffic light — "vertical 3 lamps, one lit" */
+function TrafficLight({ v, s }: { v: Val; s: (v: Val) => void }) {
+  const items: { val: Val; on: string; off: string }[] = [
+    { val: 'all', on: 'bg-emerald-500 shadow-[0_0_12px_#10b981]', off: 'bg-emerald-900/40' },
+    { val: 'opt1', on: 'bg-amber-400 shadow-[0_0_12px_#fbbf24]', off: 'bg-amber-900/40' },
+    { val: 'opt2', on: 'bg-rose-500 shadow-[0_0_12px_#f43f5e]', off: 'bg-rose-900/40' },
+  ]
+  return (
+    <div className="flex items-center gap-3">
+      <div className="flex flex-col gap-1.5 bg-zinc-900 rounded-md p-1.5">
+        {items.map((it) => (
+          <button
+            key={it.val}
+            onClick={() => s(it.val)}
+            className={`w-6 h-6 rounded-full transition-colors ${
+              v === it.val ? it.on : it.off
+            }`}
+          />
+        ))}
+      </div>
+      <div className="flex flex-col gap-1.5 text-[10px]">
+        {items.map((it) => (
+          <div
+            key={it.val}
+            className={`h-6 flex items-center ${
+              v === it.val ? 'text-zinc-900 font-medium' : 'text-zinc-400'
+            }`}
+          >
+            {S[it.val]}
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* 15 Stepper — "3 numbered circles connected by line, showing progression" */
+function Stepper({ v, s }: { v: Val; s: (v: Val) => void }) {
+  const i = OPTS.indexOf(v)
+  return (
+    <div>
+      <div className="flex items-center w-40">
+        {OPTS.map((o, k) => (
+          <div key={o} className="flex items-center flex-1 last:flex-none">
+            <button
+              onClick={() => s(o)}
+              className={`w-6 h-6 rounded-full grid place-items-center text-[11px] font-medium border-2 ${
+                k <= i
+                  ? 'bg-zinc-900 border-zinc-900 text-white'
+                  : 'bg-white border-zinc-300 text-zinc-400'
+              }`}
+            >
+              {k + 1}
+            </button>
+            {k < 2 && (
+              <div
+                className={`flex-1 h-0.5 mx-1 ${
+                  k < i ? 'bg-zinc-900' : 'bg-zinc-300'
+                }`}
+              />
+            )}
+          </div>
+        ))}
+      </div>
+      <div className="mt-1 flex justify-between text-[10px] text-zinc-500 w-40">
+        {OPTS.map((o) => (
+          <span key={o}>{S[o]}</span>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/* 16 Ternary triangle — "click a corner of the triangle; center = All" */
+function Ternary({ v, s }: { v: Val; s: (v: Val) => void }) {
+  const pts: Record<Val, { x: number; y: number }> = {
+    all: { x: 50, y: 44 },
+    opt1: { x: 15, y: 78 },
+    opt2: { x: 85, y: 78 },
+  }
+  const p = pts[v]
+  return (
+    <svg viewBox="0 0 100 90" className="w-28 h-20">
+      <polygon
+        points="50,14 15,78 85,78"
+        fill="#fafafa"
+        stroke="#d4d4d8"
+        strokeWidth="1"
+      />
+      <line x1="50" y1="14" x2="50" y2="78" stroke="#e4e4e7" strokeDasharray="2 2" />
+      <line x1="15" y1="78" x2="85" y2="78" stroke="#e4e4e7" strokeDasharray="2 2" />
+      {(['all', 'opt1', 'opt2'] as Val[]).map((o) => {
+        const c = pts[o]
+        return (
+          <g key={o}>
+            <circle
+              cx={c.x}
+              cy={c.y}
+              r={o === 'all' ? 4 : 5}
+              fill={v === o ? '#18181b' : '#e4e4e7'}
+              stroke="white"
+              strokeWidth="1"
+              onClick={() => s(o)}
+              className="cursor-pointer"
+            />
+          </g>
+        )
+      })}
+      <circle cx={p.x} cy={p.y} r="7" fill="none" stroke="#f43f5e" strokeWidth="2" />
+      <text x="50" y="10" fontSize="7" textAnchor="middle" fill="#71717a">All</text>
+      <text x="10" y="85" fontSize="7" textAnchor="start" fill="#71717a">Opt 1</text>
+      <text x="90" y="85" fontSize="7" textAnchor="end" fill="#71717a">Opt 2</text>
+    </svg>
+  )
+}
+
+/* 17 Ring / arc segments — "3 arcs on annulus, active arc highlighted" */
+function RingArcs({ v, s }: { v: Val; s: (v: Val) => void }) {
+  const arc = (start: number, end: number, r = 40) => {
+    const s1 = ((start - 90) * Math.PI) / 180
+    const s2 = ((end - 90) * Math.PI) / 180
+    const x1 = 50 + r * Math.cos(s1)
+    const y1 = 50 + r * Math.sin(s1)
+    const x2 = 50 + r * Math.cos(s2)
+    const y2 = 50 + r * Math.sin(s2)
+    const largeArc = end - start > 180 ? 1 : 0
+    return `M ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2}`
+  }
+  const arcs: { val: Val; d: string; label: { x: number; y: number } }[] = [
+    { val: 'all', d: arc(-50, 50), label: { x: 50, y: 15 } },
+    { val: 'opt1', d: arc(70, 170), label: { x: 20, y: 82 } },
+    { val: 'opt2', d: arc(190, 290), label: { x: 80, y: 82 } },
+  ]
+  return (
+    <svg viewBox="0 0 100 100" className="w-24 h-24">
+      <circle cx="50" cy="50" r="40" fill="none" stroke="#f4f4f5" strokeWidth="10" />
+      {arcs.map((a) => (
+        <g key={a.val}>
+          <path
+            d={a.d}
+            fill="none"
+            stroke={v === a.val ? '#18181b' : '#d4d4d8'}
+            strokeWidth="10"
+            strokeLinecap="round"
+            onClick={() => s(a.val)}
+            className="cursor-pointer"
+          />
+          <text
+            x={a.label.x}
+            y={a.label.y}
+            fontSize="9"
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill={v === a.val ? '#18181b' : '#71717a'}
+            fontWeight={v === a.val ? 600 : 400}
+            style={{ pointerEvents: 'none' }}
+          >
+            {S[a.val]}
+          </text>
+        </g>
+      ))}
+    </svg>
   )
 }
 
@@ -359,7 +588,7 @@ function ZStack({ v, s }: { v: Val; s: (v: Val) => void }) {
 }
 
 export default function TriChoice() {
-  const [a, sA] = useState<Val[]>(Array(12).fill('all'))
+  const [a, sA] = useState<Val[]>(Array(17).fill('all'))
   const set = (i: number) => (val: Val) => sA((prev) => prev.map((p, k) => (k === i ? val : p)))
 
   const patterns: {
@@ -374,20 +603,25 @@ export default function TriChoice() {
     { title: 'Cycle button', axis: '永続表示なし · タップで循環', render: (v, s) => <CycleButton v={v} s={s} /> },
     { title: 'Slider (3-stop)', axis: '直線位置で示す', render: (v, s) => <Slider v={v} s={s} /> },
     { title: 'Dial / knob', axis: '角度で示す · 回転メタファ', render: (v, s) => <Dial v={v} s={s} /> },
-    { title: 'Wheel picker', axis: 'ドラムスクロール (iOS)', render: (v, s) => <WheelPicker v={v} s={s} /> },
+    { title: 'Wheel picker', axis: 'スクロール可能ドラム (iOS)', render: (v, s) => <WheelPicker v={v} s={s} /> },
     { title: 'Radial / pie menu', axis: '中心から放射状 · 3 wedge', render: (v, s) => <RadialMenu v={v} s={s} /> },
     { title: 'Venn diagram', axis: '集合で示す · All=交差', render: (v, s) => <VennDiagram v={v} s={s} /> },
     { title: 'Asymmetric split', axis: '非対称 · All を主 / Option を従', render: (v, s) => <AsymmetricSplit v={v} s={s} /> },
     { title: 'Z-stack cards', axis: '奥行きで示す · 最前面が選択', render: (v, s) => <ZStack v={v} s={s} /> },
+    { title: 'Fan-out cards', axis: '扇状 · トランプの手札的', render: (v, s) => <FanCards v={v} s={s} /> },
+    { title: 'Traffic light', axis: '縦ランプ · 発光メタファ', render: (v, s) => <TrafficLight v={v} s={s} /> },
+    { title: 'Stepper', axis: '段階進行 · 連結線で経路', render: (v, s) => <Stepper v={v} s={s} /> },
+    { title: 'Ternary triangle', axis: '三角形の頂点 · All=中央', render: (v, s) => <Ternary v={v} s={s} /> },
+    { title: 'Ring / arc segments', axis: 'ドーナツ弧 · pie 塗りつぶしでない', render: (v, s) => <RingArcs v={v} s={s} /> },
   ]
 
   return (
     <div className="max-w-6xl space-y-3">
       <p className="text-sm text-zinc-700">
-        3択 [All | Option 1 | Option 2] の <b>構造</b> パターン12種。
-        「単に3つ横並び」を1個に集約し、他は
-        1D→2D→畳む→循環→線→角→ドラム→放射→集合→非対称→奥行き と、置き方の
-        軸そのものを変えたもの。
+        3択 [All | Option 1 | Option 2] の <b>構造</b> パターン17種。
+        「単に3つ横並び」は1個に集約。他は 1D→2D→畳む→循環→線→角→ドラム→
+        放射→集合→非対称→奥行き→扇→発光→段階→三角形→弧 と、置き方の
+        軸そのものが違うもの。
       </p>
 
       <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-2">
