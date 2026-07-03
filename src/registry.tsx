@@ -53,7 +53,7 @@ export const sections: Section[] = [
       {
         slug: 'select-options',
         title: 'Select Options',
-        description: 'ドロップダウン1行の見せ方 30種。icon/avatar/swatch/flag/badge/kbd/skeleton/thumbnail/checkmark/checkbox/nested 等。',
+        description: 'ドロップダウン1行の「スロット構成」20種。データ違い (flag/currency/tz) は集約し、レイアウト差だけ残した。',
         Component: lz(() => import('./pages/components/SelectOptionShowcase')),
       },
       {
