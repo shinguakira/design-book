@@ -73,7 +73,7 @@ function Trigger({
 function Panel({ children, w = 220 }: { children: React.ReactNode; w?: number }) {
   return (
     <div
-      className="absolute top-full mt-1 left-0 z-20 rounded-md border border-zinc-200 bg-white shadow-lg overflow-hidden"
+      className="mt-1 rounded-md border border-zinc-200 bg-white shadow-sm overflow-hidden"
       style={{ width: w }}
     >
       {children}
@@ -83,9 +83,11 @@ function Panel({ children, w = 220 }: { children: React.ReactNode; w?: number })
 
 /* Wrapper to reduce boilerplate */
 function useSel(init: string) {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [v, setV] = useState(init)
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const ref = useOutside<HTMLDivElement>(() => {
+    /* leave open — always-open showcase */
+  })
   return { open, setOpen, v, setV, ref }
 }
 
@@ -100,7 +102,7 @@ function S1() {
           {['Alpha', 'Bravo', 'Charlie', 'Delta'].map((o) => (
             <button
               key={o}
-              onClick={() => { setV(o); setOpen(false) }}
+              onClick={() => { setV(o) }}
               className={`w-full text-left px-3 py-1.5 text-sm hover:bg-zinc-100 ${v === o ? 'bg-zinc-50' : ''}`}
             >
               {o}
@@ -129,7 +131,7 @@ function S2() {
           {items.map((it) => (
             <button
               key={it.name}
-              onClick={() => { setV(it.name); setOpen(false) }}
+              onClick={() => { setV(it.name) }}
               className={`w-full text-left px-3 py-1.5 text-sm flex items-center gap-2 hover:bg-zinc-100 ${v === it.name ? 'bg-zinc-50' : ''}`}
             >
               <span className="w-3 h-3 rounded-full ring-1 ring-inset ring-black/10 flex-none" style={{ background: it.color }} />
@@ -159,7 +161,7 @@ function S3() {
           {items.map((it) => (
             <button
               key={it.t}
-              onClick={() => { setV(it.t); setOpen(false) }}
+              onClick={() => { setV(it.t) }}
               className={`w-full text-left px-3 py-1.5 text-sm flex items-center justify-between hover:bg-zinc-100 ${v === it.t ? 'bg-zinc-50' : ''}`}
             >
               <span>{it.t}</span>
@@ -188,7 +190,7 @@ function S4() {
           {items.map((it) => (
             <button
               key={it.t}
-              onClick={() => { setV(it.t); setOpen(false) }}
+              onClick={() => { setV(it.t) }}
               className={`w-full px-3 py-1.5 text-sm flex items-center justify-between hover:bg-zinc-100 ${v === it.t ? 'bg-zinc-50' : ''}`}
             >
               <span className="flex items-center gap-2">
@@ -220,7 +222,7 @@ function S5() {
           {items.map((it) => (
             <button
               key={it.t}
-              onClick={() => { setV(it.t); setOpen(false) }}
+              onClick={() => { setV(it.t) }}
               className={`w-full text-left px-3 py-2 hover:bg-zinc-100 ${v === it.t ? 'bg-zinc-50' : ''}`}
             >
               <div className="text-sm font-medium">{it.t}</div>
@@ -249,7 +251,7 @@ function S6() {
           {items.map((it) => (
             <button
               key={it.t}
-              onClick={() => { setV(it.t); setOpen(false) }}
+              onClick={() => { setV(it.t) }}
               className={`w-full text-left px-3 py-2 flex items-start gap-2 hover:bg-zinc-100 ${v === it.t ? 'bg-zinc-50' : ''}`}
             >
               <span className="w-4 h-4 rounded-sm bg-zinc-200 mt-0.5 flex-none" />
@@ -281,7 +283,7 @@ function S7() {
           {items.map((it) => (
             <button
               key={it.t}
-              onClick={() => { setV(it.t); setOpen(false) }}
+              onClick={() => { setV(it.t) }}
               className={`w-full px-3 py-2 flex items-center gap-3 hover:bg-zinc-100 ${v === it.t ? 'bg-zinc-50' : ''}`}
             >
               <div className={`w-10 h-10 rounded bg-gradient-to-br ${it.c} flex-none`} />
@@ -310,7 +312,7 @@ function S8() {
           {items.map((it) => (
             <button
               key={it.t}
-              onClick={() => { setV(it.t); setOpen(false) }}
+              onClick={() => { setV(it.t) }}
               className={`w-full px-3 py-2 text-left hover:bg-zinc-100 ${v === it.t ? 'bg-zinc-50' : ''}`}
             >
               <div className="flex items-center justify-between">
@@ -347,7 +349,7 @@ function S9() {
           {items.map((it) => (
             <button
               key={it.t}
-              onClick={() => { setV(it.t); setOpen(false) }}
+              onClick={() => { setV(it.t) }}
               className={`w-full px-3 py-2 text-left hover:bg-zinc-100 ${v === it.t ? 'bg-zinc-50' : ''}`}
             >
               <div className="flex items-center justify-between text-sm">
@@ -377,7 +379,7 @@ function S10() {
           {items.map((o) => (
             <button
               key={o}
-              onClick={() => { setV(o); setOpen(false) }}
+              onClick={() => { setV(o) }}
               className="w-full px-3 py-1.5 text-sm flex items-center gap-2 hover:bg-zinc-100"
             >
               <span className="w-4 flex-none">
@@ -395,9 +397,9 @@ function S10() {
 /* ── 11. prefix selection: checkbox (multi, stays open) ─ */
 function S11() {
   const items = ['Design', 'Bug', 'Docs', 'Enhancement']
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [sel, setSel] = useState<Set<string>>(new Set(['Design', 'Bug']))
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const ref = useOutside<HTMLDivElement>(() => { /* showcase: no close */ })
   const toggle = (t: string) => {
     const n = new Set(sel)
     n.has(t) ? n.delete(t) : n.add(t)
@@ -441,7 +443,7 @@ function S12() {
               key={o}
               className={`px-3 py-1.5 text-sm flex items-center justify-between group hover:bg-zinc-100 ${v === o ? 'bg-zinc-50' : ''}`}
             >
-              <button onClick={() => { setV(o); setOpen(false) }} className="flex-1 text-left">
+              <button onClick={() => { setV(o) }} className="flex-1 text-left">
                 {o}
               </button>
               <div className="flex gap-1 opacity-0 group-hover:opacity-100">
@@ -477,7 +479,7 @@ function S13() {
               {gr.items.map((o) => (
                 <button
                   key={o}
-                  onClick={() => { setV(o); setOpen(false) }}
+                  onClick={() => { setV(o) }}
                   className={`w-full px-3 py-1 text-sm text-left hover:bg-zinc-100 ${v === o ? 'bg-zinc-50' : ''}`}
                 >
                   {o}
@@ -493,10 +495,10 @@ function S13() {
 
 /* ── 14. loading skeleton row ────────────── */
 function S14() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [loading, setLoading] = useState(true)
   const [v, setV] = useState('データを読み込む…')
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const ref = useOutside<HTMLDivElement>(() => { /* showcase: no close */ })
   useEffect(() => {
     if (open && loading) {
       const t = setTimeout(() => setLoading(false), 1400)
@@ -527,7 +529,7 @@ function S14() {
             : items.map((o) => (
                 <button
                   key={o}
-                  onClick={() => { setV(o); setOpen(false) }}
+                  onClick={() => { setV(o) }}
                   className="w-full px-3 py-1.5 text-sm text-left hover:bg-zinc-100"
                 >
                   {o}
@@ -541,8 +543,8 @@ function S14() {
 
 /* ── 15. empty state ─────────────────────── */
 function S15() {
-  const [open, setOpen] = useState(false)
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const [open, setOpen] = useState(true)
+  const ref = useOutside<HTMLDivElement>(() => { /* showcase: no close */ })
   return (
     <div ref={ref} className="relative">
       <Trigger onClick={() => setOpen(!open)} open={open}>選択…</Trigger>
@@ -563,16 +565,16 @@ function S15() {
 
 /* ── 16. submenu trigger ─────────────────── */
 function S16() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [subOpen, setSubOpen] = useState<string | null>(null)
-  const ref = useOutside<HTMLDivElement>(() => { setOpen(false); setSubOpen(null) })
+  const ref = useOutside<HTMLDivElement>(() => setSubOpen(null))
   return (
     <div ref={ref} className="relative">
       <Trigger onClick={() => setOpen(!open)} open={open}>アクション…</Trigger>
       {open && (
         <Panel>
           {['Cut', 'Copy'].map((o) => (
-            <button key={o} onClick={() => setOpen(false)} className="w-full px-3 py-1.5 text-sm text-left hover:bg-zinc-100">
+            <button key={o} onClick={() => { }} className="w-full px-3 py-1.5 text-sm text-left hover:bg-zinc-100">
               {o}
             </button>
           ))}
@@ -586,7 +588,7 @@ function S16() {
             {subOpen === 'paste' && (
               <div className="absolute left-full top-0 ml-1 rounded-md border border-zinc-200 bg-white shadow-lg overflow-hidden w-40 z-30">
                 {['Plain text', 'Markdown', 'HTML'].map((s) => (
-                  <button key={s} onClick={() => setOpen(false)} className="w-full px-3 py-1.5 text-sm text-left hover:bg-zinc-100">
+                  <button key={s} onClick={() => { }} className="w-full px-3 py-1.5 text-sm text-left hover:bg-zinc-100">
                     {s}
                   </button>
                 ))}
@@ -602,10 +604,10 @@ function S16() {
 /* ── 17. inline highlighted text (search mark) ─ */
 function S17() {
   const all = ['Vercel', 'Vector graphics', 'Very old drafts', 'Ventures', 'Vault']
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(true)
   const [q, setQ] = useState('Ver')
   const [v, setV] = useState('Vercel')
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const ref = useOutside<HTMLDivElement>(() => { /* showcase: no close */ })
   const filtered = all.filter((o) => o.toLowerCase().includes(q.toLowerCase()))
   return (
     <div ref={ref} className="relative">
@@ -625,7 +627,7 @@ function S17() {
           {filtered.map((o) => (
             <button
               key={o}
-              onClick={() => { setV(o); setOpen(false) }}
+              onClick={() => { setV(o) }}
               className={`w-full px-3 py-1.5 text-sm text-left hover:bg-zinc-100 ${v === o ? 'bg-zinc-50' : ''}`}
             >
               {o.split(new RegExp(`(${q})`, 'i')).map((p, k) =>
@@ -659,7 +661,7 @@ function S18() {
           {items.map((it) => (
             <button
               key={it.t}
-              onClick={() => { setV(it.t); setOpen(false) }}
+              onClick={() => { setV(it.t) }}
               className={`w-full px-3 py-1.5 text-sm flex items-center gap-2 hover:bg-zinc-100 ${v === it.t ? 'bg-zinc-50' : ''}`}
             >
               <span className="w-3 h-3 rounded-sm bg-zinc-200 flex-none" />
@@ -694,7 +696,7 @@ function S19() {
           {recent.map((o) => (
             <button
               key={o}
-              onClick={() => { setV(o); setOpen(false) }}
+              onClick={() => { setV(o) }}
               className={`w-full px-3 py-1 text-sm text-left hover:bg-zinc-100 ${v === o ? 'bg-zinc-50' : ''}`}
             >
               {o}
@@ -707,7 +709,7 @@ function S19() {
           {rest.map((o) => (
             <button
               key={o}
-              onClick={() => { setV(o); setOpen(false) }}
+              onClick={() => { setV(o) }}
               className={`w-full px-3 py-1 text-sm text-left hover:bg-zinc-100 ${v === o ? 'bg-zinc-50' : ''}`}
             >
               {o}
@@ -721,21 +723,21 @@ function S19() {
 
 /* ── 20. destructive divider row (footer action) ─ */
 function S20() {
-  const [open, setOpen] = useState(false)
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const [open, setOpen] = useState(true)
+  const ref = useOutside<HTMLDivElement>(() => { /* showcase: no close */ })
   return (
     <div ref={ref} className="relative">
       <Trigger onClick={() => setOpen(!open)} open={open}>アカウント</Trigger>
       {open && (
         <Panel>
           {['プロフィール編集', '設定', 'サブスクリプション'].map((o) => (
-            <button key={o} onClick={() => setOpen(false)} className="w-full px-3 py-1.5 text-sm text-left hover:bg-zinc-100">
+            <button key={o} onClick={() => { }} className="w-full px-3 py-1.5 text-sm text-left hover:bg-zinc-100">
               {o}
             </button>
           ))}
           <div className="border-t border-zinc-100" />
           <button
-            onClick={() => setOpen(false)}
+            onClick={() => { }}
             className="w-full px-3 py-1.5 text-sm text-rose-600 hover:bg-rose-50 flex items-center gap-2 text-left"
           >
             <Trash2 className="w-3.5 h-3.5" />
