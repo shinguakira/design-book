@@ -57,6 +57,12 @@ export const sections: Section[] = [
         Component: lz(() => import('./pages/components/SelectOptionShowcase')),
       },
       {
+        slug: 'date-time',
+        title: 'Date & Time Input',
+        description: '日付/時刻の入力 24種。表現14 (native/mask/calendar/wheel/dial) + シナリオ10 (生年月日/予約/宿泊/リマインダー/定期/締切/空き時間/四半期)。',
+        Component: lz(() => import('./pages/components/DateTimeShowcase')),
+      },
+      {
         slug: 'checkbox',
         title: 'Checkbox',
         description: '複数選択のチェック。',
