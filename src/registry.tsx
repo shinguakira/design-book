@@ -1,6 +1,6 @@
 import { lazy, type ComponentType } from "react";
 
-export type Entry = {
+type Entry = {
   slug: string;
   title: string;
   description?: string;

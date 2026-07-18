@@ -10,7 +10,7 @@ import {
 
 export type DrawerAnim = "envelope" | "unfold" | "drop";
 
-export const DRAWER_ANIMS: DrawerAnim[] = ["envelope", "unfold", "drop"];
+const DRAWER_ANIMS: DrawerAnim[] = ["envelope", "unfold", "drop"];
 
 export const pickRandomAnim = (): DrawerAnim =>
   DRAWER_ANIMS[Math.floor(Math.random() * DRAWER_ANIMS.length)];

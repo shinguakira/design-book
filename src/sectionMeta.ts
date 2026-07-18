@@ -26,7 +26,7 @@ export type SectionMeta = {
   tagline: string;
 };
 
-export const SECTION_META: Record<string, SectionMeta> = {
+const SECTION_META: Record<string, SectionMeta> = {
   form: {
     Icon: Pencil,
     gradient: "from-blue-500 to-cyan-500",
@@ -133,7 +133,7 @@ export const SECTION_META: Record<string, SectionMeta> = {
   },
 };
 
-export const DEFAULT_META: SectionMeta = {
+const DEFAULT_META: SectionMeta = {
   Icon: Package,
   gradient: "from-zinc-500 to-zinc-700",
   pill: "bg-zinc-50 text-zinc-700 border-zinc-200",
