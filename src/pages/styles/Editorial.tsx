@@ -1,18 +1,18 @@
-import { StyleDoc } from '../_shared/StyleDoc'
+import { StyleDoc } from "../_shared/StyleDoc";
 
 export default function Editorial() {
   return (
     <StyleDoc
       intro="雑誌・新聞の組版を Web に持ち込んだスタイル。大型 Serif タイトル + ドロップキャップ + 段組 + ヘアラインの区切り。Stripe Blog / Vox / Apple Newsroom / NYT が代表例。読み物として信頼感がある。"
       pros={[
-        '読みやすさ・知性のある印象',
-        '長文コンテンツとの相性が抜群',
-        'ブランドの「品」を出せる',
+        "読みやすさ・知性のある印象",
+        "長文コンテンツとの相性が抜群",
+        "ブランドの「品」を出せる",
       ]}
       cons={[
-        '画面狭いと段組が破綻しやすい',
-        'インタラクティブ UI には不向き',
-        'Serif フォントが日本語で映えにくい場面も',
+        "画面狭いと段組が破綻しやすい",
+        "インタラクティブ UI には不向き",
+        "Serif フォントが日本語で映えにくい場面も",
       ]}
       example={
         <div
@@ -34,22 +34,20 @@ export default function Editorial() {
               <span className="float-left mr-2 mt-1 text-5xl font-bold leading-none text-zinc-900">
                 T
               </span>
-              he web is rediscovering its roots in print typography. Where
-              early CSS was content with body copy in Verdana, today's
-              editorial-minded sites lean into the conventions of magazine
-              design — drop caps, ligatures, and a deliberate hierarchy that
-              guides the eye down the column.
+              he web is rediscovering its roots in print typography. Where early CSS was content
+              with body copy in Verdana, today's editorial-minded sites lean into the conventions of
+              magazine design — drop caps, ligatures, and a deliberate hierarchy that guides the eye
+              down the column.
             </p>
             <p className="mt-3">
-              Designers at <em>Stripe</em>, <em>Vox</em>, and{' '}
-              <em>The New York Times</em> have shown that long-form reading
-              and dense information can coexist on the same screen. The trick
-              is restraint: a strong grid, a single accent color, and
-              typography that does the heavy lifting.
+              Designers at <em>Stripe</em>, <em>Vox</em>, and <em>The New York Times</em> have shown
+              that long-form reading and dense information can coexist on the same screen. The trick
+              is restraint: a strong grid, a single accent color, and typography that does the heavy
+              lifting.
             </p>
           </div>
         </div>
       }
     />
-  )
+  );
 }

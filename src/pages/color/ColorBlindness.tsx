@@ -15,30 +15,46 @@ const SAMPLE = (
       </span>
     </div>
     <div className="flex gap-2">
-      <button className="px-3 py-1.5 rounded bg-emerald-600 text-white text-sm">
-        保存
-      </button>
-      <button className="px-3 py-1.5 rounded bg-red-600 text-white text-sm">
-        削除
-      </button>
+      <button className="px-3 py-1.5 rounded bg-emerald-600 text-white text-sm">保存</button>
+      <button className="px-3 py-1.5 rounded bg-red-600 text-white text-sm">削除</button>
     </div>
     <div className="flex items-end gap-2 h-20">
-      <div className="w-6 bg-red-500" style={{ height: '40%' }} />
-      <div className="w-6 bg-green-500" style={{ height: '70%' }} />
-      <div className="w-6 bg-blue-500" style={{ height: '50%' }} />
-      <div className="w-6 bg-amber-500" style={{ height: '90%' }} />
-      <div className="w-6 bg-purple-500" style={{ height: '60%' }} />
+      <div className="w-6 bg-red-500" style={{ height: "40%" }} />
+      <div className="w-6 bg-green-500" style={{ height: "70%" }} />
+      <div className="w-6 bg-blue-500" style={{ height: "50%" }} />
+      <div className="w-6 bg-amber-500" style={{ height: "90%" }} />
+      <div className="w-6 bg-purple-500" style={{ height: "60%" }} />
     </div>
   </div>
-)
+);
 
 const VARIANTS = [
-  { id: 'normal', label: '通常 (色覚正常)', filter: undefined, note: '比較用' },
-  { id: 'proto', label: 'Protanopia (1型 / 赤錐体欠損)', filter: 'url(#proto)', note: '男性の約1%。赤が暗く茶色っぽく見える。' },
-  { id: 'deutero', label: 'Deuteranopia (2型 / 緑錐体欠損)', filter: 'url(#deutero)', note: '男性の約1%。最も多い色盲タイプ。赤と緑の区別が困難。' },
-  { id: 'trito', label: 'Tritanopia (3型 / 青錐体欠損)', filter: 'url(#trito)', note: '約0.01%と稀。青と黄、緑と紫が区別しにくい。' },
-  { id: 'achroma', label: 'Achromatopsia (全色盲)', filter: 'url(#achroma)', note: '約0.003%と極めて稀。色を全く認識できない。' },
-]
+  { id: "normal", label: "通常 (色覚正常)", filter: undefined, note: "比較用" },
+  {
+    id: "proto",
+    label: "Protanopia (1型 / 赤錐体欠損)",
+    filter: "url(#proto)",
+    note: "男性の約1%。赤が暗く茶色っぽく見える。",
+  },
+  {
+    id: "deutero",
+    label: "Deuteranopia (2型 / 緑錐体欠損)",
+    filter: "url(#deutero)",
+    note: "男性の約1%。最も多い色盲タイプ。赤と緑の区別が困難。",
+  },
+  {
+    id: "trito",
+    label: "Tritanopia (3型 / 青錐体欠損)",
+    filter: "url(#trito)",
+    note: "約0.01%と稀。青と黄、緑と紫が区別しにくい。",
+  },
+  {
+    id: "achroma",
+    label: "Achromatopsia (全色盲)",
+    filter: "url(#achroma)",
+    note: "約0.003%と極めて稀。色を全く認識できない。",
+  },
+];
 
 export default function ColorBlindness() {
   return (
@@ -86,10 +102,12 @@ export default function ColorBlindness() {
 
       <section className="text-sm text-zinc-700 leading-relaxed space-y-2">
         <p>
-          色覚特性 (色盲・色弱) は男性の約 <b>8%</b>、女性の約 <b>0.5%</b> が該当する。日本人男性 20人に 1人。決して稀ではない。
+          色覚特性 (色盲・色弱) は男性の約 <b>8%</b>、女性の約 <b>0.5%</b> が該当する。日本人男性
+          20人に 1人。決して稀ではない。
         </p>
         <p className="text-zinc-600">
-          「赤と緑」を主役に状態を区別するUI (成功/エラー、買い/売り、+/-) は、特に2型色覚にとって読み取れない。実際の見え方を以下の SVG フィルタで再現する。
+          「赤と緑」を主役に状態を区別するUI (成功/エラー、買い/売り、+/-)
+          は、特に2型色覚にとって読み取れない。実際の見え方を以下の SVG フィルタで再現する。
         </p>
       </section>
 
@@ -99,10 +117,7 @@ export default function ColorBlindness() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {VARIANTS.map((v) => (
-            <div
-              key={v.id}
-              className="rounded-lg border border-zinc-200 bg-white overflow-hidden"
-            >
+            <div key={v.id} className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
               <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
                 <div className="text-sm font-medium">{v.label}</div>
                 <div className="text-xs text-zinc-500 mt-0.5">{v.note}</div>
@@ -146,5 +161,5 @@ export default function ColorBlindness() {
         </div>
       </section>
     </div>
-  )
+  );
 }

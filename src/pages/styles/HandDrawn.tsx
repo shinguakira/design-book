@@ -1,24 +1,20 @@
-import { StyleDoc } from '../_shared/StyleDoc'
+import { StyleDoc } from "../_shared/StyleDoc";
 
 export default function HandDrawn() {
   return (
     <StyleDoc
       intro="Excalidraw / tldraw / Whimsical 風の手描きアウトライン + Caveat 等の筆記体フォント。「完成品ではない」感を出すことで、レビュー段階のスケッチや、親近感を演出する教育系で活躍する。"
-      pros={[
-        '気軽さ・親近感',
-        'レビュー段階で「まだ調整可能」と伝わる',
-        '差別化が容易',
-      ]}
+      pros={["気軽さ・親近感", "レビュー段階で「まだ調整可能」と伝わる", "差別化が容易"]}
       cons={[
-        '本番のプロダクトには見えない',
-        'ブランド「信頼」を求める場面では NG',
-        'アクセシビリティ・コントラスト弱め',
+        "本番のプロダクトには見えない",
+        "ブランド「信頼」を求める場面では NG",
+        "アクセシビリティ・コントラスト弱め",
       ]}
       example={
         <div
           className="p-8 rounded-md"
           style={{
-            background: '#fdfbf2',
+            background: "#fdfbf2",
             fontFamily: '"Caveat", "Comic Sans MS", cursive',
           }}
         >
@@ -37,9 +33,7 @@ export default function HandDrawn() {
               />
             </svg>
             <div className="relative p-6">
-              <div className="text-3xl text-zinc-900 leading-tight">
-                Sketch your idea
-              </div>
+              <div className="text-3xl text-zinc-900 leading-tight">Sketch your idea</div>
               <div className="text-lg text-zinc-600 mt-2 leading-tight">
                 とりあえず描いてみる、を肯定する世界観。
               </div>
@@ -81,12 +75,7 @@ export default function HandDrawn() {
                   </span>
                 </button>
               </div>
-              <svg
-                width={40}
-                height={30}
-                viewBox="0 0 40 30"
-                className="absolute right-3 top-3"
-              >
+              <svg width={40} height={30} viewBox="0 0 40 30" className="absolute right-3 top-3">
                 <path
                   d="M5 15 Q10 5 20 5 Q32 5 35 18 Q33 22 30 18"
                   fill="none"
@@ -107,5 +96,5 @@ export default function HandDrawn() {
         </div>
       }
     />
-  )
+  );
 }

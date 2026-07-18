@@ -5,11 +5,11 @@ export function Radio({
   onChange,
   label,
 }: {
-  name: string
-  value: string
-  checked?: boolean
-  onChange?: (v: string) => void
-  label?: string
+  name: string;
+  value: string;
+  checked?: boolean;
+  onChange?: (v: string) => void;
+  label?: string;
 }) {
   return (
     <label className="inline-flex items-center gap-2 cursor-pointer">
@@ -23,5 +23,5 @@ export function Radio({
       />
       {label && <span className="text-sm">{label}</span>}
     </label>
-  )
+  );
 }

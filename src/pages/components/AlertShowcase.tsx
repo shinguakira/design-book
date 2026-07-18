@@ -1,5 +1,5 @@
-import { Alert } from '../../components/ui/Alert'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Alert } from "../../components/ui/Alert";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function AlertShowcase() {
   return (
@@ -26,5 +26,5 @@ export default function AlertShowcase() {
         </div>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

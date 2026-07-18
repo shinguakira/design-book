@@ -1,6 +1,6 @@
-import { Button } from '../../components/ui/Button'
-import { Card } from '../../components/ui/Card'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Button } from "../../components/ui/Button";
+import { Card } from "../../components/ui/Card";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function CardShowcase() {
   return (
@@ -28,5 +28,5 @@ export default function CardShowcase() {
         </div>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

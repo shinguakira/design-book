@@ -9,13 +9,17 @@ import {
   Video,
   Briefcase,
   X,
-} from 'lucide-react'
+} from "lucide-react";
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -24,17 +28,21 @@ function Frame({
       </div>
       <div className="bg-zinc-100 p-4">{children}</div>
     </div>
-  )
+  );
 }
 
 export default function Footers() {
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        フッターは「行き止まり」ではなく「再ナビゲーション」の場所。リンク網 + 法的情報 + ソーシャル + コピーライトが基本構成。
+        フッターは「行き止まり」ではなく「再ナビゲーション」の場所。リンク網 + 法的情報 + ソーシャル
+        + コピーライトが基本構成。
       </p>
 
-      <Frame label="Marketing — Multi-column" note="SaaSコーポレートの定番。製品・会社・リソース・法務。">
+      <Frame
+        label="Marketing — Multi-column"
+        note="SaaSコーポレートの定番。製品・会社・リソース・法務。"
+      >
         <footer className="bg-zinc-900 text-zinc-300 rounded-md">
           <div className="px-8 py-12">
             <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
@@ -58,36 +66,54 @@ export default function Footers() {
                 </div>
               </div>
               <div>
-                <div className="text-white text-sm font-semibold mb-3">
-                  製品
-                </div>
+                <div className="text-white text-sm font-semibold mb-3">製品</div>
                 <ul className="space-y-2 text-xs">
-                  <li><a>機能一覧</a></li>
-                  <li><a>料金</a></li>
-                  <li><a>API ドキュメント</a></li>
-                  <li><a>変更履歴</a></li>
+                  <li>
+                    <a>機能一覧</a>
+                  </li>
+                  <li>
+                    <a>料金</a>
+                  </li>
+                  <li>
+                    <a>API ドキュメント</a>
+                  </li>
+                  <li>
+                    <a>変更履歴</a>
+                  </li>
                 </ul>
               </div>
               <div>
-                <div className="text-white text-sm font-semibold mb-3">
-                  会社
-                </div>
+                <div className="text-white text-sm font-semibold mb-3">会社</div>
                 <ul className="space-y-2 text-xs">
-                  <li><a>About</a></li>
-                  <li><a>採用</a></li>
-                  <li><a>ニュース</a></li>
-                  <li><a>お問い合わせ</a></li>
+                  <li>
+                    <a>About</a>
+                  </li>
+                  <li>
+                    <a>採用</a>
+                  </li>
+                  <li>
+                    <a>ニュース</a>
+                  </li>
+                  <li>
+                    <a>お問い合わせ</a>
+                  </li>
                 </ul>
               </div>
               <div>
-                <div className="text-white text-sm font-semibold mb-3">
-                  リソース
-                </div>
+                <div className="text-white text-sm font-semibold mb-3">リソース</div>
                 <ul className="space-y-2 text-xs">
-                  <li><a>ブログ</a></li>
-                  <li><a>ヘルプセンター</a></li>
-                  <li><a>コミュニティ</a></li>
-                  <li><a>ステータス</a></li>
+                  <li>
+                    <a>ブログ</a>
+                  </li>
+                  <li>
+                    <a>ヘルプセンター</a>
+                  </li>
+                  <li>
+                    <a>コミュニティ</a>
+                  </li>
+                  <li>
+                    <a>ステータス</a>
+                  </li>
                 </ul>
               </div>
             </div>
@@ -122,16 +148,16 @@ export default function Footers() {
           <footer className="bg-white rounded-lg shadow-sm border border-zinc-200">
             <div className="flex">
               {[
-                { Icon: Home, label: 'ホーム', active: true },
-                { Icon: Search, label: '検索' },
-                { Icon: Plus, label: '投稿', primary: true },
-                { Icon: Heart, label: 'お気に入り' },
-                { Icon: CircleUser, label: 'マイ' },
+                { Icon: Home, label: "ホーム", active: true },
+                { Icon: Search, label: "検索" },
+                { Icon: Plus, label: "投稿", primary: true },
+                { Icon: Heart, label: "お気に入り" },
+                { Icon: CircleUser, label: "マイ" },
               ].map(({ Icon, label, active, primary }) => (
                 <button
                   key={label}
                   className={`flex-1 py-2 flex flex-col items-center gap-0.5 ${
-                    active ? 'text-blue-500' : 'text-zinc-500'
+                    active ? "text-blue-500" : "text-zinc-500"
                   }`}
                 >
                   {primary ? (
@@ -176,9 +202,7 @@ export default function Footers() {
               </div>
             </div>
             <div className="flex items-center gap-2 shrink-0">
-              <button className="px-3 h-8 rounded-md border border-zinc-700 text-xs">
-                設定
-              </button>
+              <button className="px-3 h-8 rounded-md border border-zinc-700 text-xs">設定</button>
               <button className="px-3 h-8 rounded-md bg-white text-zinc-900 text-xs font-medium">
                 すべて許可
               </button>
@@ -190,17 +214,12 @@ export default function Footers() {
         </footer>
       </Frame>
 
-      <Frame
-        label="Newsletter signup"
-        note="メディア・ブログ系のリピート獲得に効く。"
-      >
+      <Frame label="Newsletter signup" note="メディア・ブログ系のリピート獲得に効く。">
         <footer className="rounded-md overflow-hidden">
           <div className="bg-gradient-to-br from-violet-600 to-pink-600 text-white px-6 py-8 flex flex-col md:flex-row items-center gap-4 justify-between">
             <div>
               <div className="font-bold text-lg">ニュースレターを購読</div>
-              <div className="text-sm opacity-90 mt-1">
-                月1回、デザインの最新トピックをお届け。
-              </div>
+              <div className="text-sm opacity-90 mt-1">月1回、デザインの最新トピックをお届け。</div>
             </div>
             <form className="flex gap-2 w-full md:w-auto">
               <input
@@ -215,5 +234,5 @@ export default function Footers() {
         </footer>
       </Frame>
     </div>
-  )
+  );
 }

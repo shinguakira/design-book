@@ -2,7 +2,11 @@ export function Pagination({
   page,
   total,
   onChange,
-}: { page: number; total: number; onChange: (p: number) => void }) {
+}: {
+  page: number;
+  total: number;
+  onChange: (p: number) => void;
+}) {
   return (
     <div className="inline-flex items-center gap-1">
       <button
@@ -17,9 +21,7 @@ export function Pagination({
           key={p}
           onClick={() => onChange(p)}
           className={`h-8 w-8 rounded-md text-sm ${
-            p === page
-              ? 'bg-zinc-900 text-white'
-              : 'border border-zinc-300 hover:bg-zinc-50'
+            p === page ? "bg-zinc-900 text-white" : "border border-zinc-300 hover:bg-zinc-50"
           }`}
         >
           {p}
@@ -33,5 +35,5 @@ export function Pagination({
         ›
       </button>
     </div>
-  )
+  );
 }

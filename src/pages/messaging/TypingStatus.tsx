@@ -1,15 +1,15 @@
-import { Clock, Check, CheckCheck, AlertCircle } from 'lucide-react'
+import { Clock, Check, CheckCheck, AlertCircle } from "lucide-react";
 
 function Bubble({
   who,
   children,
   status,
 }: {
-  who: 'me' | 'them'
-  children: React.ReactNode
-  status?: React.ReactNode
+  who: "me" | "them";
+  children: React.ReactNode;
+  status?: React.ReactNode;
 }) {
-  if (who === 'me') {
+  if (who === "me") {
     return (
       <div className="flex justify-end items-end gap-1.5">
         {status && <div className="text-xs text-zinc-400">{status}</div>}
@@ -17,7 +17,7 @@ function Bubble({
           {children}
         </div>
       </div>
-    )
+    );
   }
   return (
     <div className="flex justify-start">
@@ -25,14 +25,15 @@ function Bubble({
         {children}
       </div>
     </div>
-  )
+  );
 }
 
 export default function TypingStatus() {
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        「相手が入力中」「送信中」「既読」など、メッセージの状態を伝えるパターン。アイコン + 文字色で段階を表現する。
+        「相手が入力中」「送信中」「既読」など、メッセージの状態を伝えるパターン。アイコン +
+        文字色で段階を表現する。
       </p>
 
       <section>
@@ -69,9 +70,7 @@ export default function TypingStatus() {
               </div>
               <div className="flex-1">
                 <div className="font-medium">配信済み / Delivered</div>
-                <div className="text-xs text-zinc-500">
-                  相手のデバイスに届いた (未読の状態)
-                </div>
+                <div className="text-xs text-zinc-500">相手のデバイスに届いた (未読の状態)</div>
               </div>
             </div>
             <div className="flex items-center gap-4 px-5 py-3">
@@ -80,9 +79,7 @@ export default function TypingStatus() {
               </div>
               <div className="flex-1">
                 <div className="font-medium">既読 / Read</div>
-                <div className="text-xs text-zinc-500">
-                  相手が読んだ (色変えが慣例)
-                </div>
+                <div className="text-xs text-zinc-500">相手が読んだ (色変えが慣例)</div>
               </div>
             </div>
             <div className="flex items-center gap-4 px-5 py-3">
@@ -91,9 +88,7 @@ export default function TypingStatus() {
               </div>
               <div className="flex-1">
                 <div className="font-medium">失敗 / Failed</div>
-                <div className="text-xs text-zinc-500">
-                  送信失敗。タップで再試行を促す。
-                </div>
+                <div className="text-xs text-zinc-500">送信失敗。タップで再試行を促す。</div>
               </div>
             </div>
           </div>
@@ -173,15 +168,15 @@ export default function TypingStatus() {
               <div className="bg-zinc-200 rounded-2xl rounded-bl-md px-4 py-3 inline-flex items-center gap-1">
                 <span
                   className="w-2 h-2 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0s' }}
+                  style={{ animationDelay: "0s" }}
                 />
                 <span
                   className="w-2 h-2 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0.15s' }}
+                  style={{ animationDelay: "0.15s" }}
                 />
                 <span
                   className="w-2 h-2 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0.3s' }}
+                  style={{ animationDelay: "0.3s" }}
                 />
               </div>
             </div>
@@ -194,15 +189,15 @@ export default function TypingStatus() {
               <span className="flex gap-0.5">
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0s' }}
+                  style={{ animationDelay: "0s" }}
                 />
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0.15s' }}
+                  style={{ animationDelay: "0.15s" }}
                 />
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0.3s' }}
+                  style={{ animationDelay: "0.3s" }}
                 />
               </span>
             </div>
@@ -215,30 +210,26 @@ export default function TypingStatus() {
               <span className="flex gap-0.5">
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0s' }}
+                  style={{ animationDelay: "0s" }}
                 />
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0.15s' }}
+                  style={{ animationDelay: "0.15s" }}
                 />
                 <span
                   className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                  style={{ animationDelay: '0.3s' }}
+                  style={{ animationDelay: "0.3s" }}
                 />
               </span>
             </div>
           </div>
 
           <div className="rounded-lg border border-zinc-200 bg-white p-5">
-            <div className="text-xs text-zinc-500 mb-3">
-              AI 生成中 (カーソル点滅 + 「思考中」)
-            </div>
+            <div className="text-xs text-zinc-500 mb-3">AI 生成中 (カーソル点滅 + 「思考中」)</div>
             <div className="flex gap-3">
               <div className="w-7 h-7 rounded-full bg-gradient-to-br from-orange-400 to-rose-500 shrink-0" />
               <div className="flex-1">
-                <div className="text-xs font-semibold text-zinc-500 mb-1">
-                  Claude
-                </div>
+                <div className="text-xs font-semibold text-zinc-500 mb-1">Claude</div>
                 <div className="text-sm text-zinc-800 flex items-center gap-1">
                   考えています
                   <span className="inline-block w-1.5 h-4 bg-zinc-700 animate-pulse" />
@@ -287,5 +278,5 @@ export default function TypingStatus() {
         </div>
       </section>
     </div>
-  )
+  );
 }

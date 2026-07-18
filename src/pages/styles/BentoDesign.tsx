@@ -1,23 +1,26 @@
-import { TrendingUp, Users, Eye, Sparkles } from 'lucide-react'
-import { StyleDoc } from '../_shared/StyleDoc'
+import { TrendingUp, Users, Eye, Sparkles } from "lucide-react";
+import { StyleDoc } from "../_shared/StyleDoc";
 
 export default function BentoDesign() {
   return (
     <StyleDoc
       intro="弁当箱のように大小のセル (タイル) を組み合わせる非対称グリッド。Apple WWDC 2023 で大々的に採用されて以降、SaaS LP・ダッシュボードの新定番。情報の重み付けを直感的に伝えられる。"
       pros={[
-        '主役と脇役の階層が一目で伝わる',
-        '余白で読みやすさを保ちつつ情報量を上げられる',
-        'スマホでも縦に積めば破綻しない',
+        "主役と脇役の階層が一目で伝わる",
+        "余白で読みやすさを保ちつつ情報量を上げられる",
+        "スマホでも縦に積めば破綻しない",
       ]}
       cons={[
-        'コンテンツが揃わないと「歯抜け」に見える',
-        'グリッドの設計に手間がかかる',
-        '全部のタイルが等しく重要に見えるのは難しい',
+        "コンテンツが揃わないと「歯抜け」に見える",
+        "グリッドの設計に手間がかかる",
+        "全部のタイルが等しく重要に見えるのは難しい",
       ]}
       example={
         <div className="p-6 bg-zinc-100 rounded-md">
-          <div className="grid grid-cols-4 grid-rows-3 gap-3 max-w-2xl mx-auto" style={{ aspectRatio: '4/3' }}>
+          <div
+            className="grid grid-cols-4 grid-rows-3 gap-3 max-w-2xl mx-auto"
+            style={{ aspectRatio: "4/3" }}
+          >
             <div className="col-span-2 row-span-2 rounded-3xl bg-white p-5 flex flex-col justify-between shadow-sm">
               <div className="text-xs text-zinc-500">Active users</div>
               <div>
@@ -59,5 +62,5 @@ export default function BentoDesign() {
         </div>
       }
     />
-  )
+  );
 }

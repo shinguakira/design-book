@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 export function StyleDoc({
   intro,
@@ -6,18 +6,16 @@ export function StyleDoc({
   cons,
   example,
 }: {
-  intro: string
-  pros: string[]
-  cons: string[]
-  example: ReactNode
+  intro: string;
+  pros: string[];
+  cons: string[];
+  example: ReactNode;
 }) {
   return (
     <div className="max-w-4xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">{intro}</p>
       <div className="rounded-lg border border-zinc-200 bg-white p-2">
-        <div className="text-xs font-medium text-zinc-500 px-3 py-1.5">
-          Example
-        </div>
+        <div className="text-xs font-medium text-zinc-500 px-3 py-1.5">Example</div>
         <div className="p-6 rounded-md">{example}</div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-sm">
@@ -43,5 +41,5 @@ export function StyleDoc({
         </div>
       </div>
     </div>
-  )
+  );
 }

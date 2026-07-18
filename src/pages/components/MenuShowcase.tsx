@@ -1,6 +1,6 @@
-import { Button } from '../../components/ui/Button'
-import { Menu } from '../../components/ui/Menu'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Button } from "../../components/ui/Button";
+import { Menu } from "../../components/ui/Menu";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function MenuShowcase() {
   return (
@@ -9,10 +9,10 @@ export default function MenuShowcase() {
         <Menu
           trigger={<Button variant="secondary">操作 ▾</Button>}
           items={[
-            { label: '編集', onClick: () => {} },
-            { label: '複製', onClick: () => {} },
-            { label: 'アーカイブ', onClick: () => {} },
-            { label: '削除', onClick: () => {}, danger: true },
+            { label: "編集", onClick: () => {} },
+            { label: "複製", onClick: () => {} },
+            { label: "アーカイブ", onClick: () => {} },
+            { label: "削除", onClick: () => {}, danger: true },
           ]}
         />
       </ShowcaseRow>
@@ -24,13 +24,13 @@ export default function MenuShowcase() {
             </span>
           }
           items={[
-            { label: 'プロフィール' },
-            { label: '設定' },
-            { label: 'ヘルプ' },
-            { label: 'ログアウト', danger: true },
+            { label: "プロフィール" },
+            { label: "設定" },
+            { label: "ヘルプ" },
+            { label: "ログアウト", danger: true },
           ]}
         />
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

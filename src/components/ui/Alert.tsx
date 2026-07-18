@@ -1,26 +1,30 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
-type Tone = 'info' | 'success' | 'warning' | 'error'
+type Tone = "info" | "success" | "warning" | "error";
 
 const toneClass: Record<Tone, string> = {
-  info: 'bg-blue-50 border-blue-200 text-blue-900',
-  success: 'bg-emerald-50 border-emerald-200 text-emerald-900',
-  warning: 'bg-amber-50 border-amber-200 text-amber-900',
-  error: 'bg-red-50 border-red-200 text-red-900',
-}
+  info: "bg-blue-50 border-blue-200 text-blue-900",
+  success: "bg-emerald-50 border-emerald-200 text-emerald-900",
+  warning: "bg-amber-50 border-amber-200 text-amber-900",
+  error: "bg-red-50 border-red-200 text-red-900",
+};
 
 const dotClass: Record<Tone, string> = {
-  info: 'bg-blue-500',
-  success: 'bg-emerald-500',
-  warning: 'bg-amber-500',
-  error: 'bg-red-500',
-}
+  info: "bg-blue-500",
+  success: "bg-emerald-500",
+  warning: "bg-amber-500",
+  error: "bg-red-500",
+};
 
 export function Alert({
-  tone = 'info',
+  tone = "info",
   title,
   children,
-}: { tone?: Tone; title?: string; children?: ReactNode }) {
+}: {
+  tone?: Tone;
+  title?: string;
+  children?: ReactNode;
+}) {
   return (
     <div className={`rounded-lg border px-4 py-3 ${toneClass[tone]}`}>
       <div className="flex items-start gap-3">
@@ -31,5 +35,5 @@ export function Alert({
         </div>
       </div>
     </div>
-  )
+  );
 }

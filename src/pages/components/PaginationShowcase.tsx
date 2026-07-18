@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Pagination } from '../../components/ui/Pagination'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { useState } from "react";
+import { Pagination } from "../../components/ui/Pagination";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function PaginationShowcase() {
-  const [page, setPage] = useState(3)
+  const [page, setPage] = useState(3);
   return (
     <ShowcaseGrid>
       <ShowcaseRow label="Interactive">
@@ -13,5 +13,5 @@ export default function PaginationShowcase() {
         <Pagination page={1} total={3} onChange={() => {}} />
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

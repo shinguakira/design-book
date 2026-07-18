@@ -14,5 +14,5 @@ export default function GradientCard() {
         <div className="text-xl font-semibold">Warm pastel</div>
       </div>
     </div>
-  )
+  );
 }

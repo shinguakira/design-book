@@ -1,83 +1,78 @@
-import { useEffect, useRef, useState } from 'react'
-import {
-  ChevronRight,
-  Database,
-  Globe,
-  HardDrive,
-  Server,
-  Settings,
-  Tag,
-  X,
-} from 'lucide-react'
+import { useEffect, useRef, useState } from "react";
+import { ChevronRight, Database, Globe, HardDrive, Server, Settings, Tag, X } from "lucide-react";
 
-type ResourceId = 'web-01' | 'web-02' | 'db-01' | 'storage-01' | 'net-01'
+type ResourceId = "web-01" | "web-02" | "db-01" | "storage-01" | "net-01";
 
 const RESOURCES: {
-  id: ResourceId
-  name: string
-  type: string
-  Icon: typeof Server
-  status: 'Running' | 'Stopped' | 'Provisioning'
-  region: string
+  id: ResourceId;
+  name: string;
+  type: string;
+  Icon: typeof Server;
+  status: "Running" | "Stopped" | "Provisioning";
+  region: string;
 }[] = [
   {
-    id: 'web-01',
-    name: 'web-server-01',
-    type: 'Virtual Machine',
+    id: "web-01",
+    name: "web-server-01",
+    type: "Virtual Machine",
     Icon: Server,
-    status: 'Running',
-    region: 'Tokyo',
+    status: "Running",
+    region: "Tokyo",
   },
   {
-    id: 'web-02',
-    name: 'web-server-02',
-    type: 'Virtual Machine',
+    id: "web-02",
+    name: "web-server-02",
+    type: "Virtual Machine",
     Icon: Server,
-    status: 'Running',
-    region: 'Tokyo',
+    status: "Running",
+    region: "Tokyo",
   },
   {
-    id: 'db-01',
-    name: 'main-database',
-    type: 'PostgreSQL',
+    id: "db-01",
+    name: "main-database",
+    type: "PostgreSQL",
     Icon: Database,
-    status: 'Running',
-    region: 'Osaka',
+    status: "Running",
+    region: "Osaka",
   },
   {
-    id: 'storage-01',
-    name: 'asset-storage',
-    type: 'Object Storage',
+    id: "storage-01",
+    name: "asset-storage",
+    type: "Object Storage",
     Icon: HardDrive,
-    status: 'Running',
-    region: 'Tokyo',
+    status: "Running",
+    region: "Tokyo",
   },
   {
-    id: 'net-01',
-    name: 'public-vnet',
-    type: 'Virtual Network',
+    id: "net-01",
+    name: "public-vnet",
+    type: "Virtual Network",
     Icon: Globe,
-    status: 'Running',
-    region: 'Tokyo',
+    status: "Running",
+    region: "Tokyo",
   },
-]
+];
 
 const STATUS_STYLE = {
-  Running: 'bg-emerald-100 text-emerald-800',
-  Stopped: 'bg-zinc-100 text-zinc-700',
-  Provisioning: 'bg-amber-100 text-amber-800',
-}
+  Running: "bg-emerald-100 text-emerald-800",
+  Stopped: "bg-zinc-100 text-zinc-700",
+  Provisioning: "bg-amber-100 text-amber-800",
+};
 
 type Blade =
-  | { kind: 'list' }
-  | { kind: 'detail'; resourceId: ResourceId }
-  | { kind: 'settings'; resourceId: ResourceId; tab: 'config' | 'tags' }
+  | { kind: "list" }
+  | { kind: "detail"; resourceId: ResourceId }
+  | { kind: "settings"; resourceId: ResourceId; tab: "config" | "tags" };
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -86,38 +81,37 @@ function Frame({
       </div>
       <div className="p-5">{children}</div>
     </div>
-  )
+  );
 }
 
 function useEsc(onClose: () => void, enabled: boolean) {
   useEffect(() => {
-    if (!enabled) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && onClose()
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [enabled, onClose])
+    if (!enabled) return;
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [enabled, onClose]);
 }
 
 /* ============ メインデモ: スタック ============ */
 function StackDemo() {
-  const [stack, setStack] = useState<Blade[]>([])
-  const containerRef = useRef<HTMLDivElement>(null)
+  const [stack, setStack] = useState<Blade[]>([]);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   // 新しいブレードを開くたびに右端へ自動スクロール
   useEffect(() => {
-    if (!containerRef.current) return
-    const el = containerRef.current
-    el.scrollTo({ left: el.scrollWidth, behavior: 'smooth' })
-  }, [stack.length])
+    if (!containerRef.current) return;
+    const el = containerRef.current;
+    el.scrollTo({ left: el.scrollWidth, behavior: "smooth" });
+  }, [stack.length]);
 
-  const open = (b: Blade) => setStack((s) => [...s, b])
-  const closeFrom = (idx: number) => setStack((s) => s.slice(0, idx))
+  const open = (b: Blade) => setStack((s) => [...s, b]);
+  const closeFrom = (idx: number) => setStack((s) => s.slice(0, idx));
 
   // 同じ深さに別 blade を開く時はそこから上を捨てて push
-  const replaceAt = (idx: number, b: Blade) =>
-    setStack((s) => [...s.slice(0, idx), b])
+  const replaceAt = (idx: number, b: Blade) => setStack((s) => [...s.slice(0, idx), b]);
 
-  useEsc(() => setStack((s) => s.slice(0, -1)), stack.length > 0)
+  useEsc(() => setStack((s) => s.slice(0, -1)), stack.length > 0);
 
   return (
     <div className="rounded-lg border border-zinc-200 overflow-hidden bg-white">
@@ -129,7 +123,7 @@ function StackDemo() {
           <span>Cloud Console</span>
         </div>
         <button
-          onClick={() => open({ kind: 'list' })}
+          onClick={() => open({ kind: "list" })}
           className="px-3 h-8 rounded-md bg-blue-600 text-white text-xs font-medium hover:bg-blue-500"
         >
           + リソースを表示
@@ -139,10 +133,7 @@ function StackDemo() {
         {/* 背景の「ダッシュボード」っぽい何か */}
         <div className="absolute inset-0 p-6 grid grid-cols-3 gap-3 bg-zinc-50">
           {Array.from({ length: 6 }).map((_, i) => (
-            <div
-              key={i}
-              className="rounded-md border border-zinc-200 bg-white p-3"
-            >
+            <div key={i} className="rounded-md border border-zinc-200 bg-white p-3">
               <div className="h-3 w-2/3 bg-zinc-200 rounded animate-pulse" />
               <div className="h-2 w-1/2 bg-zinc-100 rounded mt-2" />
               <div className="h-12 w-full bg-zinc-100 rounded mt-2" />
@@ -162,7 +153,7 @@ function StackDemo() {
               className="absolute inset-y-0 right-0 flex overflow-x-auto"
               onClick={(e) => e.stopPropagation()}
               style={{
-                maxWidth: '100%',
+                maxWidth: "100%",
               }}
             >
               {stack.map((b, i) => (
@@ -173,9 +164,7 @@ function StackDemo() {
                   isLast={i === stack.length - 1}
                   onClose={() => closeFrom(i)}
                   onOpenChild={(child) =>
-                    i === stack.length - 1
-                      ? open(child)
-                      : replaceAt(i + 1, child)
+                    i === stack.length - 1 ? open(child) : replaceAt(i + 1, child)
                   }
                 />
               ))}
@@ -190,7 +179,7 @@ function StackDemo() {
         <span>背景クリック or Esc で閉じる</span>
       </div>
     </div>
-  )
+  );
 }
 
 function BladePanel({
@@ -200,28 +189,24 @@ function BladePanel({
   onClose,
   onOpenChild,
 }: {
-  blade: Blade
-  depth: number
-  isLast: boolean
-  onClose: () => void
-  onOpenChild: (b: Blade) => void
+  blade: Blade;
+  depth: number;
+  isLast: boolean;
+  onClose: () => void;
+  onOpenChild: (b: Blade) => void;
 }) {
-  if (blade.kind === 'list') {
+  if (blade.kind === "list") {
     return (
       <div
         className="h-full bg-white border-l border-zinc-300 shadow-2xl flex flex-col animate-slide-in-right"
         style={{ width: 420, opacity: isLast ? 1 : 0.92 }}
       >
-        <BladeHeader
-          title="リソース一覧"
-          subtitle={`Depth ${depth + 1}`}
-          onClose={onClose}
-        />
+        <BladeHeader title="リソース一覧" subtitle={`Depth ${depth + 1}`} onClose={onClose} />
         <div className="flex-1 overflow-y-auto p-3 space-y-1">
           {RESOURCES.map((r) => (
             <button
               key={r.id}
-              onClick={() => onOpenChild({ kind: 'detail', resourceId: r.id })}
+              onClick={() => onOpenChild({ kind: "detail", resourceId: r.id })}
               className="w-full flex items-center gap-3 px-3 py-2 rounded-md hover:bg-zinc-50 text-left border border-transparent hover:border-zinc-200"
             >
               <r.Icon className="w-4 h-4 text-blue-600 shrink-0" />
@@ -239,21 +224,17 @@ function BladePanel({
           ))}
         </div>
       </div>
-    )
+    );
   }
 
-  if (blade.kind === 'detail') {
-    const r = RESOURCES.find((x) => x.id === blade.resourceId)!
+  if (blade.kind === "detail") {
+    const r = RESOURCES.find((x) => x.id === blade.resourceId)!;
     return (
       <div
         className="h-full bg-white border-l border-zinc-300 shadow-2xl flex flex-col animate-slide-in-right"
         style={{ width: 480, opacity: isLast ? 1 : 0.92 }}
       >
-        <BladeHeader
-          title={r.name}
-          subtitle={`${r.type} · ${r.region}`}
-          onClose={onClose}
-        />
+        <BladeHeader title={r.name} subtitle={`${r.type} · ${r.region}`} onClose={onClose} />
         <div className="flex-1 overflow-y-auto p-5 space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <Stat label="ステータス" value={r.status} />
@@ -269,9 +250,9 @@ function BladePanel({
               <button
                 onClick={() =>
                   onOpenChild({
-                    kind: 'settings',
+                    kind: "settings",
                     resourceId: r.id,
-                    tab: 'config',
+                    tab: "config",
                   })
                 }
                 className="flex items-center gap-2 px-3 py-2 rounded-md border border-zinc-200 hover:border-zinc-400 text-sm"
@@ -283,9 +264,9 @@ function BladePanel({
               <button
                 onClick={() =>
                   onOpenChild({
-                    kind: 'settings',
+                    kind: "settings",
                     resourceId: r.id,
-                    tab: 'tags',
+                    tab: "tags",
                   })
                 }
                 className="flex items-center gap-2 px-3 py-2 rounded-md border border-zinc-200 hover:border-zinc-400 text-sm"
@@ -302,14 +283,11 @@ function BladePanel({
             </div>
             <ul className="space-y-2 text-xs">
               {[
-                { t: '5 分前', m: 'CPU 使用率が 80% を超えました' },
-                { t: '1 時間前', m: 'スケーリングルールを更新しました' },
-                { t: '昨日', m: 'デプロイ #4271 が完了' },
+                { t: "5 分前", m: "CPU 使用率が 80% を超えました" },
+                { t: "1 時間前", m: "スケーリングルールを更新しました" },
+                { t: "昨日", m: "デプロイ #4271 が完了" },
               ].map((a, i) => (
-                <li
-                  key={i}
-                  className="flex gap-3 px-3 py-2 rounded-md bg-zinc-50"
-                >
+                <li key={i} className="flex gap-3 px-3 py-2 rounded-md bg-zinc-50">
                   <span className="text-zinc-500 w-16 shrink-0">{a.t}</span>
                   <span className="text-zinc-700">{a.m}</span>
                 </li>
@@ -318,11 +296,11 @@ function BladePanel({
           </div>
         </div>
       </div>
-    )
+    );
   }
 
   // settings
-  const r = RESOURCES.find((x) => x.id === blade.resourceId)!
+  const r = RESOURCES.find((x) => x.id === blade.resourceId)!;
   return (
     <div
       className="h-full bg-white border-l border-zinc-300 shadow-2xl flex flex-col animate-slide-in-right"
@@ -330,25 +308,23 @@ function BladePanel({
     >
       <BladeHeader
         title={`${r.name} の設定`}
-        subtitle={blade.tab === 'config' ? '構成' : 'タグ'}
+        subtitle={blade.tab === "config" ? "構成" : "タグ"}
         onClose={onClose}
       />
       <div className="flex items-center gap-1 px-4 border-b border-zinc-200 bg-zinc-50">
-        {(['config', 'tags'] as const).map((t) => (
+        {(["config", "tags"] as const).map((t) => (
           <button
             key={t}
             className={`h-9 px-3 text-xs font-medium border-b-2 -mb-px ${
-              blade.tab === t
-                ? 'border-blue-600 text-blue-700'
-                : 'border-transparent text-zinc-500'
+              blade.tab === t ? "border-blue-600 text-blue-700" : "border-transparent text-zinc-500"
             }`}
           >
-            {t === 'config' ? '構成' : 'タグ'}
+            {t === "config" ? "構成" : "タグ"}
           </button>
         ))}
       </div>
       <div className="flex-1 overflow-y-auto p-5">
-        {blade.tab === 'config' ? (
+        {blade.tab === "config" ? (
           <div className="space-y-3 text-sm">
             <FormRow label="自動スケーリング" value="有効 (2–8インスタンス)" />
             <FormRow label="再起動ポリシー" value="On failure" />
@@ -357,7 +333,7 @@ function BladePanel({
           </div>
         ) : (
           <ul className="flex flex-wrap gap-1.5">
-            {['env:prod', 'team:platform', 'owner:taro', 'cost:001'].map((t) => (
+            {["env:prod", "team:platform", "owner:taro", "cost:001"].map((t) => (
               <li
                 key={t}
                 className="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-100 text-blue-800 text-xs"
@@ -380,21 +356,23 @@ function BladePanel({
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 function BladeHeader({
   title,
   subtitle,
   onClose,
-}: { title: string; subtitle?: string; onClose: () => void }) {
+}: {
+  title: string;
+  subtitle?: string;
+  onClose: () => void;
+}) {
   return (
     <div className="border-b border-zinc-200 px-5 py-3 flex items-start gap-3 bg-white">
       <div className="flex-1 min-w-0">
         <div className="font-semibold text-sm truncate">{title}</div>
-        {subtitle && (
-          <div className="text-[11px] text-zinc-500 mt-0.5">{subtitle}</div>
-        )}
+        {subtitle && <div className="text-[11px] text-zinc-500 mt-0.5">{subtitle}</div>}
       </div>
       <button
         onClick={onClose}
@@ -404,7 +382,7 @@ function BladeHeader({
         <X className="w-4 h-4" />
       </button>
     </div>
-  )
+  );
 }
 
 function Stat({ label, value }: { label: string; value: string }) {
@@ -415,7 +393,7 @@ function Stat({ label, value }: { label: string; value: string }) {
       </div>
       <div className="text-sm font-medium mt-0.5">{value}</div>
     </div>
-  )
+  );
 }
 
 function FormRow({ label, value }: { label: string; value: string }) {
@@ -424,12 +402,12 @@ function FormRow({ label, value }: { label: string; value: string }) {
       <span className="text-zinc-500">{label}</span>
       <span className="font-medium">{value}</span>
     </div>
-  )
+  );
 }
 
 /* ============ 小サンプル: 単一ブレード ============ */
 function SingleBlade() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
   return (
     <div className="rounded-lg border border-zinc-200 overflow-hidden bg-white relative h-64">
       <div className="absolute inset-0 p-4 bg-zinc-50">
@@ -442,10 +420,7 @@ function SingleBlade() {
       </div>
       {open && (
         <>
-          <div
-            className="absolute inset-0 bg-black/20"
-            onClick={() => setOpen(false)}
-          />
+          <div className="absolute inset-0 bg-black/20" onClick={() => setOpen(false)} />
           <div
             className="absolute inset-y-0 right-0 bg-white shadow-2xl border-l border-zinc-300 animate-slide-in-right"
             style={{ width: 320 }}
@@ -464,23 +439,20 @@ function SingleBlade() {
         </>
       )}
     </div>
-  )
+  );
 }
 
 export default function BladeShowcase() {
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        <b>Blade</b> は右からスライドインするパネルを <b>横に積み重ねて</b>{' '}
-        詳細→詳細→詳細とドリルダウンしていくUI。Azure Portal が代表例で、
-        Drawer (1枚) と違いスタック構造で「いま自分がどの階層にいるか」が
+        <b>Blade</b> は右からスライドインするパネルを <b>横に積み重ねて</b>{" "}
+        詳細→詳細→詳細とドリルダウンしていくUI。Azure Portal が代表例で、 Drawer (1枚)
+        と違いスタック構造で「いま自分がどの階層にいるか」が
         水平方向に可視化される。管理画面・コンソール系で多用される。
       </p>
 
-      <Frame
-        label="1. 単一ブレード"
-        note="まずは Drawer に近い1枚バージョン"
-      >
+      <Frame label="1. 単一ブレード" note="まずは Drawer に近い1枚バージョン">
         <SingleBlade />
       </Frame>
 
@@ -498,15 +470,13 @@ export default function BladeShowcase() {
             <b>Drawer</b> — 1枚だけ、閉じたら戻す。タスク完結型 (フィルタ・編集・通知)
           </li>
           <li>
-            <b>Blade</b> — 階層をスタック。詳細→さらに詳細→そのまた詳細 と
-            横スクロールで深く潜る (リソースの構成 → 個別設定 → 個別タグ など)
+            <b>Blade</b> — 階層をスタック。詳細→さらに詳細→そのまた詳細 と 横スクロールで深く潜る
+            (リソースの構成 → 個別設定 → 個別タグ など)
           </li>
           <li>
             背景クリックで <b>すべて閉じる</b>、各 × は <b>その階層から上を閉じる</b>
           </li>
-          <li>
-            中間ブレードから別アイテムを選ぶと、それより右はリセットされる
-          </li>
+          <li>中間ブレードから別アイテムを選ぶと、それより右はリセットされる</li>
         </ul>
       </section>
 
@@ -520,5 +490,5 @@ export default function BladeShowcase() {
         </ul>
       </section>
     </div>
-  )
+  );
 }

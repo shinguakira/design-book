@@ -1,6 +1,6 @@
-import { Button } from '../../components/ui/Button'
-import { Tooltip } from '../../components/ui/Tooltip'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Button } from "../../components/ui/Button";
+import { Tooltip } from "../../components/ui/Tooltip";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function TooltipShowcase() {
   return (
@@ -19,5 +19,5 @@ export default function TooltipShowcase() {
         </Tooltip>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

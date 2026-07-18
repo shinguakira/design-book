@@ -1,10 +1,7 @@
-import { useState } from 'react'
-import { Send, Smile, Paperclip, Image as ImageIcon } from 'lucide-react'
+import { useState } from "react";
+import { Send, Smile, Paperclip, Image as ImageIcon } from "lucide-react";
 
-function Frame({
-  label,
-  children,
-}: { label: string; children: React.ReactNode }) {
+function Frame({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50 text-sm font-medium">
@@ -12,12 +9,12 @@ function Frame({
       </div>
       <div className="p-5 bg-zinc-50">{children}</div>
     </div>
-  )
+  );
 }
 
 export default function InputBasic() {
-  const [text, setText] = useState('')
-  const empty = text.trim().length === 0
+  const [text, setText] = useState("");
+  const empty = text.trim().length === 0;
 
   return (
     <div className="max-w-5xl space-y-6">
@@ -30,8 +27,8 @@ export default function InputBasic() {
           <form
             className="flex gap-2"
             onSubmit={(e) => {
-              e.preventDefault()
-              setText('')
+              e.preventDefault();
+              setText("");
             }}
           >
             <input
@@ -54,8 +51,8 @@ export default function InputBasic() {
           <form
             className="flex items-center gap-2 bg-white border border-zinc-300 rounded-full px-2 py-1 focus-within:ring-2 focus-within:ring-zinc-900"
             onSubmit={(e) => {
-              e.preventDefault()
-              setText('')
+              e.preventDefault();
+              setText("");
             }}
           >
             <input
@@ -92,9 +89,7 @@ export default function InputBasic() {
               <button className="p-1.5 rounded hover:bg-zinc-100 text-zinc-500">
                 <Smile className="w-4 h-4" />
               </button>
-              <span className="ml-2 text-xs text-zinc-400">
-                Markdown 使えます
-              </span>
+              <span className="ml-2 text-xs text-zinc-400">Markdown 使えます</span>
               <div className="ml-auto">
                 <button className="px-3 h-7 rounded-md bg-emerald-600 text-white text-xs font-medium hover:bg-emerald-500">
                   送信
@@ -115,11 +110,7 @@ export default function InputBasic() {
               className="w-full resize-none outline-none px-3 py-2 text-sm"
             />
             <div className="flex items-center justify-between px-3 py-1.5 border-t border-zinc-200">
-              <span
-                className={`text-xs ${
-                  text.length > 130 ? 'text-rose-600' : 'text-zinc-400'
-                }`}
-              >
+              <span className={`text-xs ${text.length > 130 ? "text-rose-600" : "text-zinc-400"}`}>
                 {text.length} / 140
               </span>
               <button
@@ -133,5 +124,5 @@ export default function InputBasic() {
         </Frame>
       </div>
     </div>
-  )
+  );
 }

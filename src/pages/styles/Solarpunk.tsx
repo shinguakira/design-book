@@ -1,41 +1,35 @@
-import { StyleDoc } from '../_shared/StyleDoc'
+import { StyleDoc } from "../_shared/StyleDoc";
 
 export default function Solarpunk() {
   return (
     <StyleDoc
       intro="Cyberpunk のディストピア観へのアンチテーゼ。緑 + テラコッタ + 太陽光 + 植物 + Art Nouveau 風曲線 + 持続可能テクノロジー。気候変動・地域経済・NPO・グリーンテック系ブランドで採用される新興スタイル。"
       pros={[
-        '希望・楽観・自然との共生を表現',
-        'ESG / サステナビリティ系で説得力',
-        '色彩が柔らかく目に優しい',
+        "希望・楽観・自然との共生を表現",
+        "ESG / サステナビリティ系で説得力",
+        "色彩が柔らかく目に優しい",
       ]}
       cons={[
-        'まだ「定型」が定まっていない (実装難)',
-        '一般 SaaS には世界観が強すぎる',
-        'メッセージなき採用は浅く見える',
+        "まだ「定型」が定まっていない (実装難)",
+        "一般 SaaS には世界観が強すぎる",
+        "メッセージなき採用は浅く見える",
       ]}
       example={
         <div
           className="p-8 rounded-md"
           style={{
-            background:
-              'linear-gradient(180deg, #fef3c7 0%, #d4ed8d 70%, #6cb05a 100%)',
+            background: "linear-gradient(180deg, #fef3c7 0%, #d4ed8d 70%, #6cb05a 100%)",
           }}
         >
           <div className="max-w-sm mx-auto relative">
-            <svg
-              viewBox="0 0 60 60"
-              className="absolute -top-3 -right-2"
-              width={60}
-              height={60}
-            >
+            <svg viewBox="0 0 60 60" className="absolute -top-3 -right-2" width={60} height={60}>
               <circle cx="30" cy="30" r="12" fill="#fbbf24" />
               {Array.from({ length: 8 }).map((_, i) => {
-                const a = (i / 8) * Math.PI * 2
-                const x1 = 30 + Math.cos(a) * 18
-                const y1 = 30 + Math.sin(a) * 18
-                const x2 = 30 + Math.cos(a) * 28
-                const y2 = 30 + Math.sin(a) * 28
+                const a = (i / 8) * Math.PI * 2;
+                const x1 = 30 + Math.cos(a) * 18;
+                const y1 = 30 + Math.sin(a) * 18;
+                const x2 = 30 + Math.cos(a) * 28;
+                const y2 = 30 + Math.sin(a) * 28;
                 return (
                   <line
                     key={i}
@@ -47,40 +41,37 @@ export default function Solarpunk() {
                     strokeWidth="3"
                     strokeLinecap="round"
                   />
-                )
+                );
               })}
             </svg>
 
             <div
               className="relative p-6 rounded-3xl"
               style={{
-                background: 'rgba(255,255,255,0.85)',
-                border: '2px solid #65a30d',
-                boxShadow: '0 8px 24px rgba(50,80,30,0.2)',
+                background: "rgba(255,255,255,0.85)",
+                border: "2px solid #65a30d",
+                boxShadow: "0 8px 24px rgba(50,80,30,0.2)",
               }}
             >
               <div
                 className="text-[10px] uppercase tracking-[0.3em] mb-1"
-                style={{ color: '#4d7c0f' }}
+                style={{ color: "#4d7c0f" }}
               >
                 ◯ Solar Energy Co-op
               </div>
-              <div
-                className="text-2xl font-bold"
-                style={{ color: '#1a2e05', fontFamily: 'serif' }}
-              >
+              <div className="text-2xl font-bold" style={{ color: "#1a2e05", fontFamily: "serif" }}>
                 Power for All
               </div>
-              <div className="mt-2 text-sm" style={{ color: '#3f6212' }}>
+              <div className="mt-2 text-sm" style={{ color: "#3f6212" }}>
                 地域で発電し、地域に還元する。
-                <br />屋根のソーラーが街を回す。
+                <br />
+                屋根のソーラーが街を回す。
               </div>
               <div className="mt-3 flex items-end gap-3">
                 <button
                   className="px-4 py-2 rounded-full text-sm font-semibold text-white"
                   style={{
-                    background:
-                      'linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%)',
+                    background: "linear-gradient(135deg, #65a30d 0%, #4d7c0f 100%)",
                   }}
                 >
                   Join the grid
@@ -108,5 +99,5 @@ export default function Solarpunk() {
         </div>
       }
     />
-  )
+  );
 }

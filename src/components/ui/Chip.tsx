@@ -1,9 +1,6 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
-export function Chip({
-  children,
-  onRemove,
-}: { children: ReactNode; onRemove?: () => void }) {
+export function Chip({ children, onRemove }: { children: ReactNode; onRemove?: () => void }) {
   return (
     <span className="inline-flex items-center gap-1 rounded-full bg-zinc-100 text-zinc-700 px-2.5 py-1 text-xs">
       {children}
@@ -17,5 +14,5 @@ export function Chip({
         </button>
       )}
     </span>
-  )
+  );
 }

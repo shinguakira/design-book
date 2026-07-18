@@ -10,7 +10,7 @@ import {
   BatteryFull,
   Signal,
   CheckCheck,
-} from 'lucide-react'
+} from "lucide-react";
 
 function Phone3D({ children }: { children: React.ReactNode }) {
   return (
@@ -30,7 +30,7 @@ function Phone3D({ children }: { children: React.ReactNode }) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function MobileChat() {
@@ -53,9 +53,7 @@ export default function MobileChat() {
               </button>
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-violet-400 to-pink-500 shrink-0" />
               <div className="flex-1 min-w-0">
-                <div className="font-semibold text-sm leading-tight">
-                  佐藤 花子
-                </div>
+                <div className="font-semibold text-sm leading-tight">佐藤 花子</div>
                 <div className="text-[11px] text-emerald-600 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
                   オンライン
@@ -70,9 +68,7 @@ export default function MobileChat() {
             </header>
 
             <div className="px-3 py-4 space-y-2 bg-zinc-50 h-[460px] overflow-y-auto">
-              <div className="text-center text-[11px] text-zinc-400">
-                今日 11:23
-              </div>
+              <div className="text-center text-[11px] text-zinc-400">今日 11:23</div>
               <div className="flex justify-start">
                 <div className="bg-white border border-zinc-200 rounded-2xl rounded-bl-md px-3 py-2 text-sm max-w-[75%]">
                   明日のレビュー、14時で大丈夫?
@@ -139,9 +135,7 @@ export default function MobileChat() {
               </button>
               <div className="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 shrink-0" />
               <div className="flex-1 min-w-0">
-                <div className="font-semibold text-sm leading-tight">
-                  チーム #design
-                </div>
+                <div className="font-semibold text-sm leading-tight">チーム #design</div>
                 <div className="text-[11px] text-zinc-400">12 メンバー</div>
               </div>
               <button className="text-zinc-300">
@@ -155,9 +149,7 @@ export default function MobileChat() {
                   YT
                 </div>
                 <div className="flex-1">
-                  <div className="text-[11px] text-zinc-400 mb-0.5">
-                    山田 太郎 · 11:23
-                  </div>
+                  <div className="text-[11px] text-zinc-400 mb-0.5">山田 太郎 · 11:23</div>
                   <div className="bg-zinc-800 text-zinc-100 rounded-lg rounded-tl-none px-3 py-2 text-sm">
                     こんにちは、レビューよろしくお願いします
                   </div>
@@ -168,9 +160,7 @@ export default function MobileChat() {
                   <div className="bg-blue-600 text-white rounded-lg rounded-tr-none px-3 py-2 text-sm">
                     確認しました。少しお待ちください
                   </div>
-                  <div className="text-[10px] text-zinc-500 text-right mt-0.5">
-                    11:25
-                  </div>
+                  <div className="text-[10px] text-zinc-500 text-right mt-0.5">11:25</div>
                 </div>
               </div>
               <div className="flex gap-2">
@@ -178,9 +168,7 @@ export default function MobileChat() {
                   HS
                 </div>
                 <div className="flex-1">
-                  <div className="text-[11px] text-zinc-400 mb-0.5">
-                    佐藤 花子 · 11:30
-                  </div>
+                  <div className="text-[11px] text-zinc-400 mb-0.5">佐藤 花子 · 11:30</div>
                   <div className="bg-zinc-800 text-zinc-100 rounded-lg rounded-tl-none px-3 py-2 text-sm">
                     フォントのウェイト、もう少し細くしたほうが読みやすいかも
                   </div>
@@ -190,15 +178,15 @@ export default function MobileChat() {
                 <div className="flex gap-0.5">
                   <span
                     className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                    style={{ animationDelay: '0s' }}
+                    style={{ animationDelay: "0s" }}
                   />
                   <span
                     className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                    style={{ animationDelay: '0.15s' }}
+                    style={{ animationDelay: "0.15s" }}
                   />
                   <span
                     className="w-1.5 h-1.5 rounded-full bg-zinc-500 animate-loading-dot"
-                    style={{ animationDelay: '0.3s' }}
+                    style={{ animationDelay: "0.3s" }}
                   />
                 </div>
                 山田 太郎 が入力中...
@@ -223,5 +211,5 @@ export default function MobileChat() {
         </div>
       </div>
     </div>
-  )
+  );
 }

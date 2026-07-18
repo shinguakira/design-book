@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import { Power, Phone, Mail, FileText, MapPin, Plus, Minus, Star } from 'lucide-react'
+import { useState } from "react";
+import { Power, Phone, Mail, FileText, MapPin, Plus, Minus, Star } from "lucide-react";
 
 function Frame({
   label,
   note,
   children,
   span,
-}: { label: string; note?: string; children: React.ReactNode; span?: boolean }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+  span?: boolean;
+}) {
   return (
     <div
       className={`rounded-lg border border-zinc-200 bg-white overflow-hidden ${
-        span ? 'lg:col-span-2' : ''
+        span ? "lg:col-span-2" : ""
       }`}
     >
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -19,12 +24,12 @@ function Frame({
       </div>
       <div className="p-6">{children}</div>
     </div>
-  )
+  );
 }
 
 /* ─── 1. Wood — shelf / tab nav ────────────────────── */
 function WoodShelf() {
-  const [active, setActive] = useState('Home')
+  const [active, setActive] = useState("Home");
   return (
     <div
       className="rounded-lg overflow-hidden p-4"
@@ -34,12 +39,12 @@ function WoodShelf() {
           repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 13px),
           linear-gradient(180deg, #a87740 0%, #7a4f23 100%)
         `,
-        boxShadow: 'inset 0 -12px 24px rgba(0,0,0,0.45), inset 0 3px 6px rgba(255,255,255,0.15)',
+        boxShadow: "inset 0 -12px 24px rgba(0,0,0,0.45), inset 0 3px 6px rgba(255,255,255,0.15)",
       }}
     >
       <div className="flex gap-1.5 flex-wrap">
-        {['Home', 'Files', 'Notes', 'Settings'].map((tab) => {
-          const on = active === tab
+        {["Home", "Files", "Notes", "Settings"].map((tab) => {
+          const on = active === tab;
           return (
             <button
               key={tab}
@@ -47,25 +52,28 @@ function WoodShelf() {
               className="px-4 py-1.5 rounded text-sm font-semibold text-amber-50 transition"
               style={{
                 background: on
-                  ? 'linear-gradient(180deg, #f7d39e 0%, #c08953 100%)'
-                  : 'linear-gradient(180deg, #c89d6a 0%, #875a2c 100%)',
+                  ? "linear-gradient(180deg, #f7d39e 0%, #c08953 100%)"
+                  : "linear-gradient(180deg, #c89d6a 0%, #875a2c 100%)",
                 boxShadow: on
-                  ? 'inset 0 -2px 4px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 1px rgba(0,0,0,0.5)'
-                  : 'inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 4px rgba(0,0,0,0.5)',
-                textShadow: '0 1px 1px rgba(0,0,0,0.5)',
-                color: on ? '#5c2f0d' : '#fdf4e0',
+                  ? "inset 0 -2px 4px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.5), 0 1px 1px rgba(0,0,0,0.5)"
+                  : "inset 0 1px 0 rgba(255,255,255,0.35), 0 2px 4px rgba(0,0,0,0.5)",
+                textShadow: "0 1px 1px rgba(0,0,0,0.5)",
+                color: on ? "#5c2f0d" : "#fdf4e0",
               }}
             >
               {tab}
             </button>
-          )
+          );
         })}
       </div>
-      <div className="mt-3 text-xs text-amber-50" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.7)' }}>
+      <div
+        className="mt-3 text-xs text-amber-50"
+        style={{ textShadow: "0 1px 1px rgba(0,0,0,0.7)" }}
+      >
         Selected: {active}
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── 2. Leather — stitched textarea ────────────────────── */
@@ -74,18 +82,15 @@ function LeatherJournal() {
     <div
       className="rounded-lg p-4"
       style={{
-        background:
-          'radial-gradient(ellipse at 30% 20%, #6b3f2e 0%, #4a2a1d 60%, #2c180f 100%)',
-        boxShadow:
-          'inset 0 0 0 2px #2c180f, inset 0 0 0 3px #936b4c, 0 6px 14px rgba(0,0,0,0.4)',
+        background: "radial-gradient(ellipse at 30% 20%, #6b3f2e 0%, #4a2a1d 60%, #2c180f 100%)",
+        boxShadow: "inset 0 0 0 2px #2c180f, inset 0 0 0 3px #936b4c, 0 6px 14px rgba(0,0,0,0.4)",
       }}
     >
       <div
         className="rounded p-3"
         style={{
-          background: 'linear-gradient(180deg, #faf3df 0%, #ecd8a9 100%)',
-          boxShadow:
-            'inset 0 2px 4px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.3)',
+          background: "linear-gradient(180deg, #faf3df 0%, #ecd8a9 100%)",
+          boxShadow: "inset 0 2px 4px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.3)",
           backgroundImage: `
             repeating-linear-gradient(0deg, transparent 0 22px, rgba(120,80,40,0.25) 22px 23px),
             linear-gradient(180deg, #faf3df 0%, #ecd8a9 100%)
@@ -93,11 +98,11 @@ function LeatherJournal() {
         }}
       >
         <div className="text-xs text-amber-800 font-semibold mb-2 italic">
-          Daily Journal · {new Date().toLocaleDateString('ja-JP')}
+          Daily Journal · {new Date().toLocaleDateString("ja-JP")}
         </div>
         <textarea
           rows={4}
-          defaultValue={'今日は良い1日だった。\n午後のミーティングが順調に進んだ。'}
+          defaultValue={"今日は良い1日だった。\n午後のミーティングが順調に進んだ。"}
           className="w-full bg-transparent outline-none font-serif text-sm text-amber-900 leading-[23px] resize-none"
         />
       </div>
@@ -105,31 +110,28 @@ function LeatherJournal() {
         <button
           className="px-3 h-8 rounded text-xs font-semibold text-amber-50"
           style={{
-            background: 'linear-gradient(180deg, #936b4c 0%, #5b3a23 100%)',
-            boxShadow:
-              'inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 3px rgba(0,0,0,0.5)',
-            textShadow: '0 1px 1px rgba(0,0,0,0.5)',
+            background: "linear-gradient(180deg, #936b4c 0%, #5b3a23 100%)",
+            boxShadow: "inset 0 1px 0 rgba(255,255,255,0.3), 0 2px 3px rgba(0,0,0,0.5)",
+            textShadow: "0 1px 1px rgba(0,0,0,0.5)",
           }}
         >
           保存
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── 3. Brass — volume knob slider ────────────────────── */
 function BrassKnob() {
-  const [value, setValue] = useState(35)
-  const angle = -135 + (value / 100) * 270
+  const [value, setValue] = useState(35);
+  const angle = -135 + (value / 100) * 270;
   return (
     <div
       className="flex flex-col items-center gap-3 p-4 rounded-lg"
       style={{
-        background:
-          'radial-gradient(circle at 30% 30%, #444 0%, #1a1a1a 80%)',
-        boxShadow:
-          'inset 0 0 0 1px #000, inset 0 2px 4px rgba(255,255,255,0.05)',
+        background: "radial-gradient(circle at 30% 30%, #444 0%, #1a1a1a 80%)",
+        boxShadow: "inset 0 0 0 1px #000, inset 0 2px 4px rgba(255,255,255,0.05)",
       }}
     >
       <div className="relative" style={{ width: 110, height: 110 }}>
@@ -137,28 +139,25 @@ function BrassKnob() {
           className="absolute inset-0 rounded-full"
           style={{
             background:
-              'radial-gradient(circle at 30% 30%, #fdebb0 0%, #e2b65c 30%, #a87a2c 65%, #5f4416 100%)',
+              "radial-gradient(circle at 30% 30%, #fdebb0 0%, #e2b65c 30%, #a87a2c 65%, #5f4416 100%)",
             boxShadow:
-              'inset 0 -8px 12px rgba(0,0,0,0.5), inset 0 4px 8px rgba(255,255,255,0.4), 0 4px 8px rgba(0,0,0,0.6)',
+              "inset 0 -8px 12px rgba(0,0,0,0.5), inset 0 4px 8px rgba(255,255,255,0.4), 0 4px 8px rgba(0,0,0,0.6)",
           }}
         />
         <div
           className="absolute inset-3 rounded-full"
           style={{
-            background:
-              'radial-gradient(circle at 30% 30%, #f7d785 0%, #b08230 100%)',
-            boxShadow: 'inset 0 -4px 6px rgba(0,0,0,0.4)',
+            background: "radial-gradient(circle at 30% 30%, #f7d785 0%, #b08230 100%)",
+            boxShadow: "inset 0 -4px 6px rgba(0,0,0,0.4)",
             transform: `rotate(${angle}deg)`,
-            transition: 'transform 120ms ease',
+            transition: "transform 120ms ease",
           }}
         >
           <div
             className="absolute top-1.5 left-1/2 -translate-x-1/2 w-1.5 h-4 rounded-full"
             style={{
-              background:
-                'linear-gradient(180deg, #fff 0%, #8b3e1a 100%)',
-              boxShadow:
-                '0 0 4px rgba(255,255,255,0.7), inset 0 -1px 1px rgba(0,0,0,0.3)',
+              background: "linear-gradient(180deg, #fff 0%, #8b3e1a 100%)",
+              boxShadow: "0 0 4px rgba(255,255,255,0.7), inset 0 -1px 1px rgba(0,0,0,0.3)",
             }}
           />
         </div>
@@ -173,44 +172,41 @@ function BrassKnob() {
       />
       <div
         className="font-mono text-amber-100 text-xs tabular-nums tracking-widest"
-        style={{ textShadow: '0 0 4px #ffaa00' }}
+        style={{ textShadow: "0 0 4px #ffaa00" }}
       >
-        VOL · {String(value).padStart(2, '0')}
+        VOL · {String(value).padStart(2, "0")}
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── 4. Vintage calculator ────────────────────── */
 function VintageCalculator() {
-  const [display, setDisplay] = useState('0')
+  const [display, setDisplay] = useState("0");
   const press = (k: string) => {
     setDisplay((d) => {
-      if (k === 'C') return '0'
-      if (d === '0') return k
-      return d + k
-    })
-  }
-  const keys = ['7', '8', '9', '4', '5', '6', '1', '2', '3', 'C', '0', '=']
+      if (k === "C") return "0";
+      if (d === "0") return k;
+      return d + k;
+    });
+  };
+  const keys = ["7", "8", "9", "4", "5", "6", "1", "2", "3", "C", "0", "="];
   return (
     <div
       className="rounded-2xl p-3 mx-auto"
       style={{
         width: 220,
-        background: 'linear-gradient(180deg, #8a8478 0%, #5f5a4f 100%)',
-        boxShadow:
-          'inset 0 1px 2px rgba(255,255,255,0.3), 0 6px 14px rgba(0,0,0,0.45)',
+        background: "linear-gradient(180deg, #8a8478 0%, #5f5a4f 100%)",
+        boxShadow: "inset 0 1px 2px rgba(255,255,255,0.3), 0 6px 14px rgba(0,0,0,0.45)",
       }}
     >
       <div
         className="rounded mb-3 px-3 py-2 text-right font-mono text-2xl tabular-nums tracking-widest"
         style={{
-          background:
-            'linear-gradient(180deg, #4a5b3a 0%, #6b8055 100%)',
-          color: '#0e1808',
-          textShadow: '0 1px 0 rgba(255,255,255,0.25)',
-          boxShadow:
-            'inset 0 3px 6px rgba(0,0,0,0.45), inset 0 -1px 0 rgba(255,255,255,0.2)',
+          background: "linear-gradient(180deg, #4a5b3a 0%, #6b8055 100%)",
+          color: "#0e1808",
+          textShadow: "0 1px 0 rgba(255,255,255,0.25)",
+          boxShadow: "inset 0 3px 6px rgba(0,0,0,0.45), inset 0 -1px 0 rgba(255,255,255,0.2)",
         }}
       >
         {display}
@@ -223,12 +219,11 @@ function VintageCalculator() {
             className="h-9 rounded text-sm font-bold text-zinc-100"
             style={{
               background:
-                k === '=' || k === 'C'
-                  ? 'linear-gradient(180deg, #b56b3b 0%, #7a3f1c 100%)'
-                  : 'linear-gradient(180deg, #2f3035 0%, #14151a 100%)',
-              boxShadow:
-                'inset 0 1px 0 rgba(255,255,255,0.25), 0 2px 3px rgba(0,0,0,0.5)',
-              textShadow: '0 1px 1px rgba(0,0,0,0.7)',
+                k === "=" || k === "C"
+                  ? "linear-gradient(180deg, #b56b3b 0%, #7a3f1c 100%)"
+                  : "linear-gradient(180deg, #2f3035 0%, #14151a 100%)",
+              boxShadow: "inset 0 1px 0 rgba(255,255,255,0.25), 0 2px 3px rgba(0,0,0,0.5)",
+              textShadow: "0 1px 1px rgba(0,0,0,0.7)",
             }}
           >
             {k}
@@ -236,35 +231,39 @@ function VintageCalculator() {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── 5. Felt — game-board switches ────────────────────── */
 function FeltSwitches() {
-  const [vals, setVals] = useState({ music: true, alert: false, autosave: true })
+  const [vals, setVals] = useState({ music: true, alert: false, autosave: true });
   return (
     <div
       className="rounded-lg p-4"
       style={{
-        background:
-          'radial-gradient(ellipse at center, #1f6a3e 0%, #0e3f24 100%)',
-        boxShadow:
-          'inset 0 0 0 4px #5a3215, inset 0 0 0 6px #2c180f, 0 6px 12px rgba(0,0,0,0.5)',
+        background: "radial-gradient(ellipse at center, #1f6a3e 0%, #0e3f24 100%)",
+        boxShadow: "inset 0 0 0 4px #5a3215, inset 0 0 0 6px #2c180f, 0 6px 12px rgba(0,0,0,0.5)",
       }}
     >
-      <div className="text-xs text-emerald-200 uppercase tracking-widest mb-3 font-semibold" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.7)' }}>
+      <div
+        className="text-xs text-emerald-200 uppercase tracking-widest mb-3 font-semibold"
+        style={{ textShadow: "0 1px 1px rgba(0,0,0,0.7)" }}
+      >
         Settings · Casino
       </div>
       <ul className="space-y-2">
         {[
-          { id: 'music' as const, label: 'BGM' },
-          { id: 'alert' as const, label: 'Alert sound' },
-          { id: 'autosave' as const, label: 'Auto save' },
+          { id: "music" as const, label: "BGM" },
+          { id: "alert" as const, label: "Alert sound" },
+          { id: "autosave" as const, label: "Auto save" },
         ].map((it) => {
-          const on = vals[it.id]
+          const on = vals[it.id];
           return (
             <li key={it.id} className="flex items-center gap-3">
-              <div className="flex-1 text-sm text-emerald-50" style={{ textShadow: '0 1px 1px rgba(0,0,0,0.7)' }}>
+              <div
+                className="flex-1 text-sm text-emerald-50"
+                style={{ textShadow: "0 1px 1px rgba(0,0,0,0.7)" }}
+              >
                 {it.label}
               </div>
               <button
@@ -272,10 +271,10 @@ function FeltSwitches() {
                 className="relative w-12 h-7 rounded-full flex items-center transition"
                 style={{
                   background: on
-                    ? 'radial-gradient(circle at 30% 30%, #e74c3c 0%, #8b2a1f 100%)'
-                    : 'radial-gradient(circle at 30% 30%, #2a2a2a 0%, #050505 100%)',
+                    ? "radial-gradient(circle at 30% 30%, #e74c3c 0%, #8b2a1f 100%)"
+                    : "radial-gradient(circle at 30% 30%, #2a2a2a 0%, #050505 100%)",
                   boxShadow:
-                    'inset 0 2px 4px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(255,255,255,0.1)',
+                    "inset 0 2px 4px rgba(0,0,0,0.6), inset 0 -1px 0 rgba(255,255,255,0.1)",
                 }}
               >
                 <div
@@ -283,28 +282,27 @@ function FeltSwitches() {
                   style={{
                     left: on ? 26 : 2,
                     background:
-                      'radial-gradient(circle at 30% 30%, #fff 0%, #c4c4c4 60%, #6e6e6e 100%)',
-                    boxShadow:
-                      'inset 0 -2px 3px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.5)',
+                      "radial-gradient(circle at 30% 30%, #fff 0%, #c4c4c4 60%, #6e6e6e 100%)",
+                    boxShadow: "inset 0 -2px 3px rgba(0,0,0,0.4), 0 2px 4px rgba(0,0,0,0.5)",
                   }}
                 />
               </button>
             </li>
-          )
+          );
         })}
       </ul>
     </div>
-  )
+  );
 }
 
 /* ─── 6. Notebook page — todo ────────────────────── */
 function NotebookPage() {
   const [items, setItems] = useState([
-    { text: '朝のミーティング', done: true },
-    { text: 'デザインのレビュー', done: true },
-    { text: 'プルリクのチェック', done: false },
-    { text: 'ジムへ行く', done: false },
-  ])
+    { text: "朝のミーティング", done: true },
+    { text: "デザインのレビュー", done: true },
+    { text: "プルリクのチェック", done: false },
+    { text: "ジムへ行く", done: false },
+  ]);
   return (
     <div
       className="rounded p-4"
@@ -315,58 +313,51 @@ function NotebookPage() {
           linear-gradient(180deg, #fdfbf2 0%, #f5efd9 100%)
         `,
         boxShadow:
-          'inset 1px 0 0 rgba(0,0,0,0.1), 0 6px 14px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.15)',
+          "inset 1px 0 0 rgba(0,0,0,0.1), 0 6px 14px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.15)",
         fontFamily: '"Caveat", "Comic Sans MS", cursive',
       }}
     >
       <div className="pl-12 leading-[25px]">
         <div className="text-amber-900 text-xs italic mb-2">
-          今日やること - {new Date().toLocaleDateString('ja-JP')}
+          今日やること - {new Date().toLocaleDateString("ja-JP")}
         </div>
         <ul>
           {items.map((it, i) => (
             <li key={i} className="flex items-center gap-2 text-zinc-700 text-base">
               <button
                 onClick={() =>
-                  setItems((arr) =>
-                    arr.map((x, j) => (j === i ? { ...x, done: !x.done } : x)),
-                  )
+                  setItems((arr) => arr.map((x, j) => (j === i ? { ...x, done: !x.done } : x)))
                 }
                 className="w-4 h-4 border-2 border-zinc-600 rounded-sm flex items-center justify-center text-xs leading-none shrink-0"
-                style={{ background: '#fdfbf2' }}
+                style={{ background: "#fdfbf2" }}
               >
-                {it.done ? '✓' : ''}
+                {it.done ? "✓" : ""}
               </button>
-              <span className={it.done ? 'line-through text-zinc-400' : ''}>
-                {it.text}
-              </span>
+              <span className={it.done ? "line-through text-zinc-400" : ""}>{it.text}</span>
             </li>
           ))}
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── 7. Radio dial — frequency slider ────────────────────── */
 function RadioDial() {
-  const [freq, setFreq] = useState(80)
+  const [freq, setFreq] = useState(80);
   return (
     <div
       className="rounded-lg p-4"
       style={{
-        background: 'linear-gradient(180deg, #2b1a10 0%, #4a2b1a 100%)',
-        boxShadow:
-          'inset 0 0 0 3px #6b4226, inset 0 0 0 5px #1a0e08, 0 4px 12px rgba(0,0,0,0.6)',
+        background: "linear-gradient(180deg, #2b1a10 0%, #4a2b1a 100%)",
+        boxShadow: "inset 0 0 0 3px #6b4226, inset 0 0 0 5px #1a0e08, 0 4px 12px rgba(0,0,0,0.6)",
       }}
     >
       <div
         className="rounded h-12 px-3 relative overflow-hidden mb-3"
         style={{
-          background:
-            'linear-gradient(180deg, #f3e6a8 0%, #d6b974 100%)',
-          boxShadow:
-            'inset 0 2px 4px rgba(0,0,0,0.5), inset 0 -1px 0 rgba(255,255,255,0.3)',
+          background: "linear-gradient(180deg, #f3e6a8 0%, #d6b974 100%)",
+          boxShadow: "inset 0 2px 4px rgba(0,0,0,0.5), inset 0 -1px 0 rgba(255,255,255,0.3)",
         }}
       >
         <div className="flex justify-between items-end h-full pb-1 pt-2 text-[10px] font-mono text-amber-900 font-bold">
@@ -381,7 +372,7 @@ function RadioDial() {
           className="absolute top-0 bottom-0 w-0.5 bg-rose-600"
           style={{
             left: `${((freq - 76) / 24) * 100}%`,
-            boxShadow: '0 0 4px rgba(255,0,0,0.8)',
+            boxShadow: "0 0 4px rgba(255,0,0,0.8)",
           }}
         />
       </div>
@@ -396,19 +387,19 @@ function RadioDial() {
       />
       <div
         className="mt-2 text-center font-mono text-amber-200 text-sm tracking-wider"
-        style={{ textShadow: '0 0 6px rgba(255,180,0,0.6)' }}
+        style={{ textShadow: "0 0 6px rgba(255,180,0,0.6)" }}
       >
         FM {freq.toFixed(1)} MHz
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── 8. Watch face — analog clock ────────────────────── */
 function WatchFace() {
-  const now = new Date()
-  const h = (now.getHours() % 12) + now.getMinutes() / 60
-  const m = now.getMinutes()
+  const now = new Date();
+  const h = (now.getHours() % 12) + now.getMinutes() / 60;
+  const m = now.getMinutes();
   return (
     <div className="flex justify-center">
       <div
@@ -416,17 +407,16 @@ function WatchFace() {
         style={{
           width: 180,
           height: 180,
-          background:
-            'radial-gradient(circle at 30% 25%, #f6f4ec 0%, #d1cabb 60%, #91897a 100%)',
+          background: "radial-gradient(circle at 30% 25%, #f6f4ec 0%, #d1cabb 60%, #91897a 100%)",
           boxShadow:
-            'inset 0 0 0 8px #d4d2c4, inset 0 0 0 10px #5f5a4f, inset 0 -8px 16px rgba(0,0,0,0.35), 0 8px 18px rgba(0,0,0,0.4)',
+            "inset 0 0 0 8px #d4d2c4, inset 0 0 0 10px #5f5a4f, inset 0 -8px 16px rgba(0,0,0,0.35), 0 8px 18px rgba(0,0,0,0.4)",
         }}
       >
         {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((n) => {
-          const a = ((n - 3) / 12) * Math.PI * 2
-          const r = 72
-          const x = 90 + Math.cos(a) * r
-          const y = 90 + Math.sin(a) * r
+          const a = ((n - 3) / 12) * Math.PI * 2;
+          const r = 72;
+          const x = 90 + Math.cos(a) * r;
+          const y = 90 + Math.sin(a) * r;
           return (
             <div
               key={n}
@@ -435,54 +425,49 @@ function WatchFace() {
             >
               {n}
             </div>
-          )
+          );
         })}
         <div
           className="absolute left-1/2 top-1/2 w-1.5 origin-bottom rounded-t"
           style={{
             height: 40,
-            background:
-              'linear-gradient(180deg, #1a1a1a 0%, #5a5a5a 100%)',
+            background: "linear-gradient(180deg, #1a1a1a 0%, #5a5a5a 100%)",
             transform: `translate(-50%, -100%) rotate(${(h / 12) * 360}deg)`,
-            transformOrigin: '50% 100%',
-            boxShadow: '0 0 2px rgba(0,0,0,0.6)',
+            transformOrigin: "50% 100%",
+            boxShadow: "0 0 2px rgba(0,0,0,0.6)",
           }}
         />
         <div
           className="absolute left-1/2 top-1/2 w-1 origin-bottom rounded-t"
           style={{
             height: 60,
-            background:
-              'linear-gradient(180deg, #1a1a1a 0%, #5a5a5a 100%)',
+            background: "linear-gradient(180deg, #1a1a1a 0%, #5a5a5a 100%)",
             transform: `translate(-50%, -100%) rotate(${(m / 60) * 360}deg)`,
-            transformOrigin: '50% 100%',
-            boxShadow: '0 0 2px rgba(0,0,0,0.6)',
+            transformOrigin: "50% 100%",
+            boxShadow: "0 0 2px rgba(0,0,0,0.6)",
           }}
         />
         <div
           className="absolute left-1/2 top-1/2 w-2.5 h-2.5 -translate-x-1/2 -translate-y-1/2 rounded-full"
           style={{
-            background:
-              'radial-gradient(circle at 30% 30%, #b87333 0%, #5a3a16 100%)',
-            boxShadow: 'inset 0 -1px 1px rgba(0,0,0,0.6)',
+            background: "radial-gradient(circle at 30% 30%, #b87333 0%, #5a3a16 100%)",
+            boxShadow: "inset 0 -1px 1px rgba(0,0,0,0.6)",
           }}
         />
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── 9. Power button — physical 3D toggle ────────────────────── */
 function PowerButton() {
-  const [on, setOn] = useState(false)
+  const [on, setOn] = useState(false);
   return (
     <div
       className="rounded-lg p-6 flex justify-center"
       style={{
-        background:
-          'radial-gradient(circle at 30% 30%, #555 0%, #2a2a2a 80%)',
-        boxShadow:
-          'inset 0 0 0 1px #000, inset 0 2px 4px rgba(255,255,255,0.05)',
+        background: "radial-gradient(circle at 30% 30%, #555 0%, #2a2a2a 80%)",
+        boxShadow: "inset 0 0 0 1px #000, inset 0 2px 4px rgba(255,255,255,0.05)",
       }}
     >
       <button
@@ -491,63 +476,58 @@ function PowerButton() {
         style={{
           width: 90,
           height: 90,
-          background:
-            'radial-gradient(circle at 30% 30%, #ddd 0%, #888 60%, #444 100%)',
+          background: "radial-gradient(circle at 30% 30%, #ddd 0%, #888 60%, #444 100%)",
           boxShadow:
-            'inset 0 -4px 8px rgba(0,0,0,0.5), inset 0 4px 8px rgba(255,255,255,0.5), 0 6px 12px rgba(0,0,0,0.6)',
+            "inset 0 -4px 8px rgba(0,0,0,0.5), inset 0 4px 8px rgba(255,255,255,0.5), 0 6px 12px rgba(0,0,0,0.6)",
         }}
       >
         <div
           className="absolute inset-3 rounded-full flex items-center justify-center"
           style={{
             background: on
-              ? 'radial-gradient(circle at 30% 30%, #ff6e6e 0%, #c01a1a 70%)'
-              : 'radial-gradient(circle at 30% 30%, #444 0%, #1a1a1a 70%)',
+              ? "radial-gradient(circle at 30% 30%, #ff6e6e 0%, #c01a1a 70%)"
+              : "radial-gradient(circle at 30% 30%, #444 0%, #1a1a1a 70%)",
             boxShadow: on
-              ? 'inset 0 -2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(255,80,80,0.7)'
-              : 'inset 0 -2px 4px rgba(0,0,0,0.5)',
-            transition: 'all 200ms',
+              ? "inset 0 -2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(255,80,80,0.7)"
+              : "inset 0 -2px 4px rgba(0,0,0,0.5)",
+            transition: "all 200ms",
           }}
         >
           <Power
             className="w-8 h-8"
             style={{
-              color: on ? '#fff' : '#888',
-              filter: on
-                ? 'drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #ff8080)'
-                : 'none',
+              color: on ? "#fff" : "#888",
+              filter: on ? "drop-shadow(0 0 4px #fff) drop-shadow(0 0 8px #ff8080)" : "none",
             }}
           />
         </div>
       </button>
     </div>
-  )
+  );
 }
 
 /* ─── 10. Address book — leather + tabs ────────────────────── */
 function AddressBook() {
   const contacts = [
-    { name: 'Taro Yamada', kind: 'mail', value: 'taro@example.com', Icon: Mail },
-    { name: 'Hanako Sato', kind: 'tel', value: '03-1234-5678', Icon: Phone },
-    { name: 'Office HQ', kind: 'addr', value: 'Tokyo, Shibuya', Icon: MapPin },
-    { name: 'Project X', kind: 'doc', value: 'spec.pdf', Icon: FileText },
-  ]
+    { name: "Taro Yamada", kind: "mail", value: "taro@example.com", Icon: Mail },
+    { name: "Hanako Sato", kind: "tel", value: "03-1234-5678", Icon: Phone },
+    { name: "Office HQ", kind: "addr", value: "Tokyo, Shibuya", Icon: MapPin },
+    { name: "Project X", kind: "doc", value: "spec.pdf", Icon: FileText },
+  ];
   return (
     <div
       className="rounded p-3"
       style={{
-        background:
-          'radial-gradient(ellipse at 30% 20%, #8b3e1a 0%, #5a2010 60%, #2c1108 100%)',
+        background: "radial-gradient(ellipse at 30% 20%, #8b3e1a 0%, #5a2010 60%, #2c1108 100%)",
         boxShadow:
-          'inset 0 0 0 3px #5a2010, inset 0 0 0 4px rgba(255,200,150,0.18), 0 8px 16px rgba(0,0,0,0.5)',
+          "inset 0 0 0 3px #5a2010, inset 0 0 0 4px rgba(255,200,150,0.18), 0 8px 16px rgba(0,0,0,0.5)",
       }}
     >
       <div
         className="rounded p-3"
         style={{
-          background: 'linear-gradient(180deg, #fffaea 0%, #ecd9a4 100%)',
-          boxShadow:
-            'inset 0 2px 4px rgba(0,0,0,0.2), inset 0 0 0 1px #b8975f',
+          background: "linear-gradient(180deg, #fffaea 0%, #ecd9a4 100%)",
+          boxShadow: "inset 0 2px 4px rgba(0,0,0,0.2), inset 0 0 0 1px #b8975f",
         }}
       >
         <div className="text-center font-serif italic text-amber-900 mb-2 font-bold tracking-wider">
@@ -558,42 +538,35 @@ function AddressBook() {
             <li key={c.name} className="py-1.5 flex items-center gap-3">
               <c.Icon className="w-4 h-4 text-amber-800" />
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-serif text-amber-900">
-                  {c.name}
-                </div>
-                <div className="text-[11px] font-mono text-amber-700 truncate">
-                  {c.value}
-                </div>
+                <div className="text-sm font-serif text-amber-900">{c.name}</div>
+                <div className="text-[11px] font-mono text-amber-700 truncate">{c.value}</div>
               </div>
             </li>
           ))}
         </ul>
       </div>
     </div>
-  )
+  );
 }
 
 /* ─── 11. Stepper — metal physical ────────────────────── */
 function MetalStepper() {
-  const [n, setN] = useState(1)
+  const [n, setN] = useState(1);
   return (
     <div
       className="rounded-lg p-4 inline-flex items-center gap-2"
       style={{
-        background:
-          'linear-gradient(180deg, #cfcfcf 0%, #909090 100%)',
-        boxShadow:
-          'inset 0 1px 1px rgba(255,255,255,0.7), 0 4px 8px rgba(0,0,0,0.4)',
+        background: "linear-gradient(180deg, #cfcfcf 0%, #909090 100%)",
+        boxShadow: "inset 0 1px 1px rgba(255,255,255,0.7), 0 4px 8px rgba(0,0,0,0.4)",
       }}
     >
       <button
         onClick={() => setN((v) => Math.max(0, v - 1))}
         className="w-10 h-10 rounded-md flex items-center justify-center active:scale-95"
         style={{
-          background:
-            'radial-gradient(circle at 30% 30%, #fff 0%, #ddd 50%, #888 100%)',
+          background: "radial-gradient(circle at 30% 30%, #fff 0%, #ddd 50%, #888 100%)",
           boxShadow:
-            'inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 4px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.4)',
+            "inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 4px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.4)",
         }}
       >
         <Minus className="w-4 h-4 text-zinc-700" />
@@ -601,11 +574,10 @@ function MetalStepper() {
       <div
         className="w-14 h-10 rounded flex items-center justify-center font-mono text-lg font-bold tabular-nums"
         style={{
-          background: 'linear-gradient(180deg, #1a1a1a 0%, #383838 100%)',
-          color: '#7fff7f',
-          textShadow: '0 0 6px rgba(127,255,127,0.7)',
-          boxShadow:
-            'inset 0 2px 4px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.1)',
+          background: "linear-gradient(180deg, #1a1a1a 0%, #383838 100%)",
+          color: "#7fff7f",
+          textShadow: "0 0 6px rgba(127,255,127,0.7)",
+          boxShadow: "inset 0 2px 4px rgba(0,0,0,0.7), inset 0 0 0 1px rgba(255,255,255,0.1)",
         }}
       >
         {n}
@@ -614,16 +586,15 @@ function MetalStepper() {
         onClick={() => setN((v) => v + 1)}
         className="w-10 h-10 rounded-md flex items-center justify-center active:scale-95"
         style={{
-          background:
-            'radial-gradient(circle at 30% 30%, #fff 0%, #ddd 50%, #888 100%)',
+          background: "radial-gradient(circle at 30% 30%, #fff 0%, #ddd 50%, #888 100%)",
           boxShadow:
-            'inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 4px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.4)',
+            "inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -2px 4px rgba(0,0,0,0.3), 0 2px 3px rgba(0,0,0,0.4)",
         }}
       >
         <Plus className="w-4 h-4 text-zinc-700" />
       </button>
     </div>
-  )
+  );
 }
 
 /* ─── 12. Marble — stat card ────────────────────── */
@@ -638,19 +609,20 @@ function MarbleCard() {
           linear-gradient(135deg, #f5efe6 0%, #e7ddd0 50%, #d4c8b6 100%)
         `,
         boxShadow:
-          'inset 0 0 0 4px #b9a989, inset 0 0 0 6px #f5efe6, 0 8px 18px rgba(120,100,80,0.3)',
+          "inset 0 0 0 4px #b9a989, inset 0 0 0 6px #f5efe6, 0 8px 18px rgba(120,100,80,0.3)",
       }}
     >
       <div className="font-serif text-zinc-700 text-xs uppercase tracking-[0.3em] mb-2">
         Honor of the Year
       </div>
-      <Star className="w-10 h-10 mx-auto text-amber-700" style={{ filter: 'drop-shadow(0 2px 2px rgba(0,0,0,0.3))' }} />
-      <div className="font-serif text-2xl font-bold mt-2 text-zinc-800">
-        山田 太郎
-      </div>
+      <Star
+        className="w-10 h-10 mx-auto text-amber-700"
+        style={{ filter: "drop-shadow(0 2px 2px rgba(0,0,0,0.3))" }}
+      />
+      <div className="font-serif text-2xl font-bold mt-2 text-zinc-800">山田 太郎</div>
       <div className="text-xs italic text-zinc-600 mt-1">2026</div>
     </div>
-  )
+  );
 }
 
 export default function Skeuomorphism() {
@@ -658,7 +630,8 @@ export default function Skeuomorphism() {
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
         現実の物の質感をそのまま UI に持ち込むスタイル。
-        革・木目・金属感・ガラス・布・紙など、マテリアル別の例で「触りたくなる UI」のバリエーションを確認。
+        革・木目・金属感・ガラス・布・紙など、マテリアル別の例で「触りたくなる
+        UI」のバリエーションを確認。
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -753,5 +726,5 @@ export default function Skeuomorphism() {
         </ul>
       </section>
     </div>
-  )
+  );
 }

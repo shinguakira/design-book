@@ -1,8 +1,8 @@
-import type { TextareaHTMLAttributes } from 'react'
+import type { TextareaHTMLAttributes } from "react";
 
 export function Textarea({
   label,
-  className = '',
+  className = "",
   ...rest
 }: TextareaHTMLAttributes<HTMLTextAreaElement> & { label?: string }) {
   return (
@@ -13,5 +13,5 @@ export function Textarea({
         {...rest}
       />
     </label>
-  )
+  );
 }

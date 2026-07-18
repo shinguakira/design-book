@@ -1,5 +1,5 @@
-import { Avatar } from '../../components/ui/Avatar'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Avatar } from "../../components/ui/Avatar";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function AvatarShowcase() {
   return (
@@ -21,5 +21,5 @@ export default function AvatarShowcase() {
         </div>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

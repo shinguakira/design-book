@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Plus,
   Mic,
@@ -11,17 +11,18 @@ import {
   Folder,
   Sparkles,
   X,
-} from 'lucide-react'
+} from "lucide-react";
 
 export default function InputRich() {
-  const [text, setText] = useState('')
-  const [attachOpen, setAttachOpen] = useState(false)
-  const empty = text.trim().length === 0
+  const [text, setText] = useState("");
+  const [attachOpen, setAttachOpen] = useState(false);
+  const empty = text.trim().length === 0;
 
   return (
     <div className="max-w-5xl space-y-8">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        ChatGPT / Claude / Gemini 系のリッチ入力。複数行テキスト + 添付ボタン + 音声入力 + ツール切替 + 送信。空のときは送信ボタン無効。
+        ChatGPT / Claude / Gemini 系のリッチ入力。複数行テキスト + 添付ボタン + 音声入力 +
+        ツール切替 + 送信。空のときは送信ボタン無効。
       </p>
 
       <section>
@@ -41,14 +42,10 @@ export default function InputRich() {
               <button
                 onClick={() => setAttachOpen((o) => !o)}
                 className={`w-8 h-8 rounded-full flex items-center justify-center transition ${
-                  attachOpen
-                    ? 'bg-zinc-900 text-white'
-                    : 'hover:bg-zinc-100 text-zinc-600'
+                  attachOpen ? "bg-zinc-900 text-white" : "hover:bg-zinc-100 text-zinc-600"
                 }`}
               >
-                <Plus
-                  className={`w-4 h-4 transition-transform ${attachOpen ? 'rotate-45' : ''}`}
-                />
+                <Plus className={`w-4 h-4 transition-transform ${attachOpen ? "rotate-45" : ""}`} />
               </button>
               <button className="h-8 px-3 rounded-full hover:bg-zinc-100 text-xs text-zinc-700 flex items-center gap-1.5">
                 <Globe className="w-3.5 h-3.5" />
@@ -75,10 +72,10 @@ export default function InputRich() {
           {attachOpen && (
             <div className="border-t border-zinc-200 px-2 py-2 grid grid-cols-4 gap-1 animate-slide-in-up">
               {[
-                { Icon: Camera, label: 'カメラ' },
-                { Icon: ImageIcon, label: '写真' },
-                { Icon: FileText, label: 'ファイル' },
-                { Icon: Folder, label: 'クラウド' },
+                { Icon: Camera, label: "カメラ" },
+                { Icon: ImageIcon, label: "写真" },
+                { Icon: FileText, label: "ファイル" },
+                { Icon: Folder, label: "クラウド" },
               ].map(({ Icon, label }) => (
                 <button
                   key={label}
@@ -143,9 +140,8 @@ export default function InputRich() {
         <div
           className="rounded-full border-2 p-px"
           style={{
-            backgroundImage:
-              'linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899)',
-            borderColor: 'transparent',
+            backgroundImage: "linear-gradient(90deg, #6366f1, #8b5cf6, #ec4899)",
+            borderColor: "transparent",
           }}
         >
           <div className="rounded-full bg-white flex items-center gap-2 pl-5 pr-2 py-2">
@@ -175,5 +171,5 @@ export default function InputRich() {
         </ul>
       </section>
     </div>
-  )
+  );
 }

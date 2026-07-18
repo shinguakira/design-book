@@ -1,9 +1,9 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { Suspense } from 'react'
-import Layout from './layout/Layout'
-import Home from './pages/Home'
-import NotFound from './pages/NotFound'
-import { sections } from './registry'
+import { createBrowserRouter } from "react-router-dom";
+import { Suspense } from "react";
+import Layout from "./layout/Layout";
+import Home from "./pages/Home";
+import NotFound from "./pages/NotFound";
+import { sections } from "./registry";
 
 const entryRoutes = sections.flatMap((section) =>
   section.entries.map((entry) => ({
@@ -14,16 +14,16 @@ const entryRoutes = sections.flatMap((section) =>
       </Suspense>
     ),
   })),
-)
+);
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: "/",
     element: <Layout />,
     children: [
       { index: true, element: <Home /> },
       ...entryRoutes,
-      { path: '*', element: <NotFound /> },
+      { path: "*", element: <NotFound /> },
     ],
   },
-])
+]);

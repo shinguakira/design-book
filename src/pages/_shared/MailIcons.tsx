@@ -1,4 +1,4 @@
-type IconProps = { className?: string }
+type IconProps = { className?: string };
 
 export function CarrierBird({ className }: IconProps) {
   return (
@@ -10,31 +10,85 @@ export function CarrierBird({ className }: IconProps) {
       <circle cx="60.4" cy="26" r="0.8" fill="#1a1a1a" />
       <path d="M64 28 L74 27 L64 30 Z" fill="hsl(38 75% 48%)" />
       <g transform="translate(70 22) rotate(8)">
-        <rect width="16" height="11" fill="hsl(35 30% 86%)" stroke="hsl(20 35% 30%)" strokeWidth="0.6" />
+        <rect
+          width="16"
+          height="11"
+          fill="hsl(35 30% 86%)"
+          stroke="hsl(20 35% 30%)"
+          strokeWidth="0.6"
+        />
         <path d="M0 0 L8 7 L16 0" fill="none" stroke="hsl(20 35% 30%)" strokeWidth="0.6" />
       </g>
       <g className="bird-wing bird-wing-left">
         <path d="M34 30 Q26 6 12 16 Q22 28 34 32 Z" />
-        <path d="M28 22 Q22 14 16 18" fill="none" stroke="hsl(20 50% 22%)" strokeWidth="0.6" opacity="0.6" />
+        <path
+          d="M28 22 Q22 14 16 18"
+          fill="none"
+          stroke="hsl(20 50% 22%)"
+          strokeWidth="0.6"
+          opacity="0.6"
+        />
       </g>
       <g className="bird-wing bird-wing-right">
         <path d="M42 30 Q50 6 64 16 Q54 26 42 32 Z" opacity="0.7" />
       </g>
     </svg>
-  )
+  );
 }
 
 export function SealedEnvelope({ className }: IconProps) {
   return (
     <svg viewBox="0 0 120 90" className={className}>
-      <rect x="6" y="22" width="108" height="62" fill="hsl(35 30% 82%)" stroke="hsl(20 35% 30%)" strokeWidth="2.5" />
-      <path d="M6 84 L42 55" fill="none" stroke="hsl(20 35% 30%)" strokeWidth="1.5" opacity="0.55" />
-      <path d="M114 84 L78 55" fill="none" stroke="hsl(20 35% 30%)" strokeWidth="1.5" opacity="0.55" />
-      <path d="M6 22 L60 60 L114 22 Z" fill="hsl(35 28% 75%)" stroke="hsl(20 35% 30%)" strokeWidth="2.5" />
-      <circle cx="60" cy="50" r="9" fill="hsl(0 65% 36%)" stroke="hsl(0 60% 22%)" strokeWidth="1.4" />
-      <text x="60" y="54" textAnchor="middle" fontSize="11" fill="hsl(0 60% 18%)" fontFamily="serif" fontWeight="700">P</text>
+      <rect
+        x="6"
+        y="22"
+        width="108"
+        height="62"
+        fill="hsl(35 30% 82%)"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="2.5"
+      />
+      <path
+        d="M6 84 L42 55"
+        fill="none"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="1.5"
+        opacity="0.55"
+      />
+      <path
+        d="M114 84 L78 55"
+        fill="none"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="1.5"
+        opacity="0.55"
+      />
+      <path
+        d="M6 22 L60 60 L114 22 Z"
+        fill="hsl(35 28% 75%)"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="2.5"
+      />
+      <circle
+        cx="60"
+        cy="50"
+        r="9"
+        fill="hsl(0 65% 36%)"
+        stroke="hsl(0 60% 22%)"
+        strokeWidth="1.4"
+      />
+      <text
+        x="60"
+        y="54"
+        textAnchor="middle"
+        fontSize="11"
+        fill="hsl(0 60% 18%)"
+        fontFamily="serif"
+        fontWeight="700"
+      >
+        P
+      </text>
     </svg>
-  )
+  );
 }
 
 export function LetterOpener({ className }: IconProps) {
@@ -46,36 +100,105 @@ export function LetterOpener({ className }: IconProps) {
       <line x1="14" y1="5" x2="14" y2="11" stroke="hsl(20 60% 12%)" strokeWidth="0.4" />
       <line x1="22" y1="5" x2="22" y2="11" stroke="hsl(20 60% 12%)" strokeWidth="0.4" />
       <rect x="26" y="2" width="3" height="12" fill="hsl(45 25% 70%)" />
-      <path d="M29 4 L92 6.5 L100 8 L92 9.5 L29 12 Z" fill="hsl(0 0% 78%)" stroke="hsl(0 0% 45%)" strokeWidth="0.4" />
+      <path
+        d="M29 4 L92 6.5 L100 8 L92 9.5 L29 12 Z"
+        fill="hsl(0 0% 78%)"
+        stroke="hsl(0 0% 45%)"
+        strokeWidth="0.4"
+      />
       <path d="M30 6.5 L90 7.5 L90 8.5 L30 9.5 Z" fill="hsl(0 0% 96%)" opacity="0.85" />
     </svg>
-  )
+  );
 }
 
 export function FoldedNewsletter({ className }: IconProps) {
   return (
     <svg viewBox="0 0 100 80" className={className}>
-      <rect x="14" y="10" width="72" height="64" fill="hsl(40 36% 90%)" stroke="hsl(20 35% 30%)" strokeWidth="2" />
-      <rect x="8" y="14" width="72" height="64" fill="hsl(40 40% 94%)" stroke="hsl(20 35% 30%)" strokeWidth="2" />
+      <rect
+        x="14"
+        y="10"
+        width="72"
+        height="64"
+        fill="hsl(40 36% 90%)"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="2"
+      />
+      <rect
+        x="8"
+        y="14"
+        width="72"
+        height="64"
+        fill="hsl(40 40% 94%)"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="2"
+      />
       <rect x="16" y="20" width="56" height="6" fill="hsl(20 50% 26%)" />
       {[34, 40, 46, 52, 58, 64, 70].map((y) => (
-        <line key={y} x1="16" y1={y} x2={y % 12 === 0 ? 60 : 72} y2={y} stroke="hsl(20 35% 30%)" strokeWidth="0.8" opacity="0.7" />
+        <line
+          key={y}
+          x1="16"
+          y1={y}
+          x2={y % 12 === 0 ? 60 : 72}
+          y2={y}
+          stroke="hsl(20 35% 30%)"
+          strokeWidth="0.8"
+          opacity="0.7"
+        />
       ))}
-      <line x1="44" y1="14" x2="44" y2="78" stroke="hsl(20 35% 30%)" strokeWidth="0.6" opacity="0.4" strokeDasharray="2 2" />
+      <line
+        x1="44"
+        y1="14"
+        x2="44"
+        y2="78"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="0.6"
+        opacity="0.4"
+        strokeDasharray="2 2"
+      />
     </svg>
-  )
+  );
 }
 
 export function RolledLetter({ className }: IconProps) {
   return (
     <svg viewBox="0 0 100 80" className={className}>
-      <rect x="14" y="14" width="72" height="60" fill="hsl(40 42% 94%)" stroke="hsl(20 35% 30%)" strokeWidth="2" />
+      <rect
+        x="14"
+        y="14"
+        width="72"
+        height="60"
+        fill="hsl(40 42% 94%)"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="2"
+      />
       {[24, 32, 40, 48, 56, 64].map((y, i) => (
-        <line key={y} x1="22" y1={y} x2={i % 2 === 0 ? 76 : 64} y2={y} stroke="hsl(20 35% 30%)" strokeWidth="0.9" opacity="0.65" />
+        <line
+          key={y}
+          x1="22"
+          y1={y}
+          x2={i % 2 === 0 ? 76 : 64}
+          y2={y}
+          stroke="hsl(20 35% 30%)"
+          strokeWidth="0.9"
+          opacity="0.65"
+        />
       ))}
-      <path d="M14 14 Q50 4 86 14 Q50 22 14 14 Z" fill="hsl(40 36% 88%)" stroke="hsl(20 35% 30%)" strokeWidth="2" />
+      <path
+        d="M14 14 Q50 4 86 14 Q50 22 14 14 Z"
+        fill="hsl(40 36% 88%)"
+        stroke="hsl(20 35% 30%)"
+        strokeWidth="2"
+      />
       <rect x="44" y="14" width="12" height="60" fill="hsl(0 60% 38%)" opacity="0.85" />
-      <rect x="44" y="14" width="12" height="60" fill="none" stroke="hsl(0 60% 22%)" strokeWidth="0.6" />
+      <rect
+        x="44"
+        y="14"
+        width="12"
+        height="60"
+        fill="none"
+        stroke="hsl(0 60% 22%)"
+        strokeWidth="0.6"
+      />
     </svg>
-  )
+  );
 }

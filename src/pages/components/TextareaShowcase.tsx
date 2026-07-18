@@ -1,11 +1,15 @@
-import { useState, useRef, useEffect } from 'react'
-import { Bold, Italic, List, Link, Code, Sparkles, Send } from 'lucide-react'
+import { useState, useRef, useEffect } from "react";
+import { Bold, Italic, List, Link, Code, Sparkles, Send } from "lucide-react";
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -14,18 +18,18 @@ function Frame({
       </div>
       <div className="p-5">{children}</div>
     </div>
-  )
+  );
 }
 
 function AutoResize() {
-  const ref = useRef<HTMLTextAreaElement>(null)
-  const [val, setVal] = useState('行を増やすと自動で縦に伸びます')
+  const ref = useRef<HTMLTextAreaElement>(null);
+  const [val, setVal] = useState("行を増やすと自動で縦に伸びます");
   useEffect(() => {
     if (ref.current) {
-      ref.current.style.height = 'auto'
-      ref.current.style.height = ref.current.scrollHeight + 'px'
+      ref.current.style.height = "auto";
+      ref.current.style.height = ref.current.scrollHeight + "px";
     }
-  }, [val])
+  }, [val]);
   return (
     <textarea
       ref={ref}
@@ -35,13 +39,13 @@ function AutoResize() {
       placeholder="自動でリサイズ"
       className="w-full max-w-md min-h-9 rounded-md border border-zinc-300 px-3 py-2 text-sm focus:outline-none focus:border-zinc-900 resize-none overflow-hidden"
     />
-  )
+  );
 }
 
 function CharCounter() {
-  const [val, setVal] = useState('')
-  const max = 280
-  const over = val.length > max
+  const [val, setVal] = useState("");
+  const max = 280;
+  const over = val.length > max;
   return (
     <div className="max-w-md">
       <textarea
@@ -50,20 +54,20 @@ function CharCounter() {
         rows={3}
         placeholder="ツイートを書く"
         className={`w-full rounded-md border-2 px-3 py-2 text-sm focus:outline-none ${
-          over ? 'border-rose-500' : 'border-zinc-300 focus:border-zinc-900'
+          over ? "border-rose-500" : "border-zinc-300 focus:border-zinc-900"
         }`}
       />
       <div className="flex justify-end mt-1.5">
         <span
           className={`text-xs tabular-nums ${
-            over ? 'text-rose-600 font-semibold' : 'text-zinc-500'
+            over ? "text-rose-600 font-semibold" : "text-zinc-500"
           }`}
         >
           {val.length} / {max}
         </span>
       </div>
     </div>
-  )
+  );
 }
 
 function WithToolbar() {
@@ -93,7 +97,7 @@ function WithToolbar() {
         className="w-full px-3 py-2 text-sm outline-none resize-none"
       />
     </div>
-  )
+  );
 }
 
 function CodeEditor() {
@@ -106,7 +110,7 @@ function CodeEditor() {
         spellCheck={false}
       />
     </pre>
-  )
+  );
 }
 
 function AIPrompt() {
@@ -129,30 +133,28 @@ function AIPrompt() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 function MentionField() {
   return (
     <div className="max-w-md">
       <div className="rounded-md border border-zinc-300 px-3 py-2 text-sm min-h-20 focus-within:border-zinc-500">
-        Hey{' '}
+        Hey{" "}
         <span className="inline-block bg-blue-100 text-blue-800 rounded px-1.5 py-0.5 text-xs font-medium">
           @taro
         </span>
         , can you review this PR? thanks!
       </div>
-      <div className="text-xs text-zinc-500 mt-1">
-        @ でユーザー名、# でチャンネルを引用
-      </div>
+      <div className="text-xs text-zinc-500 mt-1">@ でユーザー名、# でチャンネルを引用</div>
     </div>
-  )
+  );
 }
 
 function MarkdownPreview() {
   const [val, setVal] = useState(
-    '# はじめに\n\nこれは **Markdown** で書かれた*文章*です。\n\n- リスト1\n- リスト2',
-  )
+    "# はじめに\n\nこれは **Markdown** で書かれた*文章*です。\n\n- リスト1\n- リスト2",
+  );
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-3xl">
       <textarea
@@ -166,17 +168,17 @@ function MarkdownPreview() {
           dangerouslySetInnerHTML={{
             __html: val
               .replace(/^# (.+)$/gm, '<h1 class="text-lg font-bold">$1</h1>')
-              .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-              .replace(/\*(.+?)\*/g, '<em>$1</em>')
-              .replace(/^- (.+)$/gm, '<li>$1</li>')
+              .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
+              .replace(/\*(.+?)\*/g, "<em>$1</em>")
+              .replace(/^- (.+)$/gm, "<li>$1</li>")
               .replace(/(<li>.*<\/li>)/gs, '<ul class="list-disc pl-5">$1</ul>')
               .replace(/\n\n/g, '</p><p class="my-2">')
-              .replace(/^(.+)$/, '<p>$1</p>'),
+              .replace(/^(.+)$/, "<p>$1</p>"),
           }}
         />
       </div>
     </div>
-  )
+  );
 }
 
 export default function TextareaShowcase() {
@@ -185,9 +187,7 @@ export default function TextareaShowcase() {
       <Frame label="1. Basic" note="ラベル + プレースホルダ">
         <div className="space-y-3 max-w-md">
           <div>
-            <label className="block text-xs font-medium text-zinc-600 mb-1">
-              フィードバック
-            </label>
+            <label className="block text-xs font-medium text-zinc-600 mb-1">フィードバック</label>
             <textarea
               rows={4}
               placeholder="ご意見をお聞かせください"
@@ -242,5 +242,5 @@ export default function TextareaShowcase() {
         />
       </Frame>
     </div>
-  )
+  );
 }

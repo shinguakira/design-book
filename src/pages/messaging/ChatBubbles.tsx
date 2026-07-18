@@ -1,10 +1,14 @@
-import { Check, CheckCheck } from 'lucide-react'
+import { Check, CheckCheck } from "lucide-react";
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -13,7 +17,7 @@ function Frame({
       </div>
       <div className="p-5 bg-zinc-50">{children}</div>
     </div>
-  )
+  );
 }
 
 export default function ChatBubbles() {
@@ -52,20 +56,18 @@ export default function ChatBubbles() {
         <Frame label="WhatsApp" note="緑/白、しっぽあり、配信状態アイコン">
           <div
             className="space-y-2 max-w-md mx-auto p-3 rounded-md"
-            style={{ background: '#e5ddd5' }}
+            style={{ background: "#e5ddd5" }}
           >
             <div className="flex justify-start">
               <div className="bg-white rounded-lg rounded-tl-none px-3 py-2 text-sm max-w-[75%] shadow-sm">
                 明日のランチどうする?
-                <div className="text-[10px] text-zinc-400 text-right mt-0.5">
-                  11:23
-                </div>
+                <div className="text-[10px] text-zinc-400 text-right mt-0.5">11:23</div>
               </div>
             </div>
             <div className="flex justify-end">
               <div
                 className="rounded-lg rounded-tr-none px-3 py-2 text-sm max-w-[75%] shadow-sm"
-                style={{ background: '#dcf8c6' }}
+                style={{ background: "#dcf8c6" }}
               >
                 12時に駅前で集合でどう?
                 <div className="flex items-center justify-end gap-1 text-[10px] text-zinc-500 mt-0.5">
@@ -102,9 +104,7 @@ export default function ChatBubbles() {
                   <span className="font-semibold text-sm">佐藤 花子</span>
                   <span className="text-xs text-zinc-400">11:30</span>
                 </div>
-                <div className="text-sm text-zinc-700">
-                  OKです。Zoomリンク送っておきます
-                </div>
+                <div className="text-sm text-zinc-700">OKです。Zoomリンク送っておきます</div>
               </div>
             </div>
           </div>
@@ -131,9 +131,7 @@ export default function ChatBubbles() {
             <div className="flex gap-2 items-end justify-start">
               <div className="w-8 h-8 rounded-full bg-emerald-500 shrink-0" />
               <div>
-                <div className="text-[11px] text-zinc-500 ml-2 mb-0.5">
-                  山田 太郎
-                </div>
+                <div className="text-[11px] text-zinc-500 ml-2 mb-0.5">山田 太郎</div>
                 <div className="flex items-end gap-1">
                   <div className="bg-white rounded-2xl px-3 py-2 text-sm max-w-[60vw] shadow-sm">
                     お疲れ様です!
@@ -161,9 +159,7 @@ export default function ChatBubbles() {
               </span>
             </div>
             <div className="flex justify-start">
-              <div className="bg-zinc-200 rounded-2xl px-4 py-2 text-sm">
-                おはよう
-              </div>
+              <div className="bg-zinc-200 rounded-2xl px-4 py-2 text-sm">おはよう</div>
             </div>
             <div className="text-center text-[11px] text-zinc-400">
               佐藤 花子 がチャットに参加しました
@@ -178,5 +174,5 @@ export default function ChatBubbles() {
         </Frame>
       </div>
     </div>
-  )
+  );
 }

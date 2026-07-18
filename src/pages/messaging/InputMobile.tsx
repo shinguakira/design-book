@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Plus,
   Mic,
@@ -11,35 +11,30 @@ import {
   Sticker,
   CircleUserRound,
   Square,
-} from 'lucide-react'
+} from "lucide-react";
 
-function Phone({
-  children,
-  hint,
-}: { children: React.ReactNode; hint?: string }) {
+function Phone({ children, hint }: { children: React.ReactNode; hint?: string }) {
   return (
     <div className="space-y-2">
       <div className="mx-auto w-[320px] rounded-[2rem] border-[8px] border-zinc-900 bg-white shadow-xl overflow-hidden">
-        <div className="bg-zinc-50 h-[420px] flex flex-col justify-end">
-          {children}
-        </div>
+        <div className="bg-zinc-50 h-[420px] flex flex-col justify-end">{children}</div>
       </div>
-      {hint && (
-        <div className="text-xs text-zinc-500 text-center">{hint}</div>
-      )}
+      {hint && <div className="text-xs text-zinc-500 text-center">{hint}</div>}
     </div>
-  )
+  );
 }
 
 export default function InputMobile() {
-  const [text, setText] = useState('')
-  const [voiceMode, setVoiceMode] = useState(false)
-  const [sheetOpen, setSheetOpen] = useState(false)
+  const [text, setText] = useState("");
+  const [voiceMode, setVoiceMode] = useState(false);
+  const [sheetOpen, setSheetOpen] = useState(false);
 
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        スマホのチャット入力。下端固定 (sticky bottom)、片手操作前提でボタンの位置・サイズを最適化。タップ領域 44px 以上、誤タップ防止のスペーシングを意識。
+        スマホのチャット入力。下端固定 (sticky
+        bottom)、片手操作前提でボタンの位置・サイズを最適化。タップ領域 44px
+        以上、誤タップ防止のスペーシングを意識。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -83,7 +78,7 @@ export default function InputMobile() {
             <button
               onClick={() => setSheetOpen((s) => !s)}
               className={`w-10 h-10 rounded-full flex items-center justify-center transition ${
-                sheetOpen ? 'bg-blue-500 text-white rotate-45' : 'text-zinc-600'
+                sheetOpen ? "bg-blue-500 text-white rotate-45" : "text-zinc-600"
               }`}
             >
               <Plus className="w-5 h-5" />
@@ -101,25 +96,22 @@ export default function InputMobile() {
           {sheetOpen && (
             <div className="border-t border-zinc-200 bg-white py-3 grid grid-cols-4 gap-1 animate-slide-in-up">
               {[
-                { Icon: Camera, label: 'カメラ', color: 'bg-pink-500' },
+                { Icon: Camera, label: "カメラ", color: "bg-pink-500" },
                 {
                   Icon: ImageIcon,
-                  label: 'アルバム',
-                  color: 'bg-violet-500',
+                  label: "アルバム",
+                  color: "bg-violet-500",
                 },
-                { Icon: FileText, label: 'ファイル', color: 'bg-blue-500' },
-                { Icon: MapPin, label: '位置情報', color: 'bg-emerald-500' },
-                { Icon: Sticker, label: 'スタンプ', color: 'bg-amber-500' },
+                { Icon: FileText, label: "ファイル", color: "bg-blue-500" },
+                { Icon: MapPin, label: "位置情報", color: "bg-emerald-500" },
+                { Icon: Sticker, label: "スタンプ", color: "bg-amber-500" },
                 {
                   Icon: CircleUserRound,
-                  label: '連絡先',
-                  color: 'bg-cyan-500',
+                  label: "連絡先",
+                  color: "bg-cyan-500",
                 },
               ].map(({ Icon, label, color }) => (
-                <button
-                  key={label}
-                  className="flex flex-col items-center gap-1.5 py-2"
-                >
+                <button key={label} className="flex flex-col items-center gap-1.5 py-2">
                   <div
                     className={`w-11 h-11 rounded-full ${color} text-white flex items-center justify-center`}
                   >
@@ -197,5 +189,5 @@ export default function InputMobile() {
         </ul>
       </section>
     </div>
-  )
+  );
 }

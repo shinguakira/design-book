@@ -1,9 +1,9 @@
-import { Link, useOutletContext } from 'react-router-dom'
-import { Package, Palette, Droplet, Clapperboard } from 'lucide-react'
-import type { Section } from '../registry'
-import { metaOf, VIEW_GROUPS, type ViewGroup } from '../sectionMeta'
+import { Link, useOutletContext } from "react-router-dom";
+import { Package, Palette, Droplet, Clapperboard } from "lucide-react";
+import type { Section } from "../registry";
+import { metaOf, VIEW_GROUPS, type ViewGroup } from "../sectionMeta";
 
-type Ctx = { visibleSections: Section[]; view: string }
+type Ctx = { visibleSections: Section[]; view: string };
 
 function Welcome({ totalCount }: { totalCount: number }) {
   return (
@@ -67,12 +67,12 @@ function Welcome({ totalCount }: { totalCount: number }) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function SectionBlock({ section }: { section: Section }) {
-  const meta = metaOf(section.id)
-  const { Icon } = meta
+  const meta = metaOf(section.id);
+  const { Icon } = meta;
   return (
     <section>
       <header className="flex items-center gap-3 mb-3">
@@ -82,12 +82,8 @@ function SectionBlock({ section }: { section: Section }) {
           <Icon className="w-5 h-5 text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <h2 className="text-base font-semibold tracking-tight">
-            {section.label}
-          </h2>
-          {meta.tagline && (
-            <p className="text-xs text-zinc-500 mt-0.5">{meta.tagline}</p>
-          )}
+          <h2 className="text-base font-semibold tracking-tight">{section.label}</h2>
+          {meta.tagline && <p className="text-xs text-zinc-500 mt-0.5">{meta.tagline}</p>}
         </div>
         <span
           className={`text-xs font-medium px-2 py-0.5 rounded-full border ${meta.pill} shrink-0`}
@@ -106,23 +102,19 @@ function SectionBlock({ section }: { section: Section }) {
             <div
               className={`absolute top-3 bottom-3 left-1.5 w-0.5 rounded-full bg-gradient-to-b ${meta.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}
             />
-            <div className="font-medium text-sm text-zinc-900">
-              {entry.title}
-            </div>
+            <div className="font-medium text-sm text-zinc-900">{entry.title}</div>
             {entry.description && (
-              <div className="text-xs text-zinc-500 mt-1 line-clamp-2">
-                {entry.description}
-              </div>
+              <div className="text-xs text-zinc-500 mt-1 line-clamp-2">{entry.description}</div>
             )}
           </Link>
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function SubSectionBlock({ section }: { section: Section }) {
-  const meta = metaOf(section.id)
+  const meta = metaOf(section.id);
   return (
     <div>
       <div className="flex items-center gap-2 mb-2">
@@ -148,27 +140,20 @@ function SubSectionBlock({ section }: { section: Section }) {
             <div
               className={`absolute top-3 bottom-3 left-1.5 w-0.5 rounded-full bg-gradient-to-b ${meta.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}
             />
-            <div className="font-medium text-sm text-zinc-900 leading-tight">
-              {entry.title}
-            </div>
+            <div className="font-medium text-sm text-zinc-900 leading-tight">{entry.title}</div>
             {entry.description && (
-              <div className="text-xs text-zinc-500 mt-1 line-clamp-2">
-                {entry.description}
-              </div>
+              <div className="text-xs text-zinc-500 mt-1 line-clamp-2">{entry.description}</div>
             )}
           </Link>
         ))}
       </div>
     </div>
-  )
+  );
 }
 
-function ViewBlock({
-  group,
-  sections,
-}: { group: ViewGroup; sections: Section[] }) {
-  const total = sections.reduce((s, sec) => s + sec.entries.length, 0)
-  const { Icon } = group
+function ViewBlock({ group, sections }: { group: ViewGroup; sections: Section[] }) {
+  const total = sections.reduce((s, sec) => s + sec.entries.length, 0);
+  const { Icon } = group;
   return (
     <section>
       <header className="flex items-center gap-3 mb-5">
@@ -179,9 +164,7 @@ function ViewBlock({
         </div>
         <div className="flex-1 min-w-0">
           <h2 className="text-xl font-bold tracking-tight">{group.label}</h2>
-          <p className="text-xs text-zinc-500 mt-0.5">
-            {sections.map((s) => s.label).join(' · ')}
-          </p>
+          <p className="text-xs text-zinc-500 mt-0.5">{sections.map((s) => s.label).join(" · ")}</p>
         </div>
         <span
           className={`text-xs font-medium px-2.5 py-1 rounded-full border ${group.pill} shrink-0`}
@@ -197,20 +180,15 @@ function ViewBlock({
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 export default function Home() {
-  const { visibleSections, view } = useOutletContext<Ctx>()
-  const totalCount = visibleSections.reduce(
-    (n, s) => n + s.entries.length,
-    0,
-  )
-  const showWelcome = view === 'all'
+  const { visibleSections, view } = useOutletContext<Ctx>();
+  const totalCount = visibleSections.reduce((n, s) => n + s.entries.length, 0);
+  const showWelcome = view === "all";
 
-  const sectionsById = Object.fromEntries(
-    visibleSections.map((s) => [s.id, s]),
-  )
+  const sectionsById = Object.fromEntries(visibleSections.map((s) => [s.id, s]));
 
   return (
     <div className="max-w-6xl">
@@ -219,22 +197,16 @@ export default function Home() {
       {!showWelcome && (
         <div className="mb-8">
           <h1 className="text-2xl font-semibold">Design Book</h1>
-          <p className="text-sm text-zinc-600 mt-2">
-            {totalCount} 件の項目。下のカードから選択。
-          </p>
+          <p className="text-sm text-zinc-600 mt-2">{totalCount} 件の項目。下のカードから選択。</p>
         </div>
       )}
 
       {showWelcome ? (
         <div className="space-y-12">
           {VIEW_GROUPS.map((g) => {
-            const groupSections = g.sectionIds
-              .map((id) => sectionsById[id])
-              .filter(Boolean)
-            if (groupSections.length === 0) return null
-            return (
-              <ViewBlock key={g.id} group={g} sections={groupSections} />
-            )
+            const groupSections = g.sectionIds.map((id) => sectionsById[id]).filter(Boolean);
+            if (groupSections.length === 0) return null;
+            return <ViewBlock key={g.id} group={g} sections={groupSections} />;
           })}
         </div>
       ) : (
@@ -245,5 +217,5 @@ export default function Home() {
         </div>
       )}
     </div>
-  )
+  );
 }

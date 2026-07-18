@@ -1,5 +1,5 @@
-import { Spinner } from '../../components/ui/Spinner'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Spinner } from "../../components/ui/Spinner";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function SpinnerShowcase() {
   return (
@@ -19,5 +19,5 @@ export default function SpinnerShowcase() {
         </div>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

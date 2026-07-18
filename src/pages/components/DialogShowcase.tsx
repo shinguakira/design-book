@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { Button } from '../../components/ui/Button'
-import { Dialog } from '../../components/ui/Dialog'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { useState } from "react";
+import { Button } from "../../components/ui/Button";
+import { Dialog } from "../../components/ui/Dialog";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function DialogShowcase() {
-  const [open, setOpen] = useState(false)
-  const [confirmOpen, setConfirmOpen] = useState(false)
+  const [open, setOpen] = useState(false);
+  const [confirmOpen, setConfirmOpen] = useState(false);
   return (
     <ShowcaseGrid>
       <ShowcaseRow label="Basic">
@@ -44,5 +44,5 @@ export default function DialogShowcase() {
         この操作は取り消せません。
       </Dialog>
     </ShowcaseGrid>
-  )
+  );
 }

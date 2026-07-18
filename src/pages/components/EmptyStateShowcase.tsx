@@ -1,7 +1,7 @@
-import { Button } from '../../components/ui/Button'
-import { EmptyState } from '../../components/ui/EmptyState'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
-import { Search } from 'lucide-react'
+import { Button } from "../../components/ui/Button";
+import { EmptyState } from "../../components/ui/EmptyState";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
+import { Search } from "lucide-react";
 
 export default function EmptyStateShowcase() {
   return (
@@ -25,5 +25,5 @@ export default function EmptyStateShowcase() {
         </div>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

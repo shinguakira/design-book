@@ -7,11 +7,13 @@
 - 文字記号 (`×` `↑` `›` `‹` `⌄` `∅` `✓` `✗` `＋` など) は絵文字ではないので、装飾用途では引き続き使ってよい。ただし意味を持たせたい時 (close ボタン、open/close 状態など) はSVGアイコンの方が見栄えがいい場合が多い。
 
 ### 使い方の目安
-```tsx
-import { Bell, Heart, Search } from 'lucide-react'
 
-<Bell className="w-4 h-4 text-zinc-500" />
+```tsx
+import { Bell, Heart, Search } from "lucide-react";
+
+<Bell className="w-4 h-4 text-zinc-500" />;
 ```
+
 サイズは Tailwind の `w-* h-*` で指定。色は `text-*` で継承。
 
 ## タブ (軸) の分類
