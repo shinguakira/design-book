@@ -1,9 +1,18 @@
-import { Zap, Gem, Flame, Rocket, Sparkles, Target, Palette, Globe } from 'lucide-react'
+import { Zap, Gem, Flame, Rocket, Sparkles, Target, Palette, Globe } from "lucide-react";
 
-const LOGOS = [Palette, Zap, Gem, Flame, Rocket, Sparkles, Globe, Target]
+const LOGOS = [Palette, Zap, Gem, Flame, Rocket, Sparkles, Globe, Target];
 
 export default function Marquee() {
-  const ITEMS = ['React', 'Vite', 'Tailwind', 'TypeScript', 'GraphQL', 'Rails', 'Postgres', 'Redis']
+  const ITEMS = [
+    "React",
+    "Vite",
+    "Tailwind",
+    "TypeScript",
+    "GraphQL",
+    "Rails",
+    "Postgres",
+    "Redis",
+  ];
 
   return (
     <div className="max-w-5xl space-y-6">
@@ -19,10 +28,7 @@ export default function Marquee() {
           <div className="overflow-hidden">
             <div className="flex animate-marquee whitespace-nowrap py-4">
               {[...ITEMS, ...ITEMS].map((t, i) => (
-                <span
-                  key={i}
-                  className="mx-8 text-sm font-semibold text-zinc-700"
-                >
+                <span key={i} className="mx-8 text-sm font-semibold text-zinc-700">
                   {t}
                 </span>
               ))}
@@ -40,7 +46,7 @@ export default function Marquee() {
             className="relative overflow-hidden"
             style={{
               maskImage:
-                'linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%)',
+                "linear-gradient(90deg, transparent 0, #000 10%, #000 90%, transparent 100%)",
             }}
           >
             <div className="flex animate-marquee py-6">
@@ -63,29 +69,15 @@ export default function Marquee() {
         </div>
         <div className="rounded-lg bg-zinc-900 text-white overflow-hidden">
           <div className="flex items-center">
-            <div className="px-4 py-2.5 bg-red-600 text-xs font-bold shrink-0">
-              LIVE
-            </div>
+            <div className="px-4 py-2.5 bg-red-600 text-xs font-bold shrink-0">LIVE</div>
             <div className="overflow-hidden flex-1">
               <div className="flex animate-marquee whitespace-nowrap py-2.5">
-                <span className="mx-8 text-sm">
-                  • Acme Pro が来週リリース予定
-                </span>
-                <span className="mx-8 text-sm">
-                  • 新機能「ダークモード」を追加しました
-                </span>
-                <span className="mx-8 text-sm">
-                  • 12月末まで年額プラン20%OFFキャンペーン
-                </span>
-                <span className="mx-8 text-sm">
-                  • Acme Pro が来週リリース予定
-                </span>
-                <span className="mx-8 text-sm">
-                  • 新機能「ダークモード」を追加しました
-                </span>
-                <span className="mx-8 text-sm">
-                  • 12月末まで年額プラン20%OFFキャンペーン
-                </span>
+                <span className="mx-8 text-sm">• Acme Pro が来週リリース予定</span>
+                <span className="mx-8 text-sm">• 新機能「ダークモード」を追加しました</span>
+                <span className="mx-8 text-sm">• 12月末まで年額プラン20%OFFキャンペーン</span>
+                <span className="mx-8 text-sm">• Acme Pro が来週リリース予定</span>
+                <span className="mx-8 text-sm">• 新機能「ダークモード」を追加しました</span>
+                <span className="mx-8 text-sm">• 12月末まで年額プラン20%OFFキャンペーン</span>
               </div>
             </div>
           </div>
@@ -101,5 +93,5 @@ export default function Marquee() {
         </ul>
       </section>
     </div>
-  )
+  );
 }

@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { Button } from '../../components/ui/Button'
-import { Drawer } from '../../components/ui/Drawer'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { useState } from "react";
+import { Button } from "../../components/ui/Button";
+import { Drawer } from "../../components/ui/Drawer";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function DrawerShowcase() {
-  const [right, setRight] = useState(false)
-  const [left, setLeft] = useState(false)
+  const [right, setRight] = useState(false);
+  const [left, setLeft] = useState(false);
   return (
     <ShowcaseGrid>
       <ShowcaseRow label="Right">
@@ -17,21 +17,11 @@ export default function DrawerShowcase() {
         </Button>
       </ShowcaseRow>
 
-      <Drawer
-        open={right}
-        onClose={() => setRight(false)}
-        title="設定パネル"
-        side="right"
-      >
+      <Drawer open={right} onClose={() => setRight(false)} title="設定パネル" side="right">
         <p>右側にスライドインするDrawerの中身。</p>
         <p className="mt-3 text-zinc-500">背景クリックまたは Esc で閉じる。</p>
       </Drawer>
-      <Drawer
-        open={left}
-        onClose={() => setLeft(false)}
-        title="メニュー"
-        side="left"
-      >
+      <Drawer open={left} onClose={() => setLeft(false)} title="メニュー" side="left">
         <ul className="space-y-2">
           <li>ホーム</li>
           <li>プロジェクト</li>
@@ -39,5 +29,5 @@ export default function DrawerShowcase() {
         </ul>
       </Drawer>
     </ShowcaseGrid>
-  )
+  );
 }

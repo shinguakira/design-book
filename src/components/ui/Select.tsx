@@ -1,13 +1,13 @@
-import type { SelectHTMLAttributes } from 'react'
+import type { SelectHTMLAttributes } from "react";
 
 export function Select({
   label,
   options,
-  className = '',
+  className = "",
   ...rest
 }: SelectHTMLAttributes<HTMLSelectElement> & {
-  label?: string
-  options: { value: string; label: string }[]
+  label?: string;
+  options: { value: string; label: string }[];
 }) {
   return (
     <label className="block">
@@ -17,9 +17,11 @@ export function Select({
         {...rest}
       >
         {options.map((o) => (
-          <option key={o.value} value={o.value}>{o.label}</option>
+          <option key={o.value} value={o.value}>
+            {o.label}
+          </option>
         ))}
       </select>
     </label>
-  )
+  );
 }

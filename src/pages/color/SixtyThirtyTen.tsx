@@ -2,9 +2,7 @@ export default function SixtyThirtyTen() {
   return (
     <div className="max-w-4xl space-y-6">
       <section className="text-sm text-zinc-700 leading-relaxed space-y-2">
-        <p>
-          画面を 3色で構成するときの黄金比のルール。
-        </p>
+        <p>画面を 3色で構成するときの黄金比のルール。</p>
         <ul className="list-disc pl-5 space-y-1 text-zinc-600">
           <li>
             <b>60%</b> — メインカラー (背景・大きい面積)。落ち着いた色を選ぶ。
@@ -13,12 +11,11 @@ export default function SixtyThirtyTen() {
             <b>30%</b> — サブカラー (セクション・カード・差し色になる中面積)。メインを補完。
           </li>
           <li>
-            <b>10%</b> — アクセントカラー (CTA・通知・強調)。最も彩度の高い色をここだけに集中させる。
+            <b>10%</b> — アクセントカラー
+            (CTA・通知・強調)。最も彩度の高い色をここだけに集中させる。
           </li>
         </ul>
-        <p className="text-zinc-600">
-          逆にすると (アクセントを60%) 目が疲れる UI になる。
-        </p>
+        <p className="text-zinc-600">逆にすると (アクセントを60%) 目が疲れる UI になる。</p>
       </section>
 
       <section>
@@ -56,17 +53,26 @@ export default function SixtyThirtyTen() {
           色の割合の見え方
         </div>
         <div className="flex h-10 rounded-md overflow-hidden border border-zinc-200">
-          <div className="bg-zinc-50 flex items-center justify-center text-xs text-zinc-600" style={{ width: '60%' }}>
+          <div
+            className="bg-zinc-50 flex items-center justify-center text-xs text-zinc-600"
+            style={{ width: "60%" }}
+          >
             60% メイン
           </div>
-          <div className="bg-white flex items-center justify-center text-xs text-zinc-600 border-l border-zinc-200" style={{ width: '30%' }}>
+          <div
+            className="bg-white flex items-center justify-center text-xs text-zinc-600 border-l border-zinc-200"
+            style={{ width: "30%" }}
+          >
             30% サブ
           </div>
-          <div className="bg-blue-600 flex items-center justify-center text-xs text-white" style={{ width: '10%' }}>
+          <div
+            className="bg-blue-600 flex items-center justify-center text-xs text-white"
+            style={{ width: "10%" }}
+          >
             10%
           </div>
         </div>
       </section>
     </div>
-  )
+  );
 }

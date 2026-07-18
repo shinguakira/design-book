@@ -1,9 +1,9 @@
-import { useState } from 'react'
-import { Chip } from '../../components/ui/Chip'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { useState } from "react";
+import { Chip } from "../../components/ui/Chip";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function ChipShowcase() {
-  const [tags, setTags] = useState(['React', 'TypeScript', 'Tailwind', 'Vite'])
+  const [tags, setTags] = useState(["React", "TypeScript", "Tailwind", "Vite"]);
   return (
     <ShowcaseGrid>
       <ShowcaseRow label="Static">
@@ -19,11 +19,9 @@ export default function ChipShowcase() {
           </Chip>
         ))}
         {tags.length === 0 && (
-          <span className="text-xs text-zinc-400">
-            全部消したら一度リロード
-          </span>
+          <span className="text-xs text-zinc-400">全部消したら一度リロード</span>
         )}
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

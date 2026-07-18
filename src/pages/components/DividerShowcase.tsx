@@ -1,5 +1,5 @@
-import { Divider } from '../../components/ui/Divider'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Divider } from "../../components/ui/Divider";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function DividerShowcase() {
   return (
@@ -16,5 +16,5 @@ export default function DividerShowcase() {
         </div>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

@@ -1,4 +1,4 @@
-import { Button } from '../../components/ui/Button'
+import { Button } from "../../components/ui/Button";
 
 export default function LoginScreen() {
   return (
@@ -8,11 +8,11 @@ export default function LoginScreen() {
           <div className="text-lg font-semibold">Acme</div>
           <div className="mt-auto pt-32">
             <div className="text-3xl font-semibold leading-tight">
-              ようこそ、<br />Acme へ。
+              ようこそ、
+              <br />
+              Acme へ。
             </div>
-            <p className="mt-3 text-sm text-zinc-300">
-              チームのデザインアイデアを一箇所に。
-            </p>
+            <p className="mt-3 text-sm text-zinc-300">チームのデザインアイデアを一箇所に。</p>
           </div>
         </div>
 
@@ -38,18 +38,22 @@ export default function LoginScreen() {
               />
             </label>
 
-            <Button type="button" className="w-full">ログイン</Button>
+            <Button type="button" className="w-full">
+              ログイン
+            </Button>
             <Button type="button" variant="secondary" className="w-full">
               Googleで続ける
             </Button>
 
             <div className="text-center text-xs text-zinc-500 pt-2">
-              アカウントがない方は{' '}
-              <a className="underline" href="#">新規登録</a>
+              アカウントがない方は{" "}
+              <a className="underline" href="#">
+                新規登録
+              </a>
             </div>
           </form>
         </div>
       </div>
     </div>
-  )
+  );
 }

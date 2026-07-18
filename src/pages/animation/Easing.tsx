@@ -1,19 +1,19 @@
 const EASINGS = [
-  { name: 'linear', label: 'Linear', note: '一定速度。機械的・無機質。' },
-  { name: 'ease-in', label: 'Ease In', note: 'ゆっくり始まり加速。消える時に使う。' },
-  { name: 'ease-out', label: 'Ease Out', note: '速く始まり減速。現れる時の定番。' },
-  { name: 'ease-in-out', label: 'Ease In Out', note: '両端で減速。最も自然で多用される。' },
+  { name: "linear", label: "Linear", note: "一定速度。機械的・無機質。" },
+  { name: "ease-in", label: "Ease In", note: "ゆっくり始まり加速。消える時に使う。" },
+  { name: "ease-out", label: "Ease Out", note: "速く始まり減速。現れる時の定番。" },
+  { name: "ease-in-out", label: "Ease In Out", note: "両端で減速。最も自然で多用される。" },
   {
-    name: 'cubic-bezier(.34,1.56,.64,1)',
-    label: 'Spring (overshoot)',
-    note: 'ちょっと行き過ぎて戻る。遊び心。',
+    name: "cubic-bezier(.34,1.56,.64,1)",
+    label: "Spring (overshoot)",
+    note: "ちょっと行き過ぎて戻る。遊び心。",
   },
   {
-    name: 'cubic-bezier(.68,-.55,.27,1.55)',
-    label: 'Bounce-ish',
-    note: '勢いがあって弾む。',
+    name: "cubic-bezier(.68,-.55,.27,1.55)",
+    label: "Bounce-ish",
+    note: "勢いがあって弾む。",
   },
-]
+];
 
 export default function Easing() {
   return (
@@ -25,10 +25,7 @@ export default function Easing() {
 
       <div className="space-y-3">
         {EASINGS.map((e) => (
-          <div
-            key={e.name}
-            className="rounded-lg border border-zinc-200 bg-white overflow-hidden"
-          >
+          <div key={e.name} className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
             <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50 flex items-baseline justify-between">
               <div>
                 <div className="text-sm font-medium">{e.label}</div>
@@ -64,13 +61,23 @@ export default function Easing() {
       <section className="rounded-lg border border-amber-200 bg-amber-50 p-5 text-sm text-amber-900">
         <div className="font-semibold mb-2">使い分けの目安</div>
         <ul className="list-disc pl-5 space-y-1">
-          <li><b>現れる・入る</b> → ease-out (速く来てふわり止まる)</li>
-          <li><b>消える・出る</b> → ease-in (留まってから去る)</li>
-          <li><b>移動・状態変化</b> → ease-in-out (両端を整える)</li>
-          <li><b>遊び・性格を出したい</b> → spring/overshoot (やりすぎ注意)</li>
-          <li><b>長さ</b> — 小さい要素 150ms、中サイズ 200〜300ms、大きい/画面遷移 400〜600ms</li>
+          <li>
+            <b>現れる・入る</b> → ease-out (速く来てふわり止まる)
+          </li>
+          <li>
+            <b>消える・出る</b> → ease-in (留まってから去る)
+          </li>
+          <li>
+            <b>移動・状態変化</b> → ease-in-out (両端を整える)
+          </li>
+          <li>
+            <b>遊び・性格を出したい</b> → spring/overshoot (やりすぎ注意)
+          </li>
+          <li>
+            <b>長さ</b> — 小さい要素 150ms、中サイズ 200〜300ms、大きい/画面遷移 400〜600ms
+          </li>
         </ul>
       </section>
     </div>
-  )
+  );
 }

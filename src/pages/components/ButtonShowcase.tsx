@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   ArrowRight,
   ChevronDown,
@@ -9,13 +9,17 @@ import {
   Send,
   Sparkles,
   Trash2,
-} from 'lucide-react'
+} from "lucide-react";
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -24,49 +28,47 @@ function Frame({
       </div>
       <div className="p-5 flex flex-wrap gap-2">{children}</div>
     </div>
-  )
+  );
 }
 
 function LoadingBtn() {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   return (
     <button
       onClick={() => {
-        setLoading(true)
-        setTimeout(() => setLoading(false), 1500)
+        setLoading(true);
+        setTimeout(() => setLoading(false), 1500);
       }}
       disabled={loading}
       className="inline-flex items-center gap-2 px-4 h-9 rounded-md bg-zinc-900 text-white text-sm font-medium disabled:opacity-80"
     >
       {loading && <Loader2 className="w-3.5 h-3.5 animate-spin" />}
-      {loading ? '送信中...' : '送信'}
+      {loading ? "送信中..." : "送信"}
     </button>
-  )
+  );
 }
 
 function ToggleGroup() {
-  const [v, setV] = useState<'l' | 'c' | 'r'>('c')
+  const [v, setV] = useState<"l" | "c" | "r">("c");
   return (
     <div className="inline-flex border border-zinc-300 rounded-md overflow-hidden">
       {[
-        { id: 'l', label: '左揃え' },
-        { id: 'c', label: '中央' },
-        { id: 'r', label: '右揃え' },
+        { id: "l", label: "左揃え" },
+        { id: "c", label: "中央" },
+        { id: "r", label: "右揃え" },
       ].map((o) => (
         <button
           key={o.id}
-          onClick={() => setV(o.id as 'l' | 'c' | 'r')}
+          onClick={() => setV(o.id as "l" | "c" | "r")}
           className={`px-3 h-9 text-sm border-l border-zinc-300 first:border-l-0 ${
-            v === o.id
-              ? 'bg-zinc-900 text-white'
-              : 'bg-white hover:bg-zinc-50 text-zinc-700'
+            v === o.id ? "bg-zinc-900 text-white" : "bg-white hover:bg-zinc-50 text-zinc-700"
           }`}
         >
           {o.label}
         </button>
       ))}
     </div>
-  )
+  );
 }
 
 export default function ButtonShowcase() {
@@ -169,12 +171,15 @@ export default function ButtonShowcase() {
       </Frame>
 
       <Frame label="8. Neumorphism" note="背景同色 + 凹凸シャドウ">
-        <div className="flex gap-3 w-full" style={{ background: '#e0e5ec', borderRadius: 8, padding: 16 }}>
+        <div
+          className="flex gap-3 w-full"
+          style={{ background: "#e0e5ec", borderRadius: 8, padding: 16 }}
+        >
           <button
             className="px-5 h-10 rounded-xl text-sm font-medium text-zinc-700"
             style={{
-              background: '#e0e5ec',
-              boxShadow: '5px 5px 10px #b8bcc2, -5px -5px 10px #ffffff',
+              background: "#e0e5ec",
+              boxShadow: "5px 5px 10px #b8bcc2, -5px -5px 10px #ffffff",
             }}
           >
             Soft button
@@ -182,8 +187,8 @@ export default function ButtonShowcase() {
           <button
             className="px-5 h-10 rounded-xl text-sm font-medium text-zinc-700"
             style={{
-              background: '#e0e5ec',
-              boxShadow: 'inset 5px 5px 10px #b8bcc2, inset -5px -5px 10px #ffffff',
+              background: "#e0e5ec",
+              boxShadow: "inset 5px 5px 10px #b8bcc2, inset -5px -5px 10px #ffffff",
             }}
           >
             Pressed
@@ -195,7 +200,7 @@ export default function ButtonShowcase() {
         <div
           className="rounded-md p-4 flex gap-3 w-full"
           style={{
-            background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+            background: "linear-gradient(135deg, #6366f1, #ec4899)",
           }}
         >
           <button className="px-4 h-9 rounded-md bg-white/20 backdrop-blur border border-white/40 text-white text-sm font-medium hover:bg-white/30">
@@ -277,9 +282,7 @@ export default function ButtonShowcase() {
       </Frame>
 
       <Frame label="16. Sizes" note="xs / sm / md / lg / xl">
-        <button className="px-2 h-6 rounded text-xs font-medium bg-zinc-900 text-white">
-          xs
-        </button>
+        <button className="px-2 h-6 rounded text-xs font-medium bg-zinc-900 text-white">xs</button>
         <button className="px-3 h-7 rounded-md text-xs font-medium bg-zinc-900 text-white">
           sm
         </button>
@@ -295,13 +298,19 @@ export default function ButtonShowcase() {
       </Frame>
 
       <Frame label="17. Disabled" note="操作不可">
-        <button disabled className="px-4 h-9 rounded-md bg-zinc-900 text-white text-sm font-medium opacity-40 cursor-not-allowed">
+        <button
+          disabled
+          className="px-4 h-9 rounded-md bg-zinc-900 text-white text-sm font-medium opacity-40 cursor-not-allowed"
+        >
           無効
         </button>
-        <button disabled className="px-4 h-9 rounded-md border border-zinc-300 text-zinc-400 text-sm font-medium cursor-not-allowed">
+        <button
+          disabled
+          className="px-4 h-9 rounded-md border border-zinc-300 text-zinc-400 text-sm font-medium cursor-not-allowed"
+        >
           無効
         </button>
       </Frame>
     </div>
-  )
+  );
 }

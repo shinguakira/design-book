@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Mail,
   Lock,
@@ -9,13 +9,17 @@ import {
   Calendar,
   CheckCircle2,
   XCircle,
-} from 'lucide-react'
+} from "lucide-react";
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -24,11 +28,11 @@ function Frame({
       </div>
       <div className="p-5">{children}</div>
     </div>
-  )
+  );
 }
 
 function FloatingLabel({ label }: { label: string }) {
-  const [val, setVal] = useState('')
+  const [val, setVal] = useState("");
   return (
     <div className="relative max-w-xs">
       <input
@@ -45,17 +49,17 @@ function FloatingLabel({ label }: { label: string }) {
         {label}
       </label>
     </div>
-  )
+  );
 }
 
 function PasswordEye() {
-  const [show, setShow] = useState(false)
-  const [val, setVal] = useState('mypassword')
+  const [show, setShow] = useState(false);
+  const [val, setVal] = useState("mypassword");
   return (
     <div className="relative max-w-xs">
       <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400" />
       <input
-        type={show ? 'text' : 'password'}
+        type={show ? "text" : "password"}
         value={val}
         onChange={(e) => setVal(e.target.value)}
         className="w-full h-9 rounded-md border border-zinc-300 pl-9 pr-9 text-sm focus:outline-none focus:border-zinc-900"
@@ -67,11 +71,11 @@ function PasswordEye() {
         {show ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
       </button>
     </div>
-  )
+  );
 }
 
 function NumberStepper() {
-  const [n, setN] = useState(3)
+  const [n, setN] = useState(3);
   return (
     <div className="inline-flex max-w-xs">
       <button
@@ -93,11 +97,11 @@ function NumberStepper() {
         +
       </button>
     </div>
-  )
+  );
 }
 
 function PinInput() {
-  const [vals, setVals] = useState(['1', '2', '3', '', '', ''])
+  const [vals, setVals] = useState(["1", "2", "3", "", "", ""]);
   return (
     <div className="flex gap-2">
       {vals.map((v, i) => (
@@ -106,18 +110,18 @@ function PinInput() {
           maxLength={1}
           value={v}
           onChange={(e) => {
-            const c = e.target.value.slice(-1)
-            setVals((arr) => arr.map((x, j) => (j === i ? c : x)))
+            const c = e.target.value.slice(-1);
+            setVals((arr) => arr.map((x, j) => (j === i ? c : x)));
             if (c && i < 5) {
-              const next = (e.target.parentElement?.children[i + 1] as HTMLInputElement)
-              next?.focus()
+              const next = e.target.parentElement?.children[i + 1] as HTMLInputElement;
+              next?.focus();
             }
           }}
           className="w-10 h-12 rounded-md border border-zinc-300 text-center text-lg font-bold tabular-nums focus:outline-none focus:border-zinc-900"
         />
       ))}
     </div>
-  )
+  );
 }
 
 export default function InputShowcase() {
@@ -126,9 +130,7 @@ export default function InputShowcase() {
       <Frame label="1. Plain" note="ラベル + ヒント。最も汎用">
         <div className="space-y-3 max-w-xs">
           <div>
-            <label className="block text-xs font-medium text-zinc-600 mb-1">
-              名前
-            </label>
+            <label className="block text-xs font-medium text-zinc-600 mb-1">名前</label>
             <input
               placeholder="山田太郎"
               className="w-full h-9 rounded-md border border-zinc-300 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
@@ -234,9 +236,7 @@ export default function InputShowcase() {
               />
               <XCircle className="absolute right-2.5 top-1/2 -translate-y-1/2 w-4 h-4 text-rose-500" />
             </div>
-            <div className="text-xs text-rose-600 mt-1">
-              メール形式が正しくありません
-            </div>
+            <div className="text-xs text-rose-600 mt-1">メール形式が正しくありません</div>
           </div>
         </div>
       </Frame>
@@ -287,7 +287,7 @@ export default function InputShowcase() {
         <div
           className="p-5 rounded-md max-w-md"
           style={{
-            background: 'linear-gradient(135deg, #6366f1, #ec4899)',
+            background: "linear-gradient(135deg, #6366f1, #ec4899)",
           }}
         >
           <div className="relative">
@@ -321,12 +321,12 @@ export default function InputShowcase() {
         </div>
       </Frame>
     </div>
-  )
+  );
 }
 
 function InlineEdit() {
-  const [edit, setEdit] = useState(false)
-  const [val, setVal] = useState('My project name')
+  const [edit, setEdit] = useState(false);
+  const [val, setVal] = useState("My project name");
   if (edit) {
     return (
       <input
@@ -335,11 +335,11 @@ function InlineEdit() {
         onChange={(e) => setVal(e.target.value)}
         onBlur={() => setEdit(false)}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === 'Escape') setEdit(false)
+          if (e.key === "Enter" || e.key === "Escape") setEdit(false);
         }}
         className="w-full max-w-xs h-9 rounded-md border-2 border-blue-500 px-3 text-base font-semibold outline-none"
       />
-    )
+    );
   }
   return (
     <button
@@ -349,5 +349,5 @@ function InlineEdit() {
       {val}
       <span className="text-xs text-zinc-400">click to edit</span>
     </button>
-  )
+  );
 }

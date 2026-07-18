@@ -1,6 +1,6 @@
-import { Button } from '../../components/ui/Button'
-import { Popover } from '../../components/ui/Popover'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Button } from "../../components/ui/Button";
+import { Popover } from "../../components/ui/Popover";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function PopoverShowcase() {
   return (
@@ -22,5 +22,5 @@ export default function PopoverShowcase() {
         </Popover>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

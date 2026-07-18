@@ -1,22 +1,22 @@
-import { useState } from 'react'
-import { Heart } from 'lucide-react'
+import { useState } from "react";
+import { Heart } from "lucide-react";
 
 export default function MicroInteractions() {
-  const [liked, setLiked] = useState(false)
-  const [copied, setCopied] = useState(false)
-  const [checked, setChecked] = useState(false)
-  const [count, setCount] = useState(0)
+  const [liked, setLiked] = useState(false);
+  const [copied, setCopied] = useState(false);
+  const [checked, setChecked] = useState(false);
+  const [count, setCount] = useState(0);
 
   const copy = () => {
-    navigator.clipboard?.writeText('https://example.com/share/abc').catch(() => {})
-    setCopied(true)
-    setTimeout(() => setCopied(false), 1500)
-  }
+    navigator.clipboard?.writeText("https://example.com/share/abc").catch(() => {});
+    setCopied(true);
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   const onLike = () => {
-    setLiked((v) => !v)
-    setCount((c) => c + (liked ? -1 : 1))
-  }
+    setLiked((v) => !v);
+    setCount((c) => c + (liked ? -1 : 1));
+  };
 
   return (
     <div className="max-w-5xl space-y-6">
@@ -28,20 +28,13 @@ export default function MicroInteractions() {
         <div className="rounded-lg border border-zinc-200 bg-white p-5">
           <div className="text-sm font-medium mb-3">Like button (pop)</div>
           <div className="flex items-center gap-3">
-            <button
-              onClick={onLike}
-              className="select-none active:scale-90 transition-transform"
-            >
+            <button onClick={onLike} className="select-none active:scale-90 transition-transform">
               <span
-                key={liked ? 'on' : 'off'}
-                className={liked ? 'inline-block animate-pop' : 'inline-block'}
+                key={liked ? "on" : "off"}
+                className={liked ? "inline-block animate-pop" : "inline-block"}
               >
                 <Heart
-                  className={
-                    liked
-                      ? 'w-8 h-8 text-red-500 fill-red-500'
-                      : 'w-8 h-8 text-zinc-400'
-                  }
+                  className={liked ? "w-8 h-8 text-red-500 fill-red-500" : "w-8 h-8 text-zinc-400"}
                 />
               </span>
             </button>
@@ -62,14 +55,14 @@ export default function MicroInteractions() {
             >
               <span
                 className={`absolute inset-0 flex items-center justify-center transition-all duration-200 ${
-                  copied ? 'opacity-0 -translate-y-3' : 'opacity-100 translate-y-0'
+                  copied ? "opacity-0 -translate-y-3" : "opacity-100 translate-y-0"
                 }`}
               >
                 Copy
               </span>
               <span
                 className={`absolute inset-0 flex items-center justify-center transition-all duration-200 ${
-                  copied ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-3'
+                  copied ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
                 }`}
               >
                 ✓
@@ -83,15 +76,13 @@ export default function MicroInteractions() {
           <label className="flex items-center gap-3 cursor-pointer">
             <span
               className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all duration-200 ${
-                checked
-                  ? 'bg-emerald-500 border-emerald-500 scale-100'
-                  : 'bg-white border-zinc-300'
+                checked ? "bg-emerald-500 border-emerald-500 scale-100" : "bg-white border-zinc-300"
               }`}
               onClick={() => setChecked((v) => !v)}
             >
               <span
                 className={`text-white text-sm transition-transform duration-200 ${
-                  checked ? 'scale-100' : 'scale-0'
+                  checked ? "scale-100" : "scale-0"
                 }`}
               >
                 ✓
@@ -128,29 +119,29 @@ export default function MicroInteractions() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 function Toggle() {
-  const [on, setOn] = useState(false)
+  const [on, setOn] = useState(false);
   return (
     <button
       onClick={() => setOn((v) => !v)}
       className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors duration-200 ${
-        on ? 'bg-emerald-500' : 'bg-zinc-300'
+        on ? "bg-emerald-500" : "bg-zinc-300"
       }`}
     >
       <span
         className={`inline-block w-5 h-5 transform rounded-full bg-white shadow transition-transform duration-200 ${
-          on ? 'translate-x-6' : 'translate-x-1'
+          on ? "translate-x-6" : "translate-x-1"
         }`}
       />
     </button>
-  )
+  );
 }
 
 function Counter() {
-  const [n, setN] = useState(0)
+  const [n, setN] = useState(0);
   return (
     <div className="flex items-center gap-3">
       <button
@@ -159,9 +150,7 @@ function Counter() {
       >
         −
       </button>
-      <div className="min-w-12 text-center text-xl font-semibold tabular-nums">
-        {n}
-      </div>
+      <div className="min-w-12 text-center text-xl font-semibold tabular-nums">{n}</div>
       <button
         onClick={() => setN((v) => v + 1)}
         className="w-9 h-9 rounded-md border border-zinc-300 hover:bg-zinc-50 text-lg"
@@ -169,5 +158,5 @@ function Counter() {
         +
       </button>
     </div>
-  )
+  );
 }

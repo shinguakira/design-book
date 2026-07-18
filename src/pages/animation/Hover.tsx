@@ -2,7 +2,8 @@ export default function Hover() {
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700">
-        マウスホバー時の細かな反応。クリック可能・操作可能であることを示す。トランジションは 150〜250ms が定番。
+        マウスホバー時の細かな反応。クリック可能・操作可能であることを示す。トランジションは
+        150〜250ms が定番。
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -36,9 +37,7 @@ export default function Hover() {
         </div>
 
         <div className="rounded-lg border border-zinc-200 bg-white p-5 space-y-3">
-          <div className="text-xs text-zinc-500 font-mono">
-            underline grow (after:scale-x-0)
-          </div>
+          <div className="text-xs text-zinc-500 font-mono">underline grow (after:scale-x-0)</div>
           <div className="flex items-center justify-center h-32">
             <a
               href="#"
@@ -55,24 +54,19 @@ export default function Hover() {
           <div className="flex items-center justify-center h-32">
             <div className="group cursor-pointer flex items-center gap-2 px-4 h-10 rounded-md bg-zinc-900 text-white text-sm font-medium transition-colors hover:bg-zinc-800">
               次へ
-              <span className="transition-transform duration-200 group-hover:translate-x-1">
-                →
-              </span>
+              <span className="transition-transform duration-200 group-hover:translate-x-1">→</span>
             </div>
           </div>
         </div>
 
         <div className="rounded-lg border border-zinc-200 bg-white p-5 space-y-3">
-          <div className="text-xs text-zinc-500 font-mono">
-            gradient shift (bg-position)
-          </div>
+          <div className="text-xs text-zinc-500 font-mono">gradient shift (bg-position)</div>
           <div className="flex items-center justify-center h-32">
             <button
               className="px-5 h-10 rounded-md text-white text-sm font-medium transition-[background-position] duration-500 hover:bg-right"
               style={{
-                backgroundImage:
-                  'linear-gradient(90deg, #3b82f6 0%, #a855f7 50%, #3b82f6 100%)',
-                backgroundSize: '200% 100%',
+                backgroundImage: "linear-gradient(90deg, #3b82f6 0%, #a855f7 50%, #3b82f6 100%)",
+                backgroundSize: "200% 100%",
               }}
             >
               Gradient Shift
@@ -87,8 +81,7 @@ export default function Hover() {
               <div
                 className="w-full h-full transition-transform duration-300 hover:scale-110 flex items-center justify-center text-white font-bold"
                 style={{
-                  background:
-                    'linear-gradient(135deg, #f59e0b, #ef4444, #ec4899)',
+                  background: "linear-gradient(135deg, #f59e0b, #ef4444, #ec4899)",
                 }}
               >
                 IMAGE
@@ -122,5 +115,5 @@ export default function Hover() {
         </div>
       </div>
     </div>
-  )
+  );
 }

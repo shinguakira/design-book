@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState } from "react";
 import {
   Camera,
   Upload,
@@ -8,13 +8,17 @@ import {
   X,
   Check,
   User,
-} from 'lucide-react'
+} from "lucide-react";
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -23,31 +27,25 @@ function Frame({
       </div>
       <div className="p-5">{children}</div>
     </div>
-  )
+  );
 }
 
 function Dropzone() {
-  const [hover, setHover] = useState(false)
+  const [hover, setHover] = useState(false);
   return (
     <label
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
       className={`block max-w-md mx-auto border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition ${
-        hover ? 'border-blue-500 bg-blue-50' : 'border-zinc-300 hover:border-zinc-400'
+        hover ? "border-blue-500 bg-blue-50" : "border-zinc-300 hover:border-zinc-400"
       }`}
     >
       <input type="file" multiple className="hidden" />
-      <Upload
-        className={`w-8 h-8 mx-auto ${hover ? 'text-blue-500' : 'text-zinc-400'}`}
-      />
-      <div className="mt-2 text-sm font-medium">
-        ファイルをドロップ or クリックして選択
-      </div>
-      <div className="text-xs text-zinc-500 mt-1">
-        最大 50MB · PNG / JPG / PDF
-      </div>
+      <Upload className={`w-8 h-8 mx-auto ${hover ? "text-blue-500" : "text-zinc-400"}`} />
+      <div className="mt-2 text-sm font-medium">ファイルをドロップ or クリックして選択</div>
+      <div className="text-xs text-zinc-500 mt-1">最大 50MB · PNG / JPG / PDF</div>
     </label>
-  )
+  );
 }
 
 function CompactButton() {
@@ -57,11 +55,11 @@ function CompactButton() {
       <Upload className="w-4 h-4" />
       ファイルを選ぶ
     </label>
-  )
+  );
 }
 
 function AvatarUpload() {
-  const [hasImg, setHasImg] = useState(true)
+  const [hasImg, setHasImg] = useState(true);
   return (
     <div className="flex items-center gap-4">
       <label className="relative cursor-pointer group">
@@ -69,11 +67,11 @@ function AvatarUpload() {
         <div
           className={`w-20 h-20 rounded-full overflow-hidden flex items-center justify-center ${
             hasImg
-              ? 'bg-gradient-to-br from-blue-500 to-violet-600 text-white text-2xl font-bold'
-              : 'bg-zinc-200 text-zinc-500'
+              ? "bg-gradient-to-br from-blue-500 to-violet-600 text-white text-2xl font-bold"
+              : "bg-zinc-200 text-zinc-500"
           }`}
         >
-          {hasImg ? 'T' : <User className="w-8 h-8" />}
+          {hasImg ? "T" : <User className="w-8 h-8" />}
         </div>
         <div className="absolute inset-0 rounded-full bg-black/40 opacity-0 group-hover:opacity-100 flex items-center justify-center text-white transition">
           <Camera className="w-5 h-5" />
@@ -81,9 +79,7 @@ function AvatarUpload() {
       </label>
       <div className="text-sm">
         <div className="font-medium">プロフィール写真</div>
-        <div className="text-xs text-zinc-500 mt-0.5">
-          クリックでアップロード
-        </div>
+        <div className="text-xs text-zinc-500 mt-0.5">クリックでアップロード</div>
         <button
           onClick={() => setHasImg(false)}
           className="text-xs text-rose-600 hover:underline mt-1"
@@ -92,15 +88,15 @@ function AvatarUpload() {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 function MultiThumbnails() {
   const [files, setFiles] = useState([
-    { id: 1, color: 'from-pink-400 to-rose-500' },
-    { id: 2, color: 'from-blue-400 to-violet-500' },
-    { id: 3, color: 'from-emerald-400 to-teal-500' },
-  ])
+    { id: 1, color: "from-pink-400 to-rose-500" },
+    { id: 2, color: "from-blue-400 to-violet-500" },
+    { id: 3, color: "from-emerald-400 to-teal-500" },
+  ]);
   return (
     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 max-w-xl">
       {files.map((f) => (
@@ -121,7 +117,7 @@ function MultiThumbnails() {
         <Plus className="w-6 h-6" />
       </label>
     </div>
-  )
+  );
 }
 
 function CameraTrigger() {
@@ -133,16 +129,16 @@ function CameraTrigger() {
       </div>
       <span className="text-xs text-zinc-500">写真を撮る</span>
     </label>
-  )
+  );
 }
 
 function PreviewedList() {
-  type F = { id: number; name: string; size: string; done: boolean }
+  type F = { id: number; name: string; size: string; done: boolean };
   const [files] = useState<F[]>([
-    { id: 1, name: 'design-spec.pdf', size: '2.4 MB', done: true },
-    { id: 2, name: 'mockup-v3.png', size: '3.1 MB', done: true },
-    { id: 3, name: 'notes.md', size: '12 KB', done: false },
-  ])
+    { id: 1, name: "design-spec.pdf", size: "2.4 MB", done: true },
+    { id: 2, name: "mockup-v3.png", size: "3.1 MB", done: true },
+    { id: 3, name: "notes.md", size: "12 KB", done: false },
+  ]);
   return (
     <ul className="space-y-1.5 max-w-md">
       {files.map((f) => (
@@ -163,7 +159,7 @@ function PreviewedList() {
         </li>
       ))}
     </ul>
-  )
+  );
 }
 
 function PasteImage() {
@@ -178,7 +174,7 @@ function PasteImage() {
         )
       </div>
     </div>
-  )
+  );
 }
 
 function ImageWithCrop() {
@@ -198,7 +194,7 @@ function ImageWithCrop() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export default function FileUploadShowcase() {
@@ -249,12 +245,12 @@ export default function FileUploadShowcase() {
             type="file"
             multiple
             className="hidden"
-            {...({ webkitdirectory: '' } as React.InputHTMLAttributes<HTMLInputElement>)}
+            {...({ webkitdirectory: "" } as React.InputHTMLAttributes<HTMLInputElement>)}
           />
           <Upload className="w-4 h-4" />
           フォルダごと送信
         </label>
       </Frame>
     </div>
-  )
+  );
 }

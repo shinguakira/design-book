@@ -1,9 +1,9 @@
-import { Link, useOutletContext } from 'react-router-dom'
-import { Package, Palette, Droplet, Clapperboard } from 'lucide-react'
-import type { Section } from '../registry'
-import { metaOf } from '../sectionMeta'
+import { Link, useOutletContext } from "react-router-dom";
+import { Package, Palette, Droplet, Clapperboard } from "lucide-react";
+import type { Section } from "../registry";
+import { metaOf, VIEW_GROUPS, type ViewGroup } from "../sectionMeta";
 
-type Ctx = { visibleSections: Section[]; view: string }
+type Ctx = { visibleSections: Section[]; view: string };
 
 function Welcome({ totalCount }: { totalCount: number }) {
   return (
@@ -67,12 +67,12 @@ function Welcome({ totalCount }: { totalCount: number }) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function SectionBlock({ section }: { section: Section }) {
-  const meta = metaOf(section.id)
-  const { Icon } = meta
+  const meta = metaOf(section.id);
+  const { Icon } = meta;
   return (
     <section>
       <header className="flex items-center gap-3 mb-3">
@@ -82,12 +82,8 @@ function SectionBlock({ section }: { section: Section }) {
           <Icon className="w-5 h-5 text-white" />
         </div>
         <div className="flex-1 min-w-0">
-          <h2 className="text-base font-semibold tracking-tight">
-            {section.label}
-          </h2>
-          {meta.tagline && (
-            <p className="text-xs text-zinc-500 mt-0.5">{meta.tagline}</p>
-          )}
+          <h2 className="text-base font-semibold tracking-tight">{section.label}</h2>
+          {meta.tagline && <p className="text-xs text-zinc-500 mt-0.5">{meta.tagline}</p>}
         </div>
         <span
           className={`text-xs font-medium px-2 py-0.5 rounded-full border ${meta.pill} shrink-0`}
@@ -106,28 +102,93 @@ function SectionBlock({ section }: { section: Section }) {
             <div
               className={`absolute top-3 bottom-3 left-1.5 w-0.5 rounded-full bg-gradient-to-b ${meta.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}
             />
-            <div className="font-medium text-sm text-zinc-900">
-              {entry.title}
-            </div>
+            <div className="font-medium text-sm text-zinc-900">{entry.title}</div>
             {entry.description && (
-              <div className="text-xs text-zinc-500 mt-1 line-clamp-2">
-                {entry.description}
-              </div>
+              <div className="text-xs text-zinc-500 mt-1 line-clamp-2">{entry.description}</div>
             )}
           </Link>
         ))}
       </div>
     </section>
-  )
+  );
+}
+
+function SubSectionBlock({ section }: { section: Section }) {
+  const meta = metaOf(section.id);
+  return (
+    <div>
+      <div className="flex items-center gap-2 mb-2">
+        <div
+          className={`w-6 h-6 rounded-md bg-gradient-to-br ${meta.gradient} flex items-center justify-center shrink-0`}
+        >
+          <meta.Icon className="w-3 h-3 text-white" />
+        </div>
+        <h3 className="text-sm font-semibold">{section.label}</h3>
+        <span
+          className={`text-[10px] font-medium px-1.5 py-0.5 rounded-full border ${meta.pill} shrink-0`}
+        >
+          {section.entries.length}
+        </span>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2">
+        {section.entries.map((entry) => (
+          <Link
+            key={entry.slug}
+            to={`/${section.id}/${entry.slug}`}
+            className="group relative block rounded-lg border border-zinc-200 bg-white p-3 pl-4 transition hover:border-zinc-400 hover:shadow-sm hover:-translate-y-0.5"
+          >
+            <div
+              className={`absolute top-3 bottom-3 left-1.5 w-0.5 rounded-full bg-gradient-to-b ${meta.gradient} opacity-60 group-hover:opacity-100 transition-opacity`}
+            />
+            <div className="font-medium text-sm text-zinc-900 leading-tight">{entry.title}</div>
+            {entry.description && (
+              <div className="text-xs text-zinc-500 mt-1 line-clamp-2">{entry.description}</div>
+            )}
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ViewBlock({ group, sections }: { group: ViewGroup; sections: Section[] }) {
+  const total = sections.reduce((s, sec) => s + sec.entries.length, 0);
+  const { Icon } = group;
+  return (
+    <section>
+      <header className="flex items-center gap-3 mb-5">
+        <div
+          className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${group.gradient} shadow-md flex items-center justify-center shrink-0`}
+        >
+          <Icon className="w-6 h-6 text-white" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <h2 className="text-xl font-bold tracking-tight">{group.label}</h2>
+          <p className="text-xs text-zinc-500 mt-0.5">{sections.map((s) => s.label).join(" · ")}</p>
+        </div>
+        <span
+          className={`text-xs font-medium px-2.5 py-1 rounded-full border ${group.pill} shrink-0`}
+        >
+          {total} 件
+        </span>
+      </header>
+      <div
+        className={`relative rounded-2xl border-2 border-dashed border-zinc-200 bg-zinc-50/40 p-5 space-y-5`}
+      >
+        {sections.map((s) => (
+          <SubSectionBlock key={s.id} section={s} />
+        ))}
+      </div>
+    </section>
+  );
 }
 
 export default function Home() {
-  const { visibleSections, view } = useOutletContext<Ctx>()
-  const totalCount = visibleSections.reduce(
-    (n, s) => n + s.entries.length,
-    0,
-  )
-  const showWelcome = view === 'all'
+  const { visibleSections, view } = useOutletContext<Ctx>();
+  const totalCount = visibleSections.reduce((n, s) => n + s.entries.length, 0);
+  const showWelcome = view === "all";
+
+  const sectionsById = Object.fromEntries(visibleSections.map((s) => [s.id, s]));
 
   return (
     <div className="max-w-6xl">
@@ -136,17 +197,25 @@ export default function Home() {
       {!showWelcome && (
         <div className="mb-8">
           <h1 className="text-2xl font-semibold">Design Book</h1>
-          <p className="text-sm text-zinc-600 mt-2">
-            {totalCount} 件の項目。下のカードから選択。
-          </p>
+          <p className="text-sm text-zinc-600 mt-2">{totalCount} 件の項目。下のカードから選択。</p>
         </div>
       )}
 
-      <div className="space-y-10">
-        {visibleSections.map((section) => (
-          <SectionBlock key={section.id} section={section} />
-        ))}
-      </div>
+      {showWelcome ? (
+        <div className="space-y-12">
+          {VIEW_GROUPS.map((g) => {
+            const groupSections = g.sectionIds.map((id) => sectionsById[id]).filter(Boolean);
+            if (groupSections.length === 0) return null;
+            return <ViewBlock key={g.id} group={g} sections={groupSections} />;
+          })}
+        </div>
+      ) : (
+        <div className="space-y-10">
+          {visibleSections.map((section) => (
+            <SectionBlock key={section.id} section={section} />
+          ))}
+        </div>
+      )}
     </div>
-  )
+  );
 }

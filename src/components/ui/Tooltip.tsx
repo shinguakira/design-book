@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 export function Tooltip({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -8,5 +8,5 @@ export function Tooltip({ label, children }: { label: string; children: ReactNod
         {label}
       </span>
     </span>
-  )
+  );
 }

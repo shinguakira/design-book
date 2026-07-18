@@ -1,4 +1,4 @@
-import { ArrowDown, Bell, Heart } from 'lucide-react'
+import { ArrowDown, Bell, Heart } from "lucide-react";
 
 export default function Attention() {
   return (
@@ -77,5 +77,5 @@ export default function Attention() {
         </div>
       </div>
     </div>
-  )
+  );
 }

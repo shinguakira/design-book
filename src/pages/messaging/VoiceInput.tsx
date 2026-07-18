@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
-import { Mic, Square, Trash2, Play, Pause, Send, AudioLines } from 'lucide-react'
+import { useEffect, useState } from "react";
+import { Mic, Square, Trash2, Play, Pause, Send, AudioLines } from "lucide-react";
 
 function Bars({ active }: { active: boolean }) {
   return (
@@ -8,8 +8,8 @@ function Bars({ active }: { active: boolean }) {
         <div
           key={i}
           className={`w-1 rounded-full ${
-            active ? 'bg-red-500' : 'bg-zinc-400'
-          } ${active ? 'animate-pulse' : ''}`}
+            active ? "bg-red-500" : "bg-zinc-400"
+          } ${active ? "animate-pulse" : ""}`}
           style={{
             height: `${20 + Math.sin(i * 0.5) * 30 + Math.cos(i * 0.7) * 25}%`,
             animationDelay: `${i * 50}ms`,
@@ -17,26 +17,27 @@ function Bars({ active }: { active: boolean }) {
         />
       ))}
     </div>
-  )
+  );
 }
 
 export default function VoiceInput() {
-  const [recording, setRecording] = useState(false)
-  const [seconds, setSeconds] = useState(0)
+  const [recording, setRecording] = useState(false);
+  const [seconds, setSeconds] = useState(0);
 
   useEffect(() => {
-    if (!recording) return
-    setSeconds(0)
-    const t = setInterval(() => setSeconds((s) => s + 1), 1000)
-    return () => clearInterval(t)
-  }, [recording])
+    if (!recording) return;
+    setSeconds(0);
+    const t = setInterval(() => setSeconds((s) => s + 1), 1000);
+    return () => clearInterval(t);
+  }, [recording]);
 
-  const time = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`
+  const time = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
 
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        音声入力UI。録音状態の可視化 (赤いドット+タイマー+波形) は必須。誤録音を避けるためキャンセル手段を必ず用意。
+        音声入力UI。録音状態の可視化 (赤いドット+タイマー+波形)
+        は必須。誤録音を避けるためキャンセル手段を必ず用意。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -109,9 +110,7 @@ export default function VoiceInput() {
                 </div>
               </div>
               <div className="flex items-center justify-between mt-4">
-                <button className="text-sm text-zinc-500 hover:text-zinc-900">
-                  破棄
-                </button>
+                <button className="text-sm text-zinc-500 hover:text-zinc-900">破棄</button>
                 <button className="px-4 h-9 rounded-md bg-blue-500 text-white text-sm font-medium flex items-center gap-2">
                   <Send className="w-3.5 h-3.5" />
                   送信
@@ -152,9 +151,7 @@ export default function VoiceInput() {
               </div>
               <div className="text-sm text-zinc-900 leading-relaxed">
                 明日の14時から会議室Aで
-                <span className="text-zinc-400 animate-pulse">
-                  デザインレビューを...
-                </span>
+                <span className="text-zinc-400 animate-pulse">デザインレビューを...</span>
               </div>
             </div>
           </div>
@@ -172,5 +169,5 @@ export default function VoiceInput() {
         </ul>
       </section>
     </div>
-  )
+  );
 }

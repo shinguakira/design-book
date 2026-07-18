@@ -1,5 +1,5 @@
-import { Badge } from '../../components/ui/Badge'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Badge } from "../../components/ui/Badge";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function BadgeShowcase() {
   return (
@@ -28,5 +28,5 @@ export default function BadgeShowcase() {
         </span>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

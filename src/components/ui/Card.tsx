@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ReactNode } from "react";
 
 export function Card({
   title,
@@ -6,10 +6,10 @@ export function Card({
   children,
   footer,
 }: {
-  title?: string
-  description?: string
-  children?: ReactNode
-  footer?: ReactNode
+  title?: string;
+  description?: string;
+  children?: ReactNode;
+  footer?: ReactNode;
 }) {
   return (
     <div className="rounded-xl border border-zinc-200 bg-white overflow-hidden">
@@ -22,5 +22,5 @@ export function Card({
       {children && <div className="px-5 py-4">{children}</div>}
       {footer && <div className="px-5 py-3 bg-zinc-50 border-t border-zinc-200">{footer}</div>}
     </div>
-  )
+  );
 }

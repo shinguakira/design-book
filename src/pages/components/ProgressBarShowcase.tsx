@@ -1,5 +1,5 @@
-import { ProgressBar } from '../../components/ui/ProgressBar'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { ProgressBar } from "../../components/ui/ProgressBar";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function ProgressBarShowcase() {
   return (
@@ -30,5 +30,5 @@ export default function ProgressBarShowcase() {
         </div>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }

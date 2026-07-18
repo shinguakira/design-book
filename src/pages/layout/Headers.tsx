@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from "react";
 import {
   Bell,
   Search,
@@ -16,30 +16,28 @@ import {
   Code,
   BookOpen,
   Bot,
-} from 'lucide-react'
+} from "lucide-react";
 
-function useOutsideClick<T extends HTMLElement>(
-  onClose: () => void,
-) {
-  const ref = useRef<T>(null)
+function useOutsideClick<T extends HTMLElement>(onClose: () => void) {
+  const ref = useRef<T>(null);
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (!ref.current?.contains(e.target as Node)) onClose()
-    }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
-  }, [onClose])
-  return ref
+      if (!ref.current?.contains(e.target as Node)) onClose();
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [onClose]);
+  return ref;
 }
 
 function MarketingDropdown({ onClose }: { onClose: () => void }) {
-  const ref = useOutsideClick<HTMLDivElement>(onClose)
+  const ref = useOutsideClick<HTMLDivElement>(onClose);
   const items = [
-    { Icon: Bot, name: 'Acme AI', desc: 'AIアシスタント' },
-    { Icon: LayoutGrid, name: 'Acme Design', desc: 'デザインツール' },
-    { Icon: Code, name: 'Acme Code', desc: 'コードレビュー' },
-    { Icon: BookOpen, name: 'Acme Docs', desc: 'ドキュメント管理' },
-  ]
+    { Icon: Bot, name: "Acme AI", desc: "AIアシスタント" },
+    { Icon: LayoutGrid, name: "Acme Design", desc: "デザインツール" },
+    { Icon: Code, name: "Acme Code", desc: "コードレビュー" },
+    { Icon: BookOpen, name: "Acme Docs", desc: "ドキュメント管理" },
+  ];
   return (
     <div
       ref={ref}
@@ -60,30 +58,30 @@ function MarketingDropdown({ onClose }: { onClose: () => void }) {
         </button>
       ))}
     </div>
-  )
+  );
 }
 
 function NotificationPanel({ onClose }: { onClose: () => void }) {
-  const ref = useOutsideClick<HTMLDivElement>(onClose)
+  const ref = useOutsideClick<HTMLDivElement>(onClose);
   const items = [
     {
-      title: '山田 太郎 さんがコメントしました',
-      body: '「この配色いいですね...」',
-      time: '5分前',
+      title: "山田 太郎 さんがコメントしました",
+      body: "「この配色いいですね...」",
+      time: "5分前",
       unread: true,
     },
     {
-      title: 'PR #123 がマージされました',
-      body: 'feat: add design tokens',
-      time: '30分前',
+      title: "PR #123 がマージされました",
+      body: "feat: add design tokens",
+      time: "30分前",
       unread: true,
     },
     {
-      title: '本番デプロイが完了しました',
-      body: 'ビルド時間 24秒',
-      time: '2時間前',
+      title: "本番デプロイが完了しました",
+      body: "ビルド時間 24秒",
+      time: "2時間前",
     },
-  ]
+  ];
   return (
     <div
       ref={ref}
@@ -98,7 +96,7 @@ function NotificationPanel({ onClose }: { onClose: () => void }) {
           <li key={i} className="px-4 py-3 hover:bg-zinc-50 cursor-pointer flex gap-3">
             <div
               className={`w-2 h-2 rounded-full mt-1.5 shrink-0 ${
-                n.unread ? 'bg-blue-500' : 'bg-transparent'
+                n.unread ? "bg-blue-500" : "bg-transparent"
               }`}
             />
             <div className="flex-1 min-w-0">
@@ -110,16 +108,14 @@ function NotificationPanel({ onClose }: { onClose: () => void }) {
         ))}
       </ul>
       <div className="px-4 py-2 border-t border-zinc-200 text-center">
-        <button className="text-xs text-zinc-600 hover:text-zinc-900">
-          すべての通知を見る
-        </button>
+        <button className="text-xs text-zinc-600 hover:text-zinc-900">すべての通知を見る</button>
       </div>
     </div>
-  )
+  );
 }
 
 function UserMenu({ onClose }: { onClose: () => void }) {
-  const ref = useOutsideClick<HTMLDivElement>(onClose)
+  const ref = useOutsideClick<HTMLDivElement>(onClose);
   return (
     <div
       ref={ref}
@@ -131,20 +127,16 @@ function UserMenu({ onClose }: { onClose: () => void }) {
       </div>
       <div className="py-1">
         {[
-          { Icon: CircleUserRound, label: 'プロフィール' },
-          { Icon: Settings, label: '設定' },
-          { Icon: Zap, label: 'アップグレード', accent: true },
+          { Icon: CircleUserRound, label: "プロフィール" },
+          { Icon: Settings, label: "設定" },
+          { Icon: Zap, label: "アップグレード", accent: true },
         ].map((it) => (
           <button
             key={it.label}
             className="w-full flex items-center gap-2.5 px-4 py-2 text-sm hover:bg-zinc-50 text-left"
           >
-            <it.Icon
-              className={`w-4 h-4 ${it.accent ? 'text-amber-500' : 'text-zinc-500'}`}
-            />
-            <span className={it.accent ? 'text-amber-700 font-medium' : ''}>
-              {it.label}
-            </span>
+            <it.Icon className={`w-4 h-4 ${it.accent ? "text-amber-500" : "text-zinc-500"}`} />
+            <span className={it.accent ? "text-amber-700 font-medium" : ""}>{it.label}</span>
           </button>
         ))}
       </div>
@@ -155,14 +147,18 @@ function UserMenu({ onClose }: { onClose: () => void }) {
         </button>
       </div>
     </div>
-  )
+  );
 }
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -171,19 +167,20 @@ function Frame({
       </div>
       <div className="bg-zinc-100 p-4">{children}</div>
     </div>
-  )
+  );
 }
 
 export default function Headers() {
-  const [productsOpen, setProductsOpen] = useState(false)
-  const [notifOpen, setNotifOpen] = useState(false)
-  const [userOpen, setUserOpen] = useState(false)
-  const [activeTab, setActiveTab] = useState('dash')
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [notifOpen, setNotifOpen] = useState(false);
+  const [userOpen, setUserOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("dash");
 
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        ヘッダーは画面の入口。ユーザーが「どこにいて、何ができるか」が3秒で分かる構成が理想。下のヘッダーは触れます (ドロップダウン・通知・ユーザーメニュー)。
+        ヘッダーは画面の入口。ユーザーが「どこにいて、何ができるか」が3秒で分かる構成が理想。下のヘッダーは触れます
+        (ドロップダウン・通知・ユーザーメニュー)。
       </p>
 
       <Frame label="Marketing" note="「製品」をクリックでメガメニュー">
@@ -194,39 +191,27 @@ export default function Headers() {
               <span className="font-bold tracking-tight">Acme</span>
             </div>
             <nav className="hidden md:flex items-center gap-6 text-sm">
-              <a className="text-zinc-700 hover:text-zinc-900 cursor-pointer">
-                機能
-              </a>
+              <a className="text-zinc-700 hover:text-zinc-900 cursor-pointer">機能</a>
               <div className="relative">
                 <button
                   onClick={() => setProductsOpen((o) => !o)}
                   className={`flex items-center gap-1 transition ${
-                    productsOpen ? 'text-zinc-900' : 'text-zinc-700 hover:text-zinc-900'
+                    productsOpen ? "text-zinc-900" : "text-zinc-700 hover:text-zinc-900"
                   }`}
                 >
                   製品
                   <ChevronDown
-                    className={`w-3.5 h-3.5 transition-transform ${productsOpen ? 'rotate-180' : ''}`}
+                    className={`w-3.5 h-3.5 transition-transform ${productsOpen ? "rotate-180" : ""}`}
                   />
                 </button>
-                {productsOpen && (
-                  <MarketingDropdown onClose={() => setProductsOpen(false)} />
-                )}
+                {productsOpen && <MarketingDropdown onClose={() => setProductsOpen(false)} />}
               </div>
-              <a className="text-zinc-700 hover:text-zinc-900 cursor-pointer">
-                料金
-              </a>
-              <a className="text-zinc-700 hover:text-zinc-900 cursor-pointer">
-                事例
-              </a>
-              <a className="text-zinc-700 hover:text-zinc-900 cursor-pointer">
-                ブログ
-              </a>
+              <a className="text-zinc-700 hover:text-zinc-900 cursor-pointer">料金</a>
+              <a className="text-zinc-700 hover:text-zinc-900 cursor-pointer">事例</a>
+              <a className="text-zinc-700 hover:text-zinc-900 cursor-pointer">ブログ</a>
             </nav>
             <div className="flex items-center gap-3">
-              <button className="text-sm text-zinc-700 hover:text-zinc-900">
-                ログイン
-              </button>
+              <button className="text-sm text-zinc-700 hover:text-zinc-900">ログイン</button>
               <button className="px-3 h-9 rounded-md bg-zinc-900 text-white text-sm font-medium hover:bg-zinc-800">
                 無料で始める
               </button>
@@ -249,17 +234,17 @@ export default function Headers() {
             </div>
             <nav className="flex items-center gap-1">
               {[
-                { id: 'dash', label: 'ダッシュボード' },
-                { id: 'proj', label: 'プロジェクト' },
-                { id: 'team', label: 'チーム' },
+                { id: "dash", label: "ダッシュボード" },
+                { id: "proj", label: "プロジェクト" },
+                { id: "team", label: "チーム" },
               ].map((t) => (
                 <button
                   key={t.id}
                   onClick={() => setActiveTab(t.id)}
                   className={`h-8 px-3 rounded-md text-sm transition ${
                     activeTab === t.id
-                      ? 'bg-zinc-100 font-medium'
-                      : 'text-zinc-600 hover:bg-zinc-100'
+                      ? "bg-zinc-100 font-medium"
+                      : "text-zinc-600 hover:bg-zinc-100"
                   }`}
                 >
                   {t.label}
@@ -279,32 +264,28 @@ export default function Headers() {
               <div className="relative">
                 <button
                   onClick={() => {
-                    setNotifOpen((o) => !o)
-                    setUserOpen(false)
+                    setNotifOpen((o) => !o);
+                    setUserOpen(false);
                   }}
                   className={`w-9 h-9 rounded-md flex items-center justify-center transition relative ${
-                    notifOpen
-                      ? 'bg-zinc-100 text-zinc-900'
-                      : 'text-zinc-600 hover:bg-zinc-100'
+                    notifOpen ? "bg-zinc-100 text-zinc-900" : "text-zinc-600 hover:bg-zinc-100"
                   }`}
                 >
                   <Bell className="w-4 h-4" />
                   <span className="absolute top-2 right-2 w-1.5 h-1.5 rounded-full bg-red-500" />
                 </button>
-                {notifOpen && (
-                  <NotificationPanel onClose={() => setNotifOpen(false)} />
-                )}
+                {notifOpen && <NotificationPanel onClose={() => setNotifOpen(false)} />}
               </div>
               <div className="relative">
                 <button
                   onClick={() => {
-                    setUserOpen((o) => !o)
-                    setNotifOpen(false)
+                    setUserOpen((o) => !o);
+                    setNotifOpen(false);
                   }}
                   className={`w-9 h-9 rounded-full text-white text-xs font-semibold flex items-center justify-center transition ${
                     userOpen
-                      ? 'bg-violet-700 ring-2 ring-violet-200'
-                      : 'bg-violet-500 hover:bg-violet-600'
+                      ? "bg-violet-700 ring-2 ring-violet-200"
+                      : "bg-violet-500 hover:bg-violet-600"
                   }`}
                 >
                   YT
@@ -340,8 +321,7 @@ export default function Headers() {
           <div
             className="relative px-6 py-16"
             style={{
-              background:
-                'linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #831843 100%)',
+              background: "linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #831843 100%)",
             }}
           >
             <div className="flex items-center justify-between text-white">
@@ -366,15 +346,16 @@ export default function Headers() {
         </header>
       </Frame>
 
-      <Frame label="Mobile App (back + title + action)" note="詳細画面の典型。戻る/タイトル/オプション。">
+      <Frame
+        label="Mobile App (back + title + action)"
+        note="詳細画面の典型。戻る/タイトル/オプション。"
+      >
         <header className="bg-white rounded-md shadow-sm">
           <div className="px-2 h-12 flex items-center">
             <button className="w-10 h-10 flex items-center justify-center text-zinc-700">
               <ChevronLeft className="w-5 h-5" />
             </button>
-            <div className="flex-1 text-center font-semibold text-sm">
-              注文の詳細
-            </div>
+            <div className="flex-1 text-center font-semibold text-sm">注文の詳細</div>
             <button className="w-10 h-10 flex items-center justify-center text-zinc-700">
               <MoreVertical className="w-5 h-5" />
             </button>
@@ -412,29 +393,23 @@ export default function Headers() {
               <ChevronDown className="w-3.5 h-3.5 text-zinc-400" />
             </div>
             <div className="flex items-center gap-2">
-              <button className="px-3 h-8 rounded-md hover:bg-zinc-100 text-sm">
-                招待
-              </button>
+              <button className="px-3 h-8 rounded-md hover:bg-zinc-100 text-sm">招待</button>
               <button className="w-8 h-8 rounded-full bg-emerald-500 text-white text-xs font-semibold flex items-center justify-center">
                 HS
               </button>
             </div>
           </div>
           <div className="px-4 flex items-center gap-1 h-10">
-            {['概要', 'タスク', 'ドキュメント', 'メンバー', '設定'].map(
-              (label, i) => (
-                <button
-                  key={label}
-                  className={`h-8 px-3 rounded-md text-sm ${
-                    i === 0
-                      ? 'bg-zinc-100 font-medium'
-                      : 'text-zinc-600 hover:bg-zinc-100'
-                  }`}
-                >
-                  {label}
-                </button>
-              ),
-            )}
+            {["概要", "タスク", "ドキュメント", "メンバー", "設定"].map((label, i) => (
+              <button
+                key={label}
+                className={`h-8 px-3 rounded-md text-sm ${
+                  i === 0 ? "bg-zinc-100 font-medium" : "text-zinc-600 hover:bg-zinc-100"
+                }`}
+              >
+                {label}
+              </button>
+            ))}
           </div>
         </header>
       </Frame>
@@ -480,5 +455,5 @@ export default function Headers() {
         </header>
       </Frame>
     </div>
-  )
+  );
 }

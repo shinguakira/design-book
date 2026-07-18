@@ -1,9 +1,6 @@
-import { FileText, Image as ImageIcon, Download, Play, MapPin, Mic } from 'lucide-react'
+import { FileText, Image as ImageIcon, Download, Play, MapPin, Mic } from "lucide-react";
 
-function Frame({
-  label,
-  children,
-}: { label: string; children: React.ReactNode }) {
+function Frame({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50 text-sm font-medium">
@@ -11,14 +8,15 @@ function Frame({
       </div>
       <div className="p-5 bg-zinc-50 flex justify-end">{children}</div>
     </div>
-  )
+  );
 }
 
 export default function Attachments() {
   return (
     <div className="max-w-5xl space-y-6">
       <p className="text-sm text-zinc-700 leading-relaxed">
-        メッセージ内の添付ファイル表示パターン。種類別 (画像 / ファイル / 音声 / 動画 / 位置) ごとに違うレイアウト。サムネ + メタ情報 + 操作ボタン。
+        メッセージ内の添付ファイル表示パターン。種類別 (画像 / ファイル / 音声 / 動画 / 位置)
+        ごとに違うレイアウト。サムネ + メタ情報 + 操作ボタン。
       </p>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
@@ -50,9 +48,7 @@ export default function Attachments() {
               PDF
             </div>
             <div className="flex-1 min-w-0">
-              <div className="text-sm font-medium truncate">
-                design-spec-v2.pdf
-              </div>
+              <div className="text-sm font-medium truncate">design-spec-v2.pdf</div>
               <div className="text-xs text-zinc-500">2.4 MB · 12ページ</div>
             </div>
             <button className="w-9 h-9 rounded-full hover:bg-zinc-100 flex items-center justify-center text-zinc-500">
@@ -104,8 +100,7 @@ export default function Attachments() {
             <div
               className="h-32 w-56 relative"
               style={{
-                background:
-                  'linear-gradient(180deg, #d1fae5 0%, #a7f3d0 60%, #6ee7b7 100%)',
+                background: "linear-gradient(180deg, #d1fae5 0%, #a7f3d0 60%, #6ee7b7 100%)",
               }}
             >
               <div className="absolute inset-0 opacity-30 bg-[linear-gradient(45deg,transparent_48%,white_50%,transparent_52%),linear-gradient(-45deg,transparent_48%,white_50%,transparent_52%)] bg-[length:24px_24px]" />
@@ -117,9 +112,7 @@ export default function Attachments() {
             </div>
             <div className="px-3 py-2">
               <div className="text-sm font-medium">Anthropic オフィス</div>
-              <div className="text-xs text-zinc-500">
-                サンフランシスコ, カリフォルニア
-              </div>
+              <div className="text-xs text-zinc-500">サンフランシスコ, カリフォルニア</div>
             </div>
           </div>
         </Frame>
@@ -133,8 +126,7 @@ export default function Attachments() {
                 Introducing Claude Opus 4.7
               </div>
               <div className="text-xs text-zinc-600 mt-1 line-clamp-2">
-                Our most capable model yet, with deeper reasoning and faster
-                response times.
+                Our most capable model yet, with deeper reasoning and faster response times.
               </div>
             </div>
           </div>
@@ -147,18 +139,13 @@ export default function Attachments() {
                 <FileText className="w-4 h-4" />
               </div>
               <div className="flex-1 min-w-0">
-                <div className="text-sm font-medium truncate">
-                  presentation.key
-                </div>
+                <div className="text-sm font-medium truncate">presentation.key</div>
                 <div className="text-xs text-zinc-500">8.4 MB / 12.0 MB</div>
               </div>
               <button className="text-xs text-zinc-500">キャンセル</button>
             </div>
             <div className="h-1 w-full bg-zinc-200 rounded-full overflow-hidden">
-              <div
-                className="h-full bg-blue-500 transition-all"
-                style={{ width: '70%' }}
-              />
+              <div className="h-full bg-blue-500 transition-all" style={{ width: "70%" }} />
             </div>
           </div>
         </Frame>
@@ -173,18 +160,14 @@ export default function Attachments() {
                 {Array.from({ length: 32 }).map((_, i) => (
                   <div
                     key={i}
-                    className={`flex-1 rounded-full ${
-                      i < 10 ? 'bg-emerald-500' : 'bg-zinc-300'
-                    }`}
+                    className={`flex-1 rounded-full ${i < 10 ? "bg-emerald-500" : "bg-zinc-300"}`}
                     style={{
                       height: `${20 + Math.sin(i * 0.5) * 30 + Math.cos(i * 0.7) * 25}%`,
                     }}
                   />
                 ))}
               </div>
-              <span className="text-xs text-zinc-500 tabular-nums">
-                0:34 / 1:42
-              </span>
+              <span className="text-xs text-zinc-500 tabular-nums">0:34 / 1:42</span>
             </div>
             <div className="border-t border-zinc-100 pt-2 flex items-start gap-2">
               <Mic className="w-3.5 h-3.5 text-zinc-400 mt-0.5" />
@@ -198,15 +181,11 @@ export default function Attachments() {
         <Frame label="ドラッグオーバー時のドロップエリア">
           <div className="w-full max-w-sm rounded-2xl border-2 border-dashed border-blue-400 bg-blue-50 p-8 text-center">
             <ImageIcon className="w-10 h-10 text-blue-500 mx-auto" />
-            <div className="text-sm font-medium text-blue-900 mt-2">
-              ここにドロップして送信
-            </div>
-            <div className="text-xs text-blue-700 mt-0.5">
-              画像、動画、ファイル (50MBまで)
-            </div>
+            <div className="text-sm font-medium text-blue-900 mt-2">ここにドロップして送信</div>
+            <div className="text-xs text-blue-700 mt-0.5">画像、動画、ファイル (50MBまで)</div>
           </div>
         </Frame>
       </div>
     </div>
-  )
+  );
 }

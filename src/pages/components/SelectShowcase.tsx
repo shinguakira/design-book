@@ -1,37 +1,32 @@
-import { useEffect, useRef, useState } from 'react'
-import {
-  Check,
-  ChevronDown,
-  Search,
-  X,
-  Globe,
-  Code,
-  Sparkles,
-  Bot,
-} from 'lucide-react'
+import { useEffect, useRef, useState } from "react";
+import { Check, ChevronDown, Search, X, Globe, Code, Sparkles, Bot } from "lucide-react";
 
 const COUNTRIES = [
-  '日本',
-  'アメリカ',
-  'イギリス',
-  'フランス',
-  'ドイツ',
-  '中国',
-  '韓国',
-  'インド',
-  'ブラジル',
-  'カナダ',
-  'オーストラリア',
-  'シンガポール',
-  'タイ',
-  'ベトナム',
-]
+  "日本",
+  "アメリカ",
+  "イギリス",
+  "フランス",
+  "ドイツ",
+  "中国",
+  "韓国",
+  "インド",
+  "ブラジル",
+  "カナダ",
+  "オーストラリア",
+  "シンガポール",
+  "タイ",
+  "ベトナム",
+];
 
 function Frame({
   label,
   note,
   children,
-}: { label: string; note?: string; children: React.ReactNode }) {
+}: {
+  label: string;
+  note?: string;
+  children: React.ReactNode;
+}) {
   return (
     <div className="rounded-lg border border-zinc-200 bg-white overflow-hidden">
       <div className="px-4 py-2 border-b border-zinc-200 bg-zinc-50">
@@ -40,24 +35,24 @@ function Frame({
       </div>
       <div className="p-5">{children}</div>
     </div>
-  )
+  );
 }
 
 function useOutside<T extends HTMLElement>(onClose: () => void) {
-  const ref = useRef<T>(null)
+  const ref = useRef<T>(null);
   useEffect(() => {
     const onDoc = (e: MouseEvent) => {
-      if (!ref.current?.contains(e.target as Node)) onClose()
-    }
-    document.addEventListener('mousedown', onDoc)
-    return () => document.removeEventListener('mousedown', onDoc)
-  }, [onClose])
-  return ref
+      if (!ref.current?.contains(e.target as Node)) onClose();
+    };
+    document.addEventListener("mousedown", onDoc);
+    return () => document.removeEventListener("mousedown", onDoc);
+  }, [onClose]);
+  return ref;
 }
 
 /* 1. Native */
 function Native() {
-  const [v, setV] = useState('日本')
+  const [v, setV] = useState("日本");
   return (
     <select
       value={v}
@@ -68,27 +63,25 @@ function Native() {
         <option key={c}>{c}</option>
       ))}
     </select>
-  )
+  );
 }
 
 /* 2. Custom dropdown */
 function CustomDropdown() {
-  const [open, setOpen] = useState(false)
-  const [v, setV] = useState('日本')
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const [open, setOpen] = useState(false);
+  const [v, setV] = useState("日本");
+  const ref = useOutside<HTMLDivElement>(() => setOpen(false));
   return (
     <div ref={ref} className="relative max-w-xs">
       <button
         onClick={() => setOpen((o) => !o)}
         className={`w-full flex items-center justify-between px-3 h-9 rounded-md border bg-white text-sm transition ${
-          open
-            ? 'border-zinc-900 ring-2 ring-zinc-900/10'
-            : 'border-zinc-300 hover:border-zinc-400'
+          open ? "border-zinc-900 ring-2 ring-zinc-900/10" : "border-zinc-300 hover:border-zinc-400"
         }`}
       >
         {v}
         <ChevronDown
-          className={`w-3.5 h-3.5 text-zinc-500 transition-transform ${open ? 'rotate-180' : ''}`}
+          className={`w-3.5 h-3.5 text-zinc-500 transition-transform ${open ? "rotate-180" : ""}`}
         />
       </button>
       {open && (
@@ -97,8 +90,8 @@ function CustomDropdown() {
             <button
               key={c}
               onClick={() => {
-                setV(c)
-                setOpen(false)
+                setV(c);
+                setOpen(false);
               }}
               className="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-zinc-100 text-left"
             >
@@ -111,21 +104,19 @@ function CustomDropdown() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 /* 3. Searchable (combobox) ─── 必須 */
 function Searchable() {
-  const [open, setOpen] = useState(false)
-  const [q, setQ] = useState('')
-  const [v, setV] = useState('日本')
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+  const [v, setV] = useState("日本");
   const ref = useOutside<HTMLDivElement>(() => {
-    setOpen(false)
-    setQ('')
-  })
-  const filtered = COUNTRIES.filter((c) =>
-    c.toLowerCase().includes(q.toLowerCase()),
-  )
+    setOpen(false);
+    setQ("");
+  });
+  const filtered = COUNTRIES.filter((c) => c.toLowerCase().includes(q.toLowerCase()));
   return (
     <div ref={ref} className="relative max-w-xs">
       <button
@@ -149,17 +140,15 @@ function Searchable() {
           </div>
           <div className="max-h-56 overflow-y-auto py-1">
             {filtered.length === 0 ? (
-              <div className="text-center text-xs text-zinc-400 py-6">
-                一致なし
-              </div>
+              <div className="text-center text-xs text-zinc-400 py-6">一致なし</div>
             ) : (
               filtered.map((c) => (
                 <button
                   key={c}
                   onClick={() => {
-                    setV(c)
-                    setOpen(false)
-                    setQ('')
+                    setV(c);
+                    setOpen(false);
+                    setQ("");
                   }}
                   className="w-full flex items-center justify-between px-3 py-1.5 text-sm hover:bg-zinc-100 text-left"
                 >
@@ -172,24 +161,22 @@ function Searchable() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 /* 4. Multi-select with chips ─── 必須 */
 function MultiSelect() {
-  const [open, setOpen] = useState(false)
-  const [sel, setSel] = useState<string[]>(['日本', 'アメリカ'])
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const [open, setOpen] = useState(false);
+  const [sel, setSel] = useState<string[]>(["日本", "アメリカ"]);
+  const ref = useOutside<HTMLDivElement>(() => setOpen(false));
   const toggle = (c: string) =>
-    setSel((s) => (s.includes(c) ? s.filter((x) => x !== c) : [...s, c]))
+    setSel((s) => (s.includes(c) ? s.filter((x) => x !== c) : [...s, c]));
   return (
     <div ref={ref} className="relative max-w-md">
       <div
         onClick={() => setOpen((o) => !o)}
         className={`min-h-9 px-2 py-1 rounded-md border bg-white flex flex-wrap items-center gap-1 cursor-pointer transition ${
-          open
-            ? 'border-zinc-900 ring-2 ring-zinc-900/10'
-            : 'border-zinc-300 hover:border-zinc-400'
+          open ? "border-zinc-900 ring-2 ring-zinc-900/10" : "border-zinc-300 hover:border-zinc-400"
         }`}
       >
         {sel.length === 0 ? (
@@ -203,8 +190,8 @@ function MultiSelect() {
               {c}
               <button
                 onClick={(e) => {
-                  e.stopPropagation()
-                  toggle(c)
+                  e.stopPropagation();
+                  toggle(c);
                 }}
                 className="text-zinc-500 hover:text-zinc-900"
               >
@@ -235,31 +222,27 @@ function MultiSelect() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 /* 5. Searchable multi-select ─── 必須 (両方の組合せ) */
 function SearchableMulti() {
-  const [open, setOpen] = useState(false)
-  const [q, setQ] = useState('')
-  const [sel, setSel] = useState<string[]>(['日本', 'タイ'])
+  const [open, setOpen] = useState(false);
+  const [q, setQ] = useState("");
+  const [sel, setSel] = useState<string[]>(["日本", "タイ"]);
   const ref = useOutside<HTMLDivElement>(() => {
-    setOpen(false)
-    setQ('')
-  })
-  const filtered = COUNTRIES.filter((c) =>
-    c.toLowerCase().includes(q.toLowerCase()),
-  )
+    setOpen(false);
+    setQ("");
+  });
+  const filtered = COUNTRIES.filter((c) => c.toLowerCase().includes(q.toLowerCase()));
   const toggle = (c: string) =>
-    setSel((s) => (s.includes(c) ? s.filter((x) => x !== c) : [...s, c]))
+    setSel((s) => (s.includes(c) ? s.filter((x) => x !== c) : [...s, c]));
   return (
     <div ref={ref} className="relative max-w-md">
       <div
         onClick={() => setOpen(true)}
         className={`min-h-9 px-2 py-1 rounded-md border bg-white flex flex-wrap items-center gap-1 cursor-pointer transition ${
-          open
-            ? 'border-zinc-900 ring-2 ring-zinc-900/10'
-            : 'border-zinc-300 hover:border-zinc-400'
+          open ? "border-zinc-900 ring-2 ring-zinc-900/10" : "border-zinc-300 hover:border-zinc-400"
         }`}
       >
         {sel.map((c) => (
@@ -270,8 +253,8 @@ function SearchableMulti() {
             {c}
             <button
               onClick={(e) => {
-                e.stopPropagation()
-                toggle(c)
+                e.stopPropagation();
+                toggle(c);
               }}
               className="text-blue-500 hover:text-blue-900"
             >
@@ -279,9 +262,7 @@ function SearchableMulti() {
             </button>
           </span>
         ))}
-        {!sel.length && (
-          <span className="text-sm text-zinc-400 px-1">タグを選択...</span>
-        )}
+        {!sel.length && <span className="text-sm text-zinc-400 px-1">タグを選択...</span>}
         <ChevronDown className="w-3.5 h-3.5 text-zinc-500 ml-auto shrink-0" />
       </div>
       {open && (
@@ -299,19 +280,14 @@ function SearchableMulti() {
           <div className="px-2 py-1 text-[10px] text-zinc-400 uppercase tracking-wider border-b border-zinc-100 flex items-center justify-between">
             <span>選択中 {sel.length} 件</span>
             {sel.length > 0 && (
-              <button
-                onClick={() => setSel([])}
-                className="text-zinc-500 hover:text-zinc-900"
-              >
+              <button onClick={() => setSel([])} className="text-zinc-500 hover:text-zinc-900">
                 クリア
               </button>
             )}
           </div>
           <div className="max-h-48 overflow-y-auto py-1">
             {filtered.length === 0 ? (
-              <div className="text-center text-xs text-zinc-400 py-6">
-                一致なし
-              </div>
+              <div className="text-center text-xs text-zinc-400 py-6">一致なし</div>
             ) : (
               filtered.map((c) => (
                 <button
@@ -333,19 +309,19 @@ function SearchableMulti() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 /* 6. Grouped options */
 function Grouped() {
-  const [open, setOpen] = useState(false)
-  const [v, setV] = useState('Figma')
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+  const [open, setOpen] = useState(false);
+  const [v, setV] = useState("Figma");
+  const ref = useOutside<HTMLDivElement>(() => setOpen(false));
   const groups: Record<string, string[]> = {
-    デザイン: ['Figma', 'Sketch', 'Adobe XD'],
-    開発: ['VS Code', 'GitHub', 'Vercel'],
-    コラボ: ['Notion', 'Slack', 'Linear'],
-  }
+    デザイン: ["Figma", "Sketch", "Adobe XD"],
+    開発: ["VS Code", "GitHub", "Vercel"],
+    コラボ: ["Notion", "Slack", "Linear"],
+  };
   return (
     <div ref={ref} className="relative max-w-xs">
       <button
@@ -366,8 +342,8 @@ function Grouped() {
                 <button
                   key={t}
                   onClick={() => {
-                    setV(t)
-                    setOpen(false)
+                    setV(t);
+                    setOpen(false);
                   }}
                   className="w-full px-3 py-1.5 text-sm hover:bg-zinc-100 text-left"
                 >
@@ -379,20 +355,20 @@ function Grouped() {
         </div>
       )}
     </div>
-  )
+  );
 }
 
 /* 7. With icon options */
 function WithIcons() {
   const opts = [
-    { id: 'web', name: 'Web Search', Icon: Globe },
-    { id: 'code', name: 'Code Interpreter', Icon: Code },
-    { id: 'creative', name: 'Creative Mode', Icon: Sparkles },
-    { id: 'default', name: 'Default', Icon: Bot },
-  ]
-  const [open, setOpen] = useState(false)
-  const [v, setV] = useState(opts[3])
-  const ref = useOutside<HTMLDivElement>(() => setOpen(false))
+    { id: "web", name: "Web Search", Icon: Globe },
+    { id: "code", name: "Code Interpreter", Icon: Code },
+    { id: "creative", name: "Creative Mode", Icon: Sparkles },
+    { id: "default", name: "Default", Icon: Bot },
+  ];
+  const [open, setOpen] = useState(false);
+  const [v, setV] = useState(opts[3]);
+  const ref = useOutside<HTMLDivElement>(() => setOpen(false));
   return (
     <div ref={ref} className="relative max-w-xs">
       <button
@@ -409,24 +385,22 @@ function WithIcons() {
             <button
               key={o.id}
               onClick={() => {
-                setV(o)
-                setOpen(false)
+                setV(o);
+                setOpen(false);
               }}
               className={`w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-zinc-100 text-left ${
-                v.id === o.id ? 'bg-zinc-50' : ''
+                v.id === o.id ? "bg-zinc-50" : ""
               }`}
             >
               <o.Icon className="w-4 h-4 text-zinc-700" />
               {o.name}
-              {v.id === o.id && (
-                <Check className="w-3.5 h-3.5 text-emerald-500 ml-auto" />
-              )}
+              {v.id === o.id && <Check className="w-3.5 h-3.5 text-emerald-500 ml-auto" />}
             </button>
           ))}
         </div>
       )}
     </div>
-  )
+  );
 }
 
 /* 8. With label / hint / error */
@@ -434,9 +408,7 @@ function Stateful() {
   return (
     <div className="space-y-3 max-w-xs">
       <div>
-        <label className="block text-xs font-medium text-zinc-600 mb-1">
-          国
-        </label>
+        <label className="block text-xs font-medium text-zinc-600 mb-1">国</label>
         <select
           defaultValue="日本"
           className="w-full h-9 rounded-md border border-zinc-300 bg-white px-3 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900"
@@ -448,9 +420,7 @@ function Stateful() {
         <div className="text-xs text-zinc-500 mt-1">配送先の国を選んでください</div>
       </div>
       <div>
-        <label className="block text-xs font-medium text-zinc-600 mb-1">
-          通貨
-        </label>
+        <label className="block text-xs font-medium text-zinc-600 mb-1">通貨</label>
         <select
           className="w-full h-9 rounded-md border-2 border-rose-500 bg-white px-3 text-sm focus:outline-none"
           defaultValue=""
@@ -464,26 +434,26 @@ function Stateful() {
         <div className="text-xs text-rose-600 mt-1">通貨は必須です</div>
       </div>
     </div>
-  )
+  );
 }
 
 /* 9. Cascading */
 const REGIONS: Record<string, string[]> = {
-  日本: ['北海道', '東北', '関東', '中部', '関西', '中国', '四国', '九州'],
-  アメリカ: ['West', 'Midwest', 'South', 'Northeast'],
-  フランス: ['Île-de-France', 'PACA', 'Bretagne'],
-}
+  日本: ["北海道", "東北", "関東", "中部", "関西", "中国", "四国", "九州"],
+  アメリカ: ["West", "Midwest", "South", "Northeast"],
+  フランス: ["Île-de-France", "PACA", "Bretagne"],
+};
 function Cascading() {
-  const [country, setCountry] = useState<keyof typeof REGIONS>('日本')
-  const [region, setRegion] = useState(REGIONS['日本'][2])
+  const [country, setCountry] = useState<keyof typeof REGIONS>("日本");
+  const [region, setRegion] = useState(REGIONS["日本"][2]);
   return (
     <div className="flex gap-2 max-w-md">
       <select
         value={country}
         onChange={(e) => {
-          const v = e.target.value as keyof typeof REGIONS
-          setCountry(v)
-          setRegion(REGIONS[v][0])
+          const v = e.target.value as keyof typeof REGIONS;
+          setCountry(v);
+          setRegion(REGIONS[v][0]);
         }}
         className="flex-1 h-9 rounded-md border border-zinc-300 px-3 text-sm bg-white"
       >
@@ -501,7 +471,7 @@ function Cascading() {
         ))}
       </select>
     </div>
-  )
+  );
 }
 
 /* 10. Sizes */
@@ -521,7 +491,7 @@ function Sizes() {
         <option>lg</option>
       </select>
     </div>
-  )
+  );
 }
 
 export default function SelectShowcase() {
@@ -535,24 +505,15 @@ export default function SelectShowcase() {
         <CustomDropdown />
       </Frame>
 
-      <Frame
-        label="3. Searchable (combobox)"
-        note="必須。type で絞り込み — 選択肢が多いとき必須"
-      >
+      <Frame label="3. Searchable (combobox)" note="必須。type で絞り込み — 選択肢が多いとき必須">
         <Searchable />
       </Frame>
 
-      <Frame
-        label="4. Multi-select with chips"
-        note="必須。複数選択 + × で個別解除"
-      >
+      <Frame label="4. Multi-select with chips" note="必須。複数選択 + × で個別解除">
         <MultiSelect />
       </Frame>
 
-      <Frame
-        label="5. Searchable multi-select"
-        note="必須。3 + 4 の組合せ。タグ選択の最終形"
-      >
+      <Frame label="5. Searchable multi-select" note="必須。3 + 4 の組合せ。タグ選択の最終形">
         <SearchableMulti />
       </Frame>
 
@@ -576,5 +537,5 @@ export default function SelectShowcase() {
         <Sizes />
       </Frame>
     </div>
-  )
+  );
 }

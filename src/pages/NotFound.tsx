@@ -1,30 +1,27 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Home, ArrowLeft, Compass } from 'lucide-react'
-import { flatEntries } from '../registry'
-import { metaOf } from '../sectionMeta'
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Home, ArrowLeft, Compass } from "lucide-react";
+import { flatEntries } from "../registry";
+import { metaOf } from "../sectionMeta";
 
 export default function NotFound() {
-  const { pathname } = useLocation()
-  const navigate = useNavigate()
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
 
   const tokens = pathname
     .toLowerCase()
     .split(/[/\-_]/)
-    .filter(Boolean)
+    .filter(Boolean);
 
   const suggestions = flatEntries
     .map((e) => {
-      const blob = `${e.title} ${e.description ?? ''} ${e.sectionLabel} ${e.slug}`.toLowerCase()
-      const score = tokens.reduce(
-        (s, t) => s + (blob.includes(t) ? t.length : 0),
-        0,
-      )
-      return { e, score }
+      const blob = `${e.title} ${e.description ?? ""} ${e.sectionLabel} ${e.slug}`.toLowerCase();
+      const score = tokens.reduce((s, t) => s + (blob.includes(t) ? t.length : 0), 0);
+      return { e, score };
     })
     .filter((x) => x.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, 4)
-    .map((x) => x.e)
+    .map((x) => x.e);
 
   return (
     <div className="max-w-3xl mx-auto py-8">
@@ -84,7 +81,7 @@ export default function NotFound() {
           </div>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {suggestions.map((e) => {
-              const meta = metaOf(e.sectionId)
+              const meta = metaOf(e.sectionId);
               return (
                 <li key={`${e.sectionId}-${e.slug}`}>
                   <Link
@@ -98,17 +95,15 @@ export default function NotFound() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="text-sm font-medium truncate">{e.title}</div>
-                      <div className="text-xs text-zinc-500 truncate">
-                        {e.sectionLabel}
-                      </div>
+                      <div className="text-xs text-zinc-500 truncate">{e.sectionLabel}</div>
                     </div>
                   </Link>
                 </li>
-              )
+              );
             })}
           </ul>
         </section>
       )}
     </div>
-  )
+  );
 }

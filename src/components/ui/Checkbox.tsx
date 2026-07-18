@@ -2,7 +2,11 @@ export function Checkbox({
   checked,
   onChange,
   label,
-}: { checked?: boolean; onChange?: (v: boolean) => void; label?: string }) {
+}: {
+  checked?: boolean;
+  onChange?: (v: boolean) => void;
+  label?: string;
+}) {
   return (
     <label className="inline-flex items-center gap-2 cursor-pointer">
       <input
@@ -13,5 +17,5 @@ export function Checkbox({
       />
       {label && <span className="text-sm">{label}</span>}
     </label>
-  )
+  );
 }

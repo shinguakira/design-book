@@ -1,5 +1,5 @@
-import { Skeleton } from '../../components/ui/Skeleton'
-import { ShowcaseGrid, ShowcaseRow } from '../_shared/Showcase'
+import { Skeleton } from "../../components/ui/Skeleton";
+import { ShowcaseGrid, ShowcaseRow } from "../_shared/Showcase";
 
 export default function SkeletonShowcase() {
   return (
@@ -26,5 +26,5 @@ export default function SkeletonShowcase() {
         </div>
       </ShowcaseRow>
     </ShowcaseGrid>
-  )
+  );
 }
