@@ -1,13 +1,18 @@
 {
   "name": "design-book",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsgo -b && vite build",
     "typecheck": "tsgo -b",
     "typecheck:tsc": "tsc -b",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check",
+    "knip": "knip",
     "preview": "vite preview"
   },
   "dependencies": {
